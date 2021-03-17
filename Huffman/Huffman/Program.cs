@@ -14,49 +14,53 @@ namespace haffman
 
         static void Main(string[] args)
         {
-            //HuffmanTree huffmanTree = new HuffmanTree();
+        //HuffmanTree huffmanTree = new HuffmanTree();
+        //Console.WriteLine("Enter string to encode: ");
+        //string input = Console.ReadLine();
+        //if (input.Length > 1)
+        //{
+
+        //    // получаю дерево
+        //    huffmanTree.Build(input);
+
+        //    // кодирую последовательность
+        //    BitArray encoded = huffmanTree.Encode(input);
+
+        //    using (StreamWriter file = new StreamWriter("C:/Users/Кристина/Desktop/test.txt", false))
+        //    {
+        //        foreach (bool bit in encoded)
+        //        {
+        //            file.Write((bit ? 1 : 0) + "");
+        //        }
+        //    }
+        //}
+        //Console.WriteLine("Do you want decode file?");
+
+        //string a = Console.ReadLine();
+        //// Decode
+        //if (a == "yes")
+        //{
+        //    string decoded = "";
+        //    using (StreamReader file = new StreamReader("C:/Users/Кристина/Desktop/test.txt"))
+        //    {
+
+        //        decoded = file.ReadToEnd();
+        //    }
+
+
+        //    string decode = huffmanTree.Decode(decoded);
+
+        //    Console.WriteLine("Decoded: " + decode);
+        //}
+        //Console.ReadLine();
+        HuffmanTree huffmanTree = new HuffmanTree();
             //Console.WriteLine("Enter string to encode: ");
-            //string input = Console.ReadLine();
-            //if (input.Length > 1)
-            //{
-
-            //    // получаю дерево
-            //    huffmanTree.Build(input);
-
-            //    // кодирую последовательность
-            //    BitArray encoded = huffmanTree.Encode(input);
-
-            //    using (StreamWriter file = new StreamWriter("C:/Users/Кристина/Desktop/test.txt", false))
-            //    {
-            //        foreach (bool bit in encoded)
-            //        {
-            //            file.Write((bit ? 1 : 0) + "");
-            //        }
-            //    }
-            //}
-            //Console.WriteLine("Do you want decode file?");
-
-            //string a = Console.ReadLine();
-            //// Decode
-            //if (a == "yes")
-            //{
-            //    string decoded = "";
-            //    using (StreamReader file = new StreamReader("C:/Users/Кристина/Desktop/test.txt"))
-            //    {
-
-            //        decoded = file.ReadToEnd();
-            //    }
-
-
-            //    string decode = huffmanTree.Decode(decoded);
-
-            //    Console.WriteLine("Decoded: " + decode);
-            //}
-            //Console.ReadLine();
-
-            HuffmanTree huffmanTree = new HuffmanTree();
-            Console.WriteLine("Enter string to encode: ");
-            string input = Console.ReadLine();
+            string input = "";
+        
+            using (StreamReader file1 = new StreamReader("C:/Users/Кристина/Documents/University/Huffman/Huffman/fileIn.txt"))
+            {
+                input = file1.ReadToEnd();
+            }
             if (input.Length > 1)
             {
                 // получаю дерево
@@ -65,7 +69,7 @@ namespace haffman
                 // кодирую последовательность
                 BitArray encoded = huffmanTree.Encode(input);
 
-                using (BinaryWriter writer = new BinaryWriter(File.Open("C:/Users/Кристина/Desktop/test.bin", FileMode.OpenOrCreate)))
+                using (BinaryWriter writer = new BinaryWriter(File.Open("C:/Users/Кристина/Desktop/test.bin", FileMode.Create)))
                 {
 
                     byte[] bytes = new byte[encoded.Length / 8 + (encoded.Length % 8 == 0 ? 0 : 1)];

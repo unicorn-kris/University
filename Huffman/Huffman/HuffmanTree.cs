@@ -81,101 +81,131 @@ namespace haffman
 
                 alphabet[source[i]]++;
             }
-
-            foreach (KeyValuePair<char, int> symbol in alphabet) //просматриваю пары ключ-значение
+            foreach (KeyValuePair<char, int> symbol in alphabet)
             {
-
-                nodes.Add(new Node() { Symbol = symbol.Key, Frequency = symbol.Value }); //заношу ключи в список
+                nodes.Add(new Node() { Symbol = symbol.Key, Frequency = symbol.Value });
             }
-
 
             while (nodes.Count > 1)
             {
-                List<Node> order = nodes.OrderBy(node => node.Frequency).ToList<Node>(); //если символов больше 1 то сортирую по возрастанию частоты
+                List<Node> orderedNodes = nodes.OrderBy(node => node.Frequency).ToList<Node>();
 
-                if (order.Count == 2 || order[0].Symbol != '*') //если больше 2 и дерево еще не было тронуто, то строю дерево
+                if (orderedNodes.Count >= 2)
                 {
-                    // беру первые 2 
-                    List<Node> taken = order.Take(2).ToList<Node>();
+                    // Take first two items
+                    List<Node> taken = orderedNodes.Take(2).ToList<Node>();
 
-                    // формирую из них узел
-                    Node parent = new Node() //его символ звездочка, частота - сумма частот, слева и справа выбранные элементы
+                    // Create a parent node by combining the frequencies
+                    Node parent = new Node()
                     {
                         Symbol = '*',
                         Frequency = taken[0].Frequency + taken[1].Frequency,
                         Left = taken[0],
                         Right = taken[1]
                     };
-                    //элементы удаляются и прибавляется новый узел
+
                     nodes.Remove(taken[0]);
                     nodes.Remove(taken[1]);
                     nodes.Add(parent);
                 }
-                else if (order.Count > 2 && order[0].Symbol == '*') //если больше 2 и дерево было тронуто, то строю дерево
-                {
-                    List<Node> taken = order.Take(3).ToList<Node>();
 
-                    // формирую узел смотря на частоту и алфавитный порядок
-                    if (order[0].Frequency != order[1].Frequency)
-                    {
-                        Node parent = new Node() //его символ звездочка, частота - сумма частот, слева и справа выбранные элементы
-                        {
-                            Symbol = '*',
-                            Frequency = taken[0].Frequency + taken[1].Frequency,
-                            Left = taken[0],
-                            Right = taken[1]
-                        };
-                        //элементы удаляются и прибавляется новый узел
-                        nodes.Remove(taken[0]);
-                        nodes.Remove(taken[1]);
-                        nodes.Add(parent);
-                    }
-                    else if (order[0].Frequency == order[1].Frequency) //если частоты равны
-                    {
-                        Node parent = new Node() //его символ звездочка, частота - сумма частот, слева и справа выбранные элементы
-                        {
-                            Symbol = '*',
-                            Frequency = taken[1].Frequency + taken[2].Frequency,
-                            Left = taken[1],
-                            Right = taken[2]
-
-                        };
-                        nodes.Remove(taken[1]);
-                        nodes.Remove(taken[2]);
-                        nodes.Add(parent);
-                        if (parent.Frequency < taken[0].Frequency)
-                        {
-                            Node parent1 = new Node() //его символ звездочка, частота - сумма частот, слева и справа выбранные элементы
-                            {
-                                Symbol = '*',
-                                Frequency = parent.Frequency + taken[0].Frequency,
-                                Left = taken[0],
-                                Right = parent,
-                            };
-
-                            nodes.Remove(taken[0]);
-                            nodes.Add(parent1);
-                        }
-                        else
-                        {
-                            Node parent1 = new Node() //его символ звездочка, частота - сумма частот, слева и справа выбранные элементы
-                            {
-                                Symbol = '*',
-                                Frequency = parent.Frequency + taken[0].Frequency,
-                                Left = taken[0],
-                                Right = parent,
-                            };
-
-                            nodes.Remove(taken[0]);
-                            nodes.Add(parent1);
-                        }
-
-                    }
-                }
-
-                Root = nodes.FirstOrDefault(); //корень - первый элемент списка 
+                this.Root = nodes.FirstOrDefault();
 
             }
+            //foreach (KeyValuePair<char, int> symbol in alphabet) //просматриваю пары ключ-значение
+            //{
+
+            //    nodes.Add(new Node() { Symbol = symbol.Key, Frequency = symbol.Value }); //заношу ключи в список
+            //}
+
+
+            //while (nodes.Count > 1)
+            //{
+            //    List<Node> order = nodes.OrderBy(node => node.Frequency).ToList<Node>(); //если символов больше 1 то сортирую по возрастанию частоты
+
+            //    if (order.Count == 2 || order[0].Symbol != '*') //если больше 2 и дерево еще не было тронуто, то строю дерево
+            //    {
+            //        // беру первые 2 
+            //        List<Node> taken = order.Take(2).ToList<Node>();
+
+            //        // формирую из них узел
+            //        Node parent = new Node() //его символ звездочка, частота - сумма частот, слева и справа выбранные элементы
+            //        {
+            //            Symbol = '*',
+            //            Frequency = taken[0].Frequency + taken[1].Frequency,
+            //            Left = taken[0],
+            //            Right = taken[1]
+            //        };
+            //        //элементы удаляются и прибавляется новый узел
+            //        nodes.Remove(taken[0]);
+            //        nodes.Remove(taken[1]);
+            //        nodes.Add(parent);
+            //    }
+            //    else if (order.Count > 2 && order[0].Symbol == '*') //если больше 2 и дерево было тронуто, то строю дерево
+            //    {
+            //        List<Node> taken = order.Take(3).ToList<Node>();
+
+            //        // формирую узел смотря на частоту и алфавитный порядок
+            //        if (order[0].Frequency != order[1].Frequency)
+            //        {
+            //            Node parent = new Node() //его символ звездочка, частота - сумма частот, слева и справа выбранные элементы
+            //            {
+            //                Symbol = '*',
+            //                Frequency = taken[0].Frequency + taken[1].Frequency,
+            //                Left = taken[0],
+            //                Right = taken[1]
+            //            };
+            //            //элементы удаляются и прибавляется новый узел
+            //            nodes.Remove(taken[0]);
+            //            nodes.Remove(taken[1]);
+            //            nodes.Add(parent);
+            //        }
+            //        else if (order[0].Frequency == order[1].Frequency) //если частоты равны
+            //        {
+            //            Node parent = new Node() //его символ звездочка, частота - сумма частот, слева и справа выбранные элементы
+            //            {
+            //                Symbol = '*',
+            //                Frequency = taken[1].Frequency + taken[2].Frequency,
+            //                Left = taken[1],
+            //                Right = taken[2]
+
+            //            };
+            //            nodes.Remove(taken[1]);
+            //            nodes.Remove(taken[2]);
+            //            nodes.Add(parent);
+            //            if (parent.Frequency < taken[0].Frequency)
+            //            {
+            //                Node parent1 = new Node() //его символ звездочка, частота - сумма частот, слева и справа выбранные элементы
+            //                {
+            //                    Symbol = '*',
+            //                    Frequency = parent.Frequency + taken[0].Frequency,
+            //                    Left = taken[0],
+            //                    Right = parent,
+            //                };
+
+            //                nodes.Remove(taken[0]);
+            //                nodes.Add(parent1);
+            //            }
+            //            else
+            //            {
+            //                Node parent1 = new Node() //его символ звездочка, частота - сумма частот, слева и справа выбранные элементы
+            //                {
+            //                    Symbol = '*',
+            //                    Frequency = parent.Frequency + taken[0].Frequency,
+            //                    Left = taken[0],
+            //                    Right = parent,
+            //                };
+
+            //                nodes.Remove(taken[0]);
+            //                nodes.Add(parent1);
+            //            }
+
+            //        }
+            //    }
+
+            //    Root = nodes.FirstOrDefault(); //корень - первый элемент списка 
+
+            //}
 
         }
 
@@ -199,17 +229,25 @@ namespace haffman
             }
 
             List<string> s = new List<string>();
+            //byte[] bytes = new byte[symbols.Length];
+            //for (int i = 0; i < symbols.Length; ++i)
+            //{
+            //     bytes = Encoding.GetEncoding(1251).GetBytes(symbols);
+            //}
 
             for (int i = 0; i < symbols.Length; ++i)
             {
-                s.Add(Convert.ToString((int)symbols[i], 2));
+                s.Add(Convert.ToString(symbols[i], 2));
             }
-
+            //for (int i = 0; i < symbols.Length; ++i)
+            //{
+            //    s.Add(Convert.ToString(bytes[i], 2));
+            //}
             string lenght = Convert.ToString((int)symbols.Length, 2); //число символов
             List<bool> Bit = new List<bool>(); //служебная инофрмация
-            if (lenght.Length < 8) //код кол-ва символов "алфавита"
+            if (lenght.Length < 16) //код кол-ва символов "алфавита"
             {
-                for (int i = 0; i < 8 - lenght.Length; ++i)
+                for (int i = 0; i < 16 - lenght.Length; ++i)
                 {
                     Bit.Add(false);
                 }
@@ -228,8 +266,9 @@ namespace haffman
 
             for (int i = 0; i < symbols.Length; ++i) //для каждого сивола
             {
-                if (s[i].Length < 8) //номер символа в аски в двоичном виде
-                    for (int j = 0; j < 8 - s[i].Length; ++j)
+
+                if (s[i].Length < 16) //номер символа в аски в двоичном виде
+                    for (int j = 0; j < 16 - s[i].Length; ++j)
                         Bit.Add(false);
                 for (int j = 0; j < s[i].Length; ++j)
                 {
@@ -241,8 +280,8 @@ namespace haffman
                 int bb = inform[i].Count; //кол-во бит для кода символа в двоичном виде
 
                 string lenghtbb = Convert.ToString(bb, 2);
-                if (lenghtbb.Length < 8)
-                    for (int j = 0; j < 8 - lenghtbb.Length; ++j)
+                if (lenghtbb.Length < 16)
+                    for (int j = 0; j < 16 - lenghtbb.Length; ++j)
                         Bit.Add(false);
                 for (int j = 0; j < lenghtbb.Length; ++j)
                 {
@@ -276,11 +315,11 @@ namespace haffman
                 bit += ((bits ? 1 : 0) + "");
             }
 
-            for (int i = 0; i < 8; ++i)//кол-во символов алфавита
+            for (int i = 0; i < 16; ++i)//кол-во символов алфавита
             {
                 num += bit[i];
             }
-            int N = 8;
+            int N = 16;
             int numm = 0;
             int k = 1;
             for (int i = num.Length - 1; i >= 0; --i)
@@ -296,23 +335,23 @@ namespace haffman
                 int a1 = 0;
                 string bitss = "";
                 int kk = 1;
-                for (int j = N + 7; j >= N; --j) //код символа
+                for (int j = N + 15; j >= N; --j) //код символа
                 {
                     if (bit[j] == '1')
                         a1 += kk;
                     kk *= 2;
                 }
                 kk = 1;
-                N = N + 8;
+                N = N + 16;
                 a = (char)a1;
                 a1 = 0;
-                for (int j = N + 7; j >= N; --j) //кол-во бит для кода символа
+                for (int j = N + 15; j >= N; --j) //кол-во бит для кода символа
                 {
                     if (bit[j] == '1')
                         a1 += kk;
                     kk *= 2;
                 }
-                N = N + 8;
+                N = N + 16;
                 kk = 1;
                 for (int j = N; j < N + a1; ++j) //код символа
                 {
