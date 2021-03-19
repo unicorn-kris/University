@@ -245,6 +245,27 @@ namespace haffman
             //}
             string lenght = Convert.ToString((int)symbols.Length, 2); //число символов
             List<bool> Bit = new List<bool>(); //служебная инофрмация
+            string Slenght = Convert.ToString((int)source.Length, 2); //число символов
+
+            if (Slenght.Length < 16) //код кол-ва символов cтроки
+            {
+                for (int i = 0; i < 16 - Slenght.Length; ++i)
+                {
+                    Bit.Add(false);
+                }
+            }
+            for (int i = 0; i < Slenght.Length; ++i)
+            {
+                if (Slenght[i] == '0')
+                {
+                    Bit.Add(false);
+                }
+                else
+                {
+                    Bit.Add(true);
+                }
+            }
+
             if (lenght.Length < 16) //код кол-ва символов "алфавита"
             {
                 for (int i = 0; i < 16 - lenght.Length; ++i)
@@ -314,14 +335,29 @@ namespace haffman
             {
                 bit += ((bits ? 1 : 0) + "");
             }
-
             for (int i = 0; i < 16; ++i)//кол-во символов алфавита
             {
                 num += bit[i];
             }
-            int N = 16;
             int numm = 0;
             int k = 1;
+            for (int i = num.Length - 1; i >= 0; --i)
+            {
+                if (num[i] == '1')
+                    numm += k;
+                k *= 2;
+            }
+            num = "";
+            int l = numm;
+            numm = 0;
+            k = 1;
+            for (int i =16; i < 32; ++i)//кол-во символов алфавита
+            {
+                num += bit[i];
+            }
+            int N = 32;
+             numm = 0;
+             k = 1;
             for (int i = num.Length - 1; i >= 0; --i)
             {
                 if (num[i] == '1')
@@ -368,6 +404,7 @@ namespace haffman
 
             string result = "";
             string numsym = "";
+            int count = 0;
             for (int i = N; i < bit.Length; ++i)
             {
                 numsym += bit[i];
@@ -376,7 +413,7 @@ namespace haffman
                     int n1 = numsym.Length;
                     int n2 = symbol.Value.Length;
                     int n = 0;
-                    if (n1 == n2)
+                    if (n1 == n2 && count!=l)
                     {
                         for (int j = 0; j < n1; ++j)
                             if (numsym[j] == symbol.Value[j])
@@ -385,6 +422,7 @@ namespace haffman
                         {
                             result += symbol.Key;
                             numsym = "";
+                            ++count;
                         }
                     }
                 }

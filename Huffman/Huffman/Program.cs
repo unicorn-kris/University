@@ -57,7 +57,7 @@ namespace haffman
             //Console.WriteLine("Enter string to encode: ");
             string input = "";
         
-            using (StreamReader file1 = new StreamReader("C:/Users/Кристина/Documents/University/Huffman/Huffman/fileIn.txt"))
+            using (StreamReader file1 = new StreamReader("C:/Users/Кристина/Desktop/testIn.txt"))
             {
                 input = file1.ReadToEnd();
             }
@@ -102,7 +102,7 @@ namespace haffman
 
                 using (StreamWriter file1 = new StreamWriter("C:/Users/Кристина/Desktop/test1.txt", false))
                 {
-                    file1.WriteLine("Decoded: " + decode);
+                    file1.WriteLine(decode);
                 }
                 Console.WriteLine("Decoded: " + decode);
                 Console.ReadLine();
