@@ -1,0 +1,87 @@
+﻿<Window x:Class="Weather.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Weather"
+        mc:Ignorable="d"
+        Title="Weather" Height="450" Width="800">
+	<Window.Resources>
+		<Style x:Key="MyLabel" TargetType="Label">
+			<Setter Property="HorizontalAlignment" Value="Center"/> <!--Горизонтальное выравнивание элемента относительно области-->
+			<Setter Property="FontSize" Value="13"/>
+			<Setter Property="Height" Value="25"/>
+		</Style>
+		<Style x:Key="MyButton" TargetType="Button">
+			<!--<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>-->
+			<Setter Property="FontSize" Value="18"/>
+		</Style>
+	</Window.Resources>
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="110"/>
+			<RowDefinition Height="50"/>
+			<RowDefinition Height="60"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Grid Grid.Row="0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+
+					<Label Grid.Column="0" Style="{StaticResource MyLabel}" Content="Саратов" HorizontalAlignment="Right"/>
+					<Label Grid.Column="1" Style="{StaticResource MyLabel}" Content="Дата" HorizontalAlignment="Left"/>
+					
+				</Grid>
+				<Label Grid.Row="1" x:Name="TempNow" Style="{StaticResource MyLabel}" Content="123" Height="45" FontSize="30" VerticalAlignment="Center"/>
+				<Label Grid.Row="2" x:Name="Precipitation" Style="{StaticResource MyLabel}" Content="Осадки" />
+				<Button Style="{StaticResource MyButton}" Grid.Column="1" HorizontalAlignment="Right" Content="Обновить" Click="UpdateButton_Click"/>
+			</Grid>
+		</Grid>
+		
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Label Style="{StaticResource MyLabel}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Влажность 12"/>
+			<Label Style="{StaticResource MyLabel}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Давление 31"/>
+			
+			<Label Style="{StaticResource MyLabel}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Скорость и направление ветра 31"/>
+			<Label Style="{StaticResource MyLabel}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Температура воды 31"/>
+			
+
+		</Grid>
+		
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Button Style="{StaticResource MyButton}" Grid.Column="0"  Content="Сегодня" Click="TodayButton_Click"/>
+			<Button Style="{StaticResource MyButton}" Grid.Column="1"  Content="Завтра" Click="TomorrowButton_Click"/>
+			<Button Style="{StaticResource MyButton}" Grid.Column="2"  Content="Послезавтра" Click="DayAfterTomorrowButton_Click"/>
+		</Grid>
+
+		<Grid x:Name="TodayGrid" Grid.Row="3" Visibility="Hidden">
+			<Label Content="Today"/>
+		</Grid>
+		<Grid x:Name="TomorrowGrid" Grid.Row="3" Visibility="Hidden">
+			<Label Content="Tomorrow"/>
+		</Grid>
+		<Grid x:Name="DayAfterTomorrowGrid" Grid.Row="3" Visibility="Hidden">
+			<Label Content="DayAfterTomorrow"/>
+		</Grid>
+	</Grid>
+</Window>
