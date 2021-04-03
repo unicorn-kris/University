@@ -34,32 +34,43 @@ namespace Weather
             OutputNow();
         }
        
-        public void OutputNow()
+        public void OutputNow() //вывод погоды "Сейчас"
         {
-            WeatherNow now = new WeatherNow();
-            WeatherData[] DataNow = DefineWeather(now.Url, now.XPathTemp_1, now.XPathTemp_2, now.XPathPressure,
-                                                  now.XPathWindSpeed, null, now.XPathWindDirection, now.XPathHumidity, now.XPathWater, 1);
-            foreach (WeatherData day in DataNow)
-            {
-                //Console.WriteLine($"Температура воздуха: {day.Temperature}");
-                TempNow.Content = day.Temperature.ToString();
-                //Console.WriteLine($"Давление воздуха:  {day.Pressure}");
-                PressureNow.Content = $"Давление воздуха:  {day.Pressure}";
-                if (day.WindSpeed_2 != 0)
-                   // Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1} - {day.WindSpeed_2}");
-                    WindNow.Content = $"Ветер:  {day.WindSpeed_1} - {day.WindSpeed_2} ";
-                else
-                   // Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1}");
-                    WindNow.Content = $"Ветер:  {day.WindSpeed_1} ";
-                //Console.WriteLine($"Направление ветра:  {day.WindDirection}");
-                WindNow.Content += day.WindDirection.ToString();
-                //Console.WriteLine($"Влажность:  {day.Humidity}");
-                HumidityNow.Content = $"Влажность:  {day.Humidity}";
-                //Console.WriteLine($"Температура воды:  {day.Water}");
-                WaterNow.Content = $"Температура воды:  {day.Water}";
-            }
+            WeatherNow now = new WeatherNow(); //содержит все Xpath 
+                WeatherData[] DataNow = DefineWeather(now.Url, now.XPathTemp_1, now.XPathTemp_2, now.XPathPressure,
+                                                      now.XPathWindSpeed, null, now.XPathWindDirection, now.XPathHumidity, now.XPathWater, 1);
+                foreach (WeatherData day in DataNow)
+                {
+                    TempNow.Content = day.Temperature.ToString();
+                    PressureNow.Content = $"Давление воздуха:  {day.Pressure}";
+                    if (day.WindSpeed_2 != 0)
+                        WindNow.Content = $"Ветер:  {day.WindSpeed_1} - {day.WindSpeed_2} ";
+                    else
+                        WindNow.Content = $"Ветер:  {day.WindSpeed_1} ";
+                    WindNow.Content += day.WindDirection.ToString();
+                    HumidityNow.Content = $"Влажность:  {day.Humidity}";
+                    WaterNow.Content = $"Температура воды:  {day.Water}";
+                }
         }
-        public struct WeatherData //данные о погоде
+        public void Output_3Days() //вывод погоды "Сегодня, Завтра, Послезавтра"
+        {
+            //WeatherNow now = new WeatherNow(); //содержит все Xpath 
+            //WeatherData[] DataNow = DefineWeather(now.Url, now.XPathTemp_1, now.XPathTemp_2, now.XPathPressure,
+            //                                      now.XPathWindSpeed, null, now.XPathWindDirection, now.XPathHumidity, now.XPathWater, 1);
+            //foreach (WeatherData day in DataNow)
+            //{
+            //    TempNow.Content = day.Temperature.ToString();
+            //    PressureNow.Content = $"Давление воздуха:  {day.Pressure}";
+            //    if (day.WindSpeed_2 != 0)
+            //        WindNow.Content = $"Ветер:  {day.WindSpeed_1} - {day.WindSpeed_2} ";
+            //    else
+            //        WindNow.Content = $"Ветер:  {day.WindSpeed_1} ";
+            //    WindNow.Content += day.WindDirection.ToString();
+            //    HumidityNow.Content = $"Влажность:  {day.Humidity}";
+            //    WaterNow.Content = $"Температура воды:  {day.Water}";
+            //}
+        }
+        public struct WeatherData //элемент, хранящий данные о погоде
         {
             public double Temperature;
             public int Pressure;
@@ -69,7 +80,7 @@ namespace Weather
             public string WindDirection;
             public string Water;
         }
-        public string LoadPage(string url)
+        public string LoadPage(string url) //загрузка страницы
         {
             string result = "";
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -93,7 +104,7 @@ namespace Weather
             return result;
         }
         public WeatherData[] DefineWeather(string url, string xPathTemp_1, string xPathTemp_2, string xPathPressure, string xPathWindSpeed, string xPathWindSpeed_2,
-                                          string xPathWindDirection, string xPathHumidity, string xPathWater, int Param)
+                                          string xPathWindDirection, string xPathHumidity, string xPathWater, int Param) //парсер
         {
             WeatherData[] dates = new WeatherData[0];
             int i = 0;
