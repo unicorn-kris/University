@@ -8,17 +8,15 @@ namespace Medicine_center
 {//придумать айди! чтобы в дальнейшем добавлять человека если его нет!
     class Patient: Person
     {
-        private string _PhoneNumber;
-        private DateTime _Birthday;
-
+       
         public Patient(string name, string surname, string patronymic, string phoneNumber,
                        DateTime birthday)
         {
             Name = name;
             SurName = surname;
             Patronymic = patronymic;
-            _PhoneNumber = phoneNumber;
-            _Birthday = birthday;
+            PhoneNumber = phoneNumber;
+            Birthday = birthday;
             ID = 0;
         }
         public new string GiveTakeName { 
@@ -59,26 +57,26 @@ namespace Medicine_center
                 ID = value;
             }
         }
-        public string GiveTakePhoneNumber
+        public new string GiveTakePhoneNumber
         {
             get
             {
-                return _PhoneNumber;
+                return PhoneNumber;
             }
             set
             {
-                _PhoneNumber = value;
+                PhoneNumber = value;
             }
         }
-        public DateTime GiveTakeBirthday
+        public new DateTime GiveTakeBirthday
         {
             get
             {
-                return _Birthday;
+                return Birthday;
             }
             set
             {
-                _Birthday = value;
+                Birthday = value;
             }
         }
     }

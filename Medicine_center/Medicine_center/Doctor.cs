@@ -12,12 +12,15 @@ namespace Medicine_center
         private int[] _WorkDays;
         private int[] _WorkHours;
 
-        public Doctor(string name, string surname, string patronymic, string speciality,
-                       int[] workDays, int workHours)
+        public Doctor(string name, string surname, string patronymic, string phoneNumber,
+                       DateTime birthday, string speciality, int[] workDays, int workHours)
         {
             Name = name;
             SurName = surname;
             Patronymic = patronymic;
+            PhoneNumber = phoneNumber;
+            Birthday = birthday;
+            _Speciality = speciality;
             _WorkDays = new int[7];
             for (int i = 0; i < 7; ++i)
             {
@@ -68,6 +71,28 @@ namespace Medicine_center
             set
             {
                 Patronymic = value;
+            }
+        }
+        public new string GiveTakePhoneNumber
+        {
+            get
+            {
+                return PhoneNumber;
+            }
+            set
+            {
+                PhoneNumber = value;
+            }
+        }
+        public new DateTime GiveTakeBirthday
+        {
+            get
+            {
+                return Birthday;
+            }
+            set
+            {
+                Birthday = value;
             }
         }
         public new int GiveTakeID

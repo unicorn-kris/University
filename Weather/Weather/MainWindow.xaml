@@ -10,11 +10,8 @@
 		<Style x:Key="MyLabel" TargetType="Label">
 			<Setter Property="HorizontalAlignment" Value="Center"/> <!--Горизонтальное выравнивание элемента относительно области-->
 			<Setter Property="FontSize" Value="13"/>
-			<Setter Property="Height" Value="25"/>
 		</Style>
 		<Style x:Key="MyButton" TargetType="Button">
-			<!--<Setter Property="HorizontalAlignment" Value="Center"/>
-			<Setter Property="VerticalAlignment" Value="Center"/>-->
 			<Setter Property="FontSize" Value="18"/>
 		</Style>
 	</Window.Resources>
@@ -22,7 +19,6 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="110"/>
 			<RowDefinition Height="50"/>
-			<RowDefinition Height="60"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 
@@ -45,7 +41,7 @@
 				</Grid>
 				<Label Grid.Row="1" x:Name="TempNow" Style="{StaticResource MyLabel}" Content="123" Height="45" FontSize="30" VerticalAlignment="Center"/>
 				<Label Grid.Row="2" x:Name="Precipitation" Style="{StaticResource MyLabel}" Content="Осадки" />
-				<Button Style="{StaticResource MyButton}" Grid.Column="1" HorizontalAlignment="Right" Content="Обновить" Click="UpdateButton_Click"/>
+				<Button Style="{StaticResource MyButton}" Grid.Column="1" HorizontalAlignment="Right" Content="Обновить" Click="Button_Update_Click"/>
 			</Grid>
 		</Grid>
 		
@@ -54,34 +50,18 @@
 				<ColumnDefinition/>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
-			<Label Style="{StaticResource MyLabel}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Влажность 12"/>
-			<Label Style="{StaticResource MyLabel}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Давление 31"/>
+			<Label x:Name="HumidityNow" Style="{StaticResource MyLabel}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Влажность 12"/>
+			<Label x:Name="PressureNow" Style="{StaticResource MyLabel}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Давление 31"/>
 			
-			<Label Style="{StaticResource MyLabel}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Скорость и направление ветра 31"/>
-			<Label Style="{StaticResource MyLabel}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Температура воды 31"/>
+			<Label x:Name="WindNow" Style="{StaticResource MyLabel}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Скорость и направление ветра 31"/>
+			<Label x:Name="WaterNow" Style="{StaticResource MyLabel}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Температура воды 31"/>
 			
 
 		</Grid>
 		
 		<Grid Grid.Row="2">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-			</Grid.ColumnDefinitions>
-			<Button Style="{StaticResource MyButton}" Grid.Column="0"  Content="Сегодня" Click="TodayButton_Click"/>
-			<Button Style="{StaticResource MyButton}" Grid.Column="1"  Content="Завтра" Click="TomorrowButton_Click"/>
-			<Button Style="{StaticResource MyButton}" Grid.Column="2"  Content="Послезавтра" Click="DayAfterTomorrowButton_Click"/>
+		
 		</Grid>
 
-		<Grid x:Name="TodayGrid" Grid.Row="3" Visibility="Hidden">
-			<Label Content="Today"/>
-		</Grid>
-		<Grid x:Name="TomorrowGrid" Grid.Row="3" Visibility="Hidden">
-			<Label Content="Tomorrow"/>
-		</Grid>
-		<Grid x:Name="DayAfterTomorrowGrid" Grid.Row="3" Visibility="Hidden">
-			<Label Content="DayAfterTomorrow"/>
-		</Grid>
 	</Grid>
 </Window>
