@@ -11,11 +11,11 @@ namespace Medicine_center
         private int _Number;
         private int _CabinetID;
         private string _Speciality;
-        public Cabinet(int number, string speciality)
+        public Cabinet(int id, int number, string speciality)
         {
             _Number = number;
             _Speciality = speciality;
-            _CabinetID = 0;
+            _CabinetID = id;
         }
         public new int GiveTakeNumber
         {

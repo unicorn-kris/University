@@ -5,6 +5,10 @@ namespace Medicine_center
     class Shedule
     {
         private List<Appointment> _appointments;
+        public Shedule()
+        {
+            _appointments = null;
+        }
         public Shedule(List<Appointment> appointments)
         {
             _appointments = appointments;

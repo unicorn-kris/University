@@ -9,7 +9,7 @@ namespace Medicine_center
     class Patient: Person
     {
        
-        public Patient(string name, string surname, string patronymic, string pasport, string phoneNumber,
+        public Patient(int id, string name, string surname, string patronymic, string pasport, string phoneNumber,
                        DateTime birthday)
         {
             Name = name;
@@ -18,7 +18,7 @@ namespace Medicine_center
             PhoneNumber = phoneNumber;
             Pasport = pasport;
             Birthday = birthday;
-            ID = 0;
+            ID = id;
         }
         public new string GiveTakeName { 
             get {
