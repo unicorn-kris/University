@@ -12,17 +12,58 @@ namespace Medicine_center
         private Doctor _doctor;
         private Cabinet _cabinet;
         private DateTime _dateTime;
-        private int ID;
-
-        //если нет такого айди то добавить запись, иначе вывести сообщение о существовании записи на данное число и время
-        public Appointment (Patient patient, Doctor doctor, Cabinet cabinet, DateTime dateTime)
+        public Appointment (Doctor doctor, Cabinet cabinet, DateTime dateTime)
         {
-            ID = _doctor.GiveTakeID;//change!
-            _patient = patient;
+            _patient = null;
             _doctor = doctor;
             _cabinet = cabinet;
             _dateTime = dateTime;
         }
-
+        public new Patient GiveTakePatient
+        {
+            get
+            {
+                return _patient;
+            }
+            set
+            {
+                _patient = value;
+            }
+        }
+        public new Doctor GiveTakeDoctor
+        {
+            get
+            {
+                return _doctor;
+            }
+            set
+            {
+                _doctor = value;
+            }
+        }
+        public new Cabinet GiveTakeCabinet
+        {
+            get
+            {
+                return _cabinet;
+            }
+            set
+            {
+                _cabinet = value;
+            }
+        }
+        public new DateTime GiveTakeDate
+        {
+            get
+            {
+                return _dateTime;
+            }
+            set
+            {
+                _dateTime = value;
+            }
+        }
+        
+        
     }
 }

@@ -10,14 +10,15 @@ namespace Medicine_center
     {
         private string _Speciality;
         private int[] _WorkDays;
-        private int[] _WorkHours;
+        private int _WorkHours;
 
-        public Doctor(string name, string surname, string patronymic, string phoneNumber,
+        public Doctor(string name, string surname, string patronymic, string pasport, string phoneNumber,
                        DateTime birthday, string speciality, int[] workDays, int workHours)
         {
             Name = name;
             SurName = surname;
             Patronymic = patronymic;
+            Pasport = pasport;
             PhoneNumber = phoneNumber;
             Birthday = birthday;
             _Speciality = speciality;
@@ -30,14 +31,7 @@ namespace Medicine_center
                     else 
                         _WorkDays[i] = 0;
             }
-            if (workHours == 1)
-            {
-               
-            }
-            else
-            {
-
-            }
+            _WorkHours = workHours;
             ID = 0;
         }
         public new string GiveTakeName
@@ -82,6 +76,17 @@ namespace Medicine_center
             set
             {
                 PhoneNumber = value;
+            }
+        }
+        public new string GiveTakePasport
+        {
+            get
+            {
+                return Pasport;
+            }
+            set
+            {
+                Pasport = value;
             }
         }
         public new DateTime GiveTakeBirthday

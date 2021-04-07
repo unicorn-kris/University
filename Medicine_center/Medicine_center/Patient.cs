@@ -9,13 +9,14 @@ namespace Medicine_center
     class Patient: Person
     {
        
-        public Patient(string name, string surname, string patronymic, string phoneNumber,
+        public Patient(string name, string surname, string patronymic, string pasport, string phoneNumber,
                        DateTime birthday)
         {
             Name = name;
             SurName = surname;
             Patronymic = patronymic;
             PhoneNumber = phoneNumber;
+            Pasport = pasport;
             Birthday = birthday;
             ID = 0;
         }
@@ -47,16 +48,6 @@ namespace Medicine_center
                 Patronymic = value;
             }
         }
-        public new int GiveTakeID {
-            get
-            {
-                return ID;
-            }
-            set
-            {
-                ID = value;
-            }
-        }
         public new string GiveTakePhoneNumber
         {
             get
@@ -68,6 +59,17 @@ namespace Medicine_center
                 PhoneNumber = value;
             }
         }
+        public new string GiveTakePasport
+        {
+            get
+            {
+                return Pasport;
+            }
+            set
+            {
+                Pasport = value;
+            }
+        }
         public new DateTime GiveTakeBirthday
         {
             get
@@ -77,6 +79,17 @@ namespace Medicine_center
             set
             {
                 Birthday = value;
+            }
+        }
+        public new int GiveTakeID
+        {
+            get
+            {
+                return ID;
+            }
+            set
+            {
+                ID = value;
             }
         }
     }

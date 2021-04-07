@@ -10,5 +10,45 @@ namespace Medicine_center
     {
         private int _Number;
         private int _CabinetID;
+        private string _Speciality;
+        public Cabinet(int number, string speciality)
+        {
+            _Number = number;
+            _Speciality = speciality;
+            _CabinetID = 0;
+        }
+        public new int GiveTakeNumber
+        {
+            get
+            {
+                return _Number;
+            }
+            set
+            {
+                _Number = value;
+            }
+        }
+        public new string GiveTakeSpeciality
+        {
+            get
+            {
+                return _Speciality;
+            }
+            set
+            {
+                _Speciality = value;
+            }
+        }
+        public new int GiveTakeID
+        {
+            get
+            {
+                return _CabinetID;
+            }
+            set
+            {
+                _CabinetID = value;
+            }
+        }
     }
 }
