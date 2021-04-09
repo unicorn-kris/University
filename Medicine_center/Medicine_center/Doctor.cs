@@ -89,6 +89,17 @@ namespace Medicine_center
                 Pasport = value;
             }
         }
+        public new string GiveTakeSpeciality
+        {
+            get
+            {
+                return _Speciality;
+            }
+            set
+            {
+                _Speciality = value;
+            }
+        }
         public new DateTime GiveTakeBirthday
         {
             get
@@ -109,6 +120,20 @@ namespace Medicine_center
             set
             {
                 ID = value;
+            }
+        }
+        public int [] GiveWorkDays
+        {
+            get
+            {
+                return _WorkDays;
+            }
+        }
+        public int GiveWorkHours
+        {
+            get
+            {
+                return _WorkHours;
             }
         }
     }

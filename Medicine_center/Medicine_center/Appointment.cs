@@ -5,21 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Medicine_center
-{//придумать айди!
+{
     class Appointment
     {
         private Patient _patient;
         private Doctor _doctor;
         private Cabinet _cabinet;
-        private DateTime _dateTime;
-        public Appointment (Doctor doctor, Cabinet cabinet, DateTime dateTime)
+        private int _day;
+        private int _hour;
+        private int _minutes;
+        public Appointment(Doctor doctor, Cabinet cabinet, int day, int hour, int minute)
         {
             _patient = null;
             _doctor = doctor;
             _cabinet = cabinet;
-            _dateTime = dateTime;
+            _day = day;
+            _hour = hour;
+            _minutes = minute;
         }
-        public new Patient GiveTakePatient
+        public Patient GiveTakePatient
         {
             get
             {
@@ -30,7 +34,7 @@ namespace Medicine_center
                 _patient = value;
             }
         }
-        public new Doctor GiveTakeDoctor
+        public Doctor GiveTakeDoctor
         {
             get
             {
@@ -41,7 +45,7 @@ namespace Medicine_center
                 _doctor = value;
             }
         }
-        public new Cabinet GiveTakeCabinet
+        public Cabinet GiveTakeCabinet
         {
             get
             {
@@ -52,18 +56,41 @@ namespace Medicine_center
                 _cabinet = value;
             }
         }
-        public new DateTime GiveTakeDate
+        public int GiveTakeDay
         {
             get
             {
-                return _dateTime;
+                return _day;
             }
             set
             {
-                _dateTime = value;
+                _day = value;
             }
         }
-        
-        
+        public int GiveTakeHour
+        {
+            get
+            {
+                return _hour;
+            }
+            set
+            {
+                _hour = value;
+            }
+        }
+        public int GiveTakeMinute
+        {
+            get
+            {
+                return _minutes;
+            }
+            set
+            {
+                _minutes = value;
+            }
+        }
+
     }
 }
+
+
