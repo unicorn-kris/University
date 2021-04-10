@@ -172,11 +172,10 @@ namespace Medicine_center
                 }
             }
 
-
-            Console.WriteLine("Введите id нужного врача");
             bool findDoc = false;
             if (find)
             {
+                Console.WriteLine("Введите id нужного врача");
                 int index = int.Parse(Console.ReadLine());
                 while (!findDoc && index != 0)
                 {
@@ -257,13 +256,14 @@ namespace Medicine_center
                     phoneNumber = doctorData[5];
                     birthday = new DateTime(int.Parse(doctorData[8]), int.Parse(doctorData[7]), int.Parse(doctorData[6]));
                     speciality = doctorData[12];
+                    int[] workDays1 = new int[7];
                     for (int index = 13; index < doctorData.Length - 1; ++index)
                     {
-                        workDays[index - 13] = int.Parse(doctorData[index]);
+                        workDays1[index - 13] = int.Parse(doctorData[index]);
                     }
                     workHours = int.Parse(doctorData[doctorData.Length - 1]);
 
-                    Doctor newDoctor = new Doctor(id, name, surname, patronymic, pasport, phoneNumber, birthday, speciality, workDays, workHours);
+                    Doctor newDoctor = new Doctor(id, name, surname, patronymic, pasport, phoneNumber, birthday, speciality, workDays1, workHours);
                     doctors.Add(newDoctor);
                     read = file.ReadLine();
                 }
@@ -382,6 +382,22 @@ namespace Medicine_center
                                         newShedule.AddAppointment(appointment);
                                     }
                                 }
+                                if (workHours == 2)
+                                {
+                                    hour = 14;
+                                    minute = 0;
+                                    while (hour < 18)
+                                    {
+                                        Appointment appointment = new Appointment(doctors[i], null, day, hour, minute);
+                                        if (minute != 30)
+                                            minute = 30;
+                                        else
+                                            minute = 0;
+                                        if (minute == 0)
+                                            ++hour;
+                                        newShedule.AddAppointment(appointment);
+                                    }
+                                }
                             }
                         }
                     }
@@ -460,14 +476,14 @@ namespace Medicine_center
 
                                     if (appointment != null)
                                     {
-                                        //appointments.Add(appointment);
-
+                                       // appointments.Add(appointment);
                                         newShedule.AddAppointment(appointment);
                                     }
                                 }
                             }
                         }
                     }
+                    appointments = newShedule.GetAppointments;
                 }
 
                 else if (decide == (int)AdminDecide.AddNewCabinet)

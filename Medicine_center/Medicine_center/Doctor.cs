@@ -23,15 +23,7 @@ namespace Medicine_center
             PhoneNumber = phoneNumber;
             Birthday = birthday;
             _Speciality = speciality;
-            _WorkDays = new int[7];
-            for (int i = 0; i < 7; ++i)
-            {
-                for (int j = 0; j < workDays.Length; ++j)
-                    if (i == workDays[j])
-                        _WorkDays[i] = 1;
-                    else 
-                        _WorkDays[i] = 0;
-            }
+            _WorkDays = workDays;
             _WorkHours = workHours;
         }
         public new string GiveTakeName
@@ -89,7 +81,7 @@ namespace Medicine_center
                 Pasport = value;
             }
         }
-        public new string GiveTakeSpeciality
+        public string GiveTakeSpeciality
         {
             get
             {
