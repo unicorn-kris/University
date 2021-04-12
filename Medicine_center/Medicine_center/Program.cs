@@ -18,7 +18,6 @@ namespace Medicine_center
             AddCabinetsInShedule,
             Save
         }
-
         static void InputNewPerson(out string name, out string surname, out string patronymic, out string phoneNumber, out string pasport,
              out DateTime birthday)
         {
@@ -728,30 +727,34 @@ namespace Medicine_center
                     //        break;
                     //    }
                     //}
-
-                    newShedule.DeletePatAppointment(deletePatient);
-                    appointments = newShedule.GetAppointments;
+                    if (deletePatient != null)
+                    {
+                        newShedule.DeletePatAppointment(deletePatient);
+                        appointments = newShedule.GetAppointments;
+                        Console.WriteLine("Пациент удален");
+                    }
+                    else
+                        Console.WriteLine("Пациент не удален");
                 }
 
                 else if (decide == (int)AdminDecide.DeleteDoctor)//удаление доктора и всех записей с ним
                 {
                     Doctor deleteDoctor = null;
                     bool find = FindDoctor(doctors, out deleteDoctor);
-                    //Console.WriteLine("Введите id доктора");
-                    //int findId = int.Parse(Console.ReadLine());
-                    //for (int i = 0; i < doctors.Count; ++i)
-                    //{
-                    //    if (doctors[i].GiveTakeID == findId)
-                    //    {
-                    //        doctors.RemoveAt(i);
-                    //        deleteDoctor = doctors[i];
-                    //        break;
-                    //    }
-                    //}
+                    for (int i = 0; i < doctors.Count; ++i)
+                    {
+                        if (doctors[i].GiveTakeID == deleteDoctor.GiveTakeID)
+                        {
+                            doctors.RemoveAt(i);
+                            deleteDoctor = doctors[i];
+                            break;
+                        }
+                    }
                     if (find)
                     {
                         newShedule.DeleteDocAppointment(deleteDoctor);
                         appointments = newShedule.GetAppointments;
+                        Console.WriteLine("Доктор удален");
                     }
                     else
                     {
@@ -841,6 +844,7 @@ namespace Medicine_center
                                     success = true;
                                 }
                             }
+                            Console.WriteLine("Кабинет добавлен");
                         }
 
                         if (!success)

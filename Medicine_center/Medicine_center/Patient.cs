@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Medicine_center
-{//придумать айди! чтобы в дальнейшем добавлять человека если его нет!
+{
     class Patient: Person
     {
        
