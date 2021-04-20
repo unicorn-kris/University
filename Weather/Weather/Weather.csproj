@@ -58,8 +58,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DayAfterTomorrow.cs" />
     <Compile Include="WeatherLinks.cs" />
     <Compile Include="WeatherNow.cs" />
+    <Compile Include="WeatherToday.cs" />
+    <Compile Include="WeatherTomorrow.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

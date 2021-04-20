@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FB0D409F-0B8B-43D2-B213-0D99DBA7DC69}</ProjectGuid>
+    <ProjectGuid>{0B99BC31-6621-44A5-8A82-AA33DC48F804}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Medicine_center</RootNamespace>
-    <AssemblyName>Medicine_center</AssemblyName>
+    <RootNamespace>DAO</RootNamespace>
+    <AssemblyName>DAO</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,24 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Appointment.cs" />
-    <Compile Include="Cabinet.cs" />
-    <Compile Include="Doctor.cs" />
-    <Compile Include="Patient.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Cabinet_DAO.cs" />
+    <Compile Include="DataAppointment_DAO.cs" />
+    <Compile Include="Doctor_DAO.cs" />
+    <Compile Include="Patient_DAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reader.cs" />
-    <Compile Include="Shedule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cabinets.txt" />
-    <Content Include="Doctors.txt" />
-    <Content Include="Patients.txt" />
-    <Content Include="Shedule.txt" />
+    <ProjectReference Include="..\DAO_Patient_Interface\DAO_Interface.csproj">
+      <Project>{c226f91e-7753-4f14-9d4e-3f7ab9e9b5ad}</Project>
+      <Name>DAO_Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedCenter\MedCenter.csproj">
+      <Project>{cd4ae3a1-c4d6-4c98-a15b-c751fff2ab20}</Project>
+      <Name>MedCenter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

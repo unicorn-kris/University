@@ -1,0 +1,21 @@
+﻿namespace Weather
+{
+    class WeatherTomorrow : WeatherLinks
+    {
+        public WeatherTomorrow()
+        {
+            url = "https://www.gismeteo.ru/weather-saratov-5032/tomorrow/";
+            xPathTemp_1 = "/html/body/section/div[2]/div/div[1]/div/div[2]/div[1]/div[2]/div/div[1]/div/div[3]/div/div/div/div/span[1]";
+            xPathPressure = "/html/body/section/div[2]/div/div[1]/div/div[2]/div[12]/div/div[2]/div[2]/div[2]/div/div/div/div/span[1]";
+            xPathWindSpeed = "/html/body/section/div[2]/div/div[1]/div/div[2]/div[1]/div[2]/div/div[1]/div/div[5]/div/div/div/span[1]/text()";
+            xPathWindDirection = "/html/body/section/div[2]/div/div[1]/div/div[2]/div[6]/div/div[2]/div[2]/div[2]/div/div/div[3]";
+            xPathHumidity = "/html/body/section/div[2]/div/div[1]/div/div[2]/div[12]/div/div[2]/div[2]/div[2]/div/div";
+        }
+        public new string Url => url;
+        public new string XPathTemp_1 => xPathTemp_1;
+        public new string XPathPressure => xPathPressure;
+        public new string XPathWindSpeed => xPathWindSpeed;
+        public new string XPathWindDirection => xPathWindDirection;
+        public new string XPathHumidity => xPathHumidity;
+    }
+}

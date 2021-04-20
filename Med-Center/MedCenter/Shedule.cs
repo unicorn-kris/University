@@ -1,0 +1,134 @@
+﻿using System.Collections.Generic;
+
+namespace MedCenter
+{//добавляет записи в список, позже по нему проводится поиск существующей записи по айди!
+     public class Shedule
+    {
+        private List<Appointment> _appointments;
+
+        public Shedule(List<Appointment> appointments)
+        {
+            _appointments = appointments;
+        }
+        public List<Appointment> GetAppointments
+        {
+            get
+            {
+                return _appointments;
+            }
+        }
+        //public bool CheckForExist(Patient patient)//если паспорт совпадает то запись уже есть
+        //{
+        //    bool check = false;
+        //    foreach (Appointment appointment in _appointments)
+        //    {
+        //        if (appointment.GiveTakePatient.GiveTakePasport != patient.GiveTakePasport)
+        //        {
+        //            check = true;
+        //        }
+        //    }
+        //    return check;
+        //}
+        public void AddAppointment(Appointment appointment)
+        {
+            bool save = false;
+            if (_appointments.Count != 0 && appointment != null)
+            {
+                foreach (Appointment appointmentExist in _appointments)
+                {
+                    //доктор есть, кабинет есть, а времени такого нет - добавить запись
+                    if (appointmentExist.GiveTakeDoctor.GiveTakeID == appointment.GiveTakeDoctor.GiveTakeID
+                        && (appointmentExist.GiveTakeDay != appointment.GiveTakeDay ||
+                         appointmentExist.GiveTakeHour != appointment.GiveTakeHour ||
+                         appointmentExist.GiveTakeMinute != appointment.GiveTakeMinute))
+
+                    {
+                        save = true;
+                    }
+
+                }
+            }
+
+            foreach (Appointment appointmentExist in _appointments)
+            {
+                if (appointmentExist.GiveTakeDoctor.GiveTakeID != appointment.GiveTakeDoctor.GiveTakeID)
+                    save = true;
+            }
+
+            if (save || _appointments.Count == 0)
+                _appointments.Add(appointment);
+        }
+        //проверить!
+        public void DeleteDocAppointment(Doctor doctor)
+        {
+            for (int i = 0; i < _appointments.Count; ++i)
+            {
+                if (_appointments[i].GiveTakeDoctor.GiveTakeID == doctor.GiveTakeID)
+                {
+                    _appointments.RemoveAt(i);
+                }
+            }
+
+        }
+        public void DeletePatAppointment(Patient patient)
+        {
+            for (int i = 0; i < _appointments.Count; ++i)
+            {
+                if (_appointments[i].GiveTakePatient != null && _appointments[i].GiveTakePatient.GiveTakeID == patient.GiveTakeID)
+                {
+                    _appointments[i].GiveTakePatient = null;
+                }
+            }
+
+        }
+        public int Count()
+        {
+            if (_appointments != null)
+                return _appointments.Count;
+            else
+                return 0;
+
+        }
+
+        public void AddPatientInAppointment(Patient patient, Appointment appointment)
+        {
+            Appointment appointmentNew = appointment;//создана новая запись для будущего добавления
+            appointment.GiveTakePatient = patient;
+
+            //доктор есть, кабинет есть, время есть, пациента в этой записи нет - добавить пациента и заменить запись
+            for (int index = 0; index < _appointments.Count; ++index)
+            {
+                if (_appointments[index].GiveTakeDoctor.GiveTakePasport == appointment.GiveTakeDoctor.GiveTakePasport &&
+                    _appointments[index].GiveTakeCabinet != null)
+                    if (_appointments[index].GiveTakeCabinet.GiveTakeNumber == appointment.GiveTakeCabinet.GiveTakeNumber && _appointments[index].GiveTakePatient == null)
+                        if (_appointments[index].GiveTakeDay == appointment.GiveTakeDay)
+                            if (_appointments[index].GiveTakeHour == appointment.GiveTakeHour)
+                                if (_appointments[index].GiveTakeMinute == appointment.GiveTakeMinute)
+                                {
+                                    _appointments[index] = appointmentNew;
+                                }
+            }
+        }
+        public void DeletePatientInAppointment(Patient patient, Appointment appointment)
+        {
+            Appointment appointmentNew = appointment;//создана новая запись для будущего удаления
+
+            //доктор есть, время и кабинет есть и есть пациент - заменить запись на аналогичную без пациента
+            for (int index = 0; index < _appointments.Count; ++index)
+            {
+                if (_appointments[index].GiveTakeDoctor.GiveTakeID == appointment.GiveTakeDoctor.GiveTakeID
+                    && _appointments[index].GiveTakeCabinet != null)
+                    if (_appointments[index].GiveTakeCabinet.GiveTakeNumber == appointment.GiveTakeCabinet.GiveTakeNumber && _appointments[index].GiveTakePatient != null &&
+                        _appointments[index].GiveTakePatient.GiveTakeID == patient.GiveTakeID)
+                        if (_appointments[index].GiveTakeDay == appointment.GiveTakeDay)
+                            if (_appointments[index].GiveTakeHour == appointment.GiveTakeHour)
+                                if (_appointments[index].GiveTakeMinute == appointment.GiveTakeMinute)
+                                {
+
+                                    appointmentNew.GiveTakePatient = null;
+                                    _appointments[index] = appointmentNew;
+                                }
+            }
+        }
+    }
+}

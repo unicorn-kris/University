@@ -1,21 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Net;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
+using System;
 using System.IO;
-using System.Threading;
+using System.Net;
+using System.Text;
+using System.Windows;
 
 namespace Weather
 {
@@ -28,48 +16,96 @@ namespace Weather
         {
             InitializeComponent();
             OutputNow();
+            Output_3Days();
         }
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
             OutputNow();
         }
-       
+
         public void OutputNow() //вывод погоды "Сейчас"
         {
             WeatherNow now = new WeatherNow(); //содержит все Xpath 
-                WeatherData[] DataNow = DefineWeather(now.Url, now.XPathTemp_1, now.XPathTemp_2, now.XPathPressure,
-                                                      now.XPathWindSpeed, null, now.XPathWindDirection, now.XPathHumidity, now.XPathWater, 1);
-                foreach (WeatherData day in DataNow)
-                {
-                    TempNow.Content = day.Temperature.ToString();
-                    PressureNow.Content = $"Давление воздуха:  {day.Pressure}";
-                    if (day.WindSpeed_2 != 0)
-                        WindNow.Content = $"Ветер:  {day.WindSpeed_1} - {day.WindSpeed_2} ";
-                    else
-                        WindNow.Content = $"Ветер:  {day.WindSpeed_1} ";
-                    WindNow.Content += day.WindDirection.ToString();
-                    HumidityNow.Content = $"Влажность:  {day.Humidity}";
-                    WaterNow.Content = $"Температура воды:  {day.Water}";
-                }
+            WeatherData[] DataNow = DefineWeather(now.Url, now.XPathTemp_1, now.XPathTemp_2, now.XPathPressure,
+                                                  now.XPathWindSpeed, null, now.XPathWindDirection, now.XPathHumidity, now.XPathWater, 1);
+            foreach (WeatherData day in DataNow)
+            {
+                TempNow.Content = day.Temperature.ToString();
+                PressureNow.Content = $"Давление воздуха:  {day.Pressure}";
+                if (day.WindSpeed_2 != 0)
+                    WindNow.Content = $"Ветер:  {day.WindSpeed_1} - {day.WindSpeed_2} ";
+                else
+                    WindNow.Content = $"Ветер:  {day.WindSpeed_1} ";
+                WindNow.Content += day.WindDirection.ToString();
+                HumidityNow.Content = $"Влажность:  {day.Humidity}";
+                WaterNow.Content = $"Температура воды:  {day.Water}";
+            }
         }
         public void Output_3Days() //вывод погоды "Сегодня, Завтра, Послезавтра"
         {
-            //WeatherNow now = new WeatherNow(); //содержит все Xpath 
-            //WeatherData[] DataNow = DefineWeather(now.Url, now.XPathTemp_1, now.XPathTemp_2, now.XPathPressure,
-            //                                      now.XPathWindSpeed, null, now.XPathWindDirection, now.XPathHumidity, now.XPathWater, 1);
-            //foreach (WeatherData day in DataNow)
-            //{
-            //    TempNow.Content = day.Temperature.ToString();
-            //    PressureNow.Content = $"Давление воздуха:  {day.Pressure}";
-            //    if (day.WindSpeed_2 != 0)
-            //        WindNow.Content = $"Ветер:  {day.WindSpeed_1} - {day.WindSpeed_2} ";
-            //    else
-            //        WindNow.Content = $"Ветер:  {day.WindSpeed_1} ";
-            //    WindNow.Content += day.WindDirection.ToString();
-            //    HumidityNow.Content = $"Влажность:  {day.Humidity}";
-            //    WaterNow.Content = $"Температура воды:  {day.Water}";
-            //}
+           
+            WeatherToday today = new WeatherToday();
+            WeatherData[] DataToday = DefineWeather(today.Url, today.XPathTemp_1, null, today.XPathPressure,
+                                                       today.XPathWindSpeed, null, today.XPathWindDirection, today.XPathHumidity, null, 2);
+            WeatherTomorrow tomorrow = new WeatherTomorrow();
+            WeatherData[] DataTomorrow = DefineWeather(tomorrow.Url, tomorrow.XPathTemp_1, null, tomorrow.XPathPressure,
+                                                       tomorrow.XPathWindSpeed, null, tomorrow.XPathWindDirection, tomorrow.XPathHumidity, null, 2);
+
+            WeatherDayAfterTomorrow dayAfterTomorrow = new WeatherDayAfterTomorrow();
+            WeatherData[] DataDayAfterTomorrow = DefineWeather(dayAfterTomorrow.Url, dayAfterTomorrow.XPathTemp_1, null, dayAfterTomorrow.XPathPressure,
+                                                       dayAfterTomorrow.XPathWindSpeed, null, dayAfterTomorrow.XPathWindDirection, dayAfterTomorrow.XPathHumidity, null, 2);
+            int j = 1;//hour
+            Console.WriteLine("Tomorrow");
+            foreach (WeatherData day in DataTomorrow)
+            {
+                Console.WriteLine($"Time {j}");
+                Console.WriteLine($"Температура воздуха: {day.Temperature}");
+                Console.WriteLine($"Давление воздуха:  {day.Pressure}");
+                if (day.WindSpeed_2 != 0)
+                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1} - {day.WindSpeed_2}");
+                else
+                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1}");
+                Console.WriteLine($"Направление ветра:  {day.WindDirection}");
+                Console.WriteLine($"Влажность:  {day.Humidity}");
+                j += 3;
+                Console.WriteLine();
+            }
+
+            j = 1;
+            Console.WriteLine("Today");
+            foreach (WeatherData day in DataToday)
+            {
+                Console.WriteLine($"Time {j}");
+                Console.WriteLine($"Температура воздуха: {day.Temperature}");
+                Console.WriteLine($"Давление воздуха:  {day.Pressure}");
+                if (day.WindSpeed_2 != 0)
+                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1} - {day.WindSpeed_2}");
+                else
+                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1}");
+                Console.WriteLine($"Направление ветра:  {day.WindDirection}");
+                Console.WriteLine($"Влажность:  {day.Humidity}");
+                j += 3;
+                Console.WriteLine();
+            }
+
+            j = 1;
+            Console.WriteLine("DayAfterTomorrow");
+            foreach (WeatherData day in DataDayAfterTomorrow)
+            {
+                Console.WriteLine($"Time {j}");
+                Console.WriteLine($"Температура воздуха: {day.Temperature}");
+                Console.WriteLine($"Давление воздуха:  {day.Pressure}");
+                if (day.WindSpeed_2 != 0)
+                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1} - {day.WindSpeed_2}");
+                else
+                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1}");
+                Console.WriteLine($"Направление ветра:  {day.WindDirection}");
+                Console.WriteLine($"Влажность:  {day.Humidity}");
+                j += 3;
+                Console.WriteLine();
+            }
         }
+
         public struct WeatherData //элемент, хранящий данные о погоде
         {
             public double Temperature;
@@ -217,7 +253,7 @@ namespace Weather
                         dates[j].WindSpeed_2 = 0;
                 }
             }
-
+            
             //wind direction
             HtmlNodeCollection linkWindDirection = document.DocumentNode.SelectNodes(xPathWindDirection);
             string[] WindDirection = new string[i];
@@ -271,12 +307,12 @@ namespace Weather
                 //    {
                 //        TemperatureWater.Remove(0, j);
                 //    }
-                    dates[0].Water = TemperatureWater;
+                dates[0].Water = TemperatureWater;
             }
             return dates;
         }
 
-       
+
     }
-    
+
 }
