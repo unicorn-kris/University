@@ -8,8 +8,6 @@ namespace DAO_Interface
         void Add(Cabinet cabinet);
         IEnumerable<Cabinet> GetAll();
         Cabinet GetInfoCabinet(int number);
-        void UpdateCabinet(int id, int number, string speciality);
-        void RemoveCabinet(int id);
-
+        void DeleteCabinet(int id);
     }
 }

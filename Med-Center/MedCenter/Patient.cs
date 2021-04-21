@@ -15,8 +15,8 @@ namespace MedCenter
             Name = name;
             SurName = surname;
             Patronymic = patronymic;
-            PhoneNumber = phoneNumber;
             Pasport = pasport;
+            PhoneNumber = phoneNumber;
             Birthday = birthday;
             ID = id;
         }

@@ -8,13 +8,13 @@ namespace MedCenter
 {
     public abstract class Person
     {
+        protected int ID;
         protected string Name;
         protected string SurName;
         protected string Patronymic;
-        protected string PhoneNumber;
         protected string Pasport;
+        protected string PhoneNumber;
         protected DateTime Birthday;
-        protected int ID;
         public string GiveTakeName { get; set; }
         public string GiveTakeSurName { get; set; }
         public string GiveTakePatronymic { get; set; }

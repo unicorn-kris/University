@@ -11,6 +11,13 @@ namespace MedCenter
         private int _Number;
         private int _CabinetID;
         private string _Speciality;
+
+        public Cabinet()
+        {
+            _Number = 0;
+            _Speciality = "";
+            _CabinetID = 0;
+        }
         public Cabinet(int id, int number, string speciality)
         {
             _Number = number;

@@ -14,6 +14,15 @@ namespace MedCenter
         private int _Hour;
         private int _Minute;
         private int _PatientID;
+        public DataAppointment()
+        {
+            _DoctorID = 0;
+            _CabinetNumber = 0;
+            _Day = -1;
+            _Hour = -1;
+            _Minute = -1;
+            _PatientID = 0;
+        }
         public DataAppointment(int doctorID, int cabinetNum, int day, int hour, int minute, int patientID)
         {
             _DoctorID = doctorID;

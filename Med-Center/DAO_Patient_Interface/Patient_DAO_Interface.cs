@@ -8,10 +8,7 @@ namespace DAO_Interface
     {
         void Add(Patient patient);
         IEnumerable<Patient> GetAll();
-        Patient GetInfoPatient(int id);
-        void UpdatePatient(int id, string name, string surname, string patronymic, string pasport, string phoneNumber,
-                       DateTime birthday);
-        void RemovePatient(int id);
+        void DeletePatient(int id);
 
     }
 }
