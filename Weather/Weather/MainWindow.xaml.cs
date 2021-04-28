@@ -36,30 +36,47 @@ namespace Weather
                                                   now.XPathWindSpeed, null, now.XPathWindDirection, now.XPathHumidity, now.XPathWater, (int)Param.paramNow);
             return DataNow;
         }
-        public WeatherData[] WeatherDataToday()
+        //public WeatherData[] WeatherDataToday()
+        //{
+
+        //    WeatherToday today = new WeatherToday();
+        //    WeatherData[] DataToday = DefineWeather(today.Url, today.XPathTemp_1, null, today.XPathPressure,
+        //                                               today.XPathWindSpeed, null, today.XPathWindDirection, today.XPathHumidity, null, (int)Param.param3Days);
+        //    return DataToday;
+        //}
+        //public WeatherData[] WeatherDataTomorrow()
+        //{
+
+        //    WeatherTomorrow tomorrow = new WeatherTomorrow();
+        //    WeatherData[] DataTomorrow = DefineWeather(tomorrow.Url, tomorrow.XPathTemp_1, null, tomorrow.XPathPressure,
+        //                                               tomorrow.XPathWindSpeed, null, tomorrow.XPathWindDirection, tomorrow.XPathHumidity, null, (int)Param.param3Days);
+        //    return DataTomorrow;
+        //}
+        //public WeatherData[] WeatherDataDayAfterTomorrow()
+        //{
+
+        //    WeatherDayAfterTomorrow dayAfterTomorrow = new WeatherDayAfterTomorrow();
+        //    WeatherData[] DataDayAfterTomorrow = DefineWeather(dayAfterTomorrow.Url, dayAfterTomorrow.XPathTemp_1, null, dayAfterTomorrow.XPathPressure,
+        //                                               dayAfterTomorrow.XPathWindSpeed, null, dayAfterTomorrow.XPathWindDirection, dayAfterTomorrow.XPathHumidity, null, (int)Param.param3Days);
+        //    return DataDayAfterTomorrow;
+        //}
+        //public WeatherData[] WeatherData4Day()
+        //{
+
+        //    Weather4Day w4day = new Weather4Day();
+        //    WeatherData[] Data4Day = DefineWeather(w4day.Url, w4day.XPathTemp_1, null, w4day.XPathPressure,
+        //                                               w4day.XPathWindSpeed, null, w4day.XPathWindDirection, w4day.XPathHumidity, null, (int)Param.param3Days);
+        //    return Data4Day;
+        //}
+        public WeatherData[] GetWeatherData(string url)
         {
 
-            WeatherToday today = new WeatherToday();
-            WeatherData[] DataToday = DefineWeather(today.Url, today.XPathTemp_1, null, today.XPathPressure,
-                                                       today.XPathWindSpeed, null, today.XPathWindDirection, today.XPathHumidity, null, (int)Param.param3Days);
-            return DataToday;
+            WeatherDataLinks weather = new WeatherDataLinks();
+            WeatherData[] weatherData = DefineWeather(url, weather.XPathTemp_1, null, weather.XPathPressure,
+                                                       weather.XPathWindSpeed, null, weather.XPathWindDirection, weather.XPathHumidity, null, (int)Param.param3Days);
+            return weatherData;
         }
-        public WeatherData[] WeatherDataTomorrow()
-        {
-
-            WeatherTomorrow tomorrow = new WeatherTomorrow();
-            WeatherData[] DataTomorrow = DefineWeather(tomorrow.Url, tomorrow.XPathTemp_1, null, tomorrow.XPathPressure,
-                                                       tomorrow.XPathWindSpeed, null, tomorrow.XPathWindDirection, tomorrow.XPathHumidity, null, (int)Param.param3Days);
-            return DataTomorrow;
-        }
-        public WeatherData[] WeatherDataDayAfterTomorrow()
-        {
-
-            WeatherDayAfterTomorrow dayAfterTomorrow = new WeatherDayAfterTomorrow();
-            WeatherData[] DataDayAfterTomorrow = DefineWeather(dayAfterTomorrow.Url, dayAfterTomorrow.XPathTemp_1, null, dayAfterTomorrow.XPathPressure,
-                                                       dayAfterTomorrow.XPathWindSpeed, null, dayAfterTomorrow.XPathWindDirection, dayAfterTomorrow.XPathHumidity, null, (int)Param.param3Days);
-            return DataDayAfterTomorrow;
-        }
+        
         public struct WeatherData //элемент, хранящий данные о погоде
         {
             public double Temperature;
@@ -343,62 +360,29 @@ namespace Weather
         }
         public void SaveWeather()
         {
-            WeatherData[] DataToday = WeatherDataToday();
-            WeatherData[] DataTomorrow = WeatherDataTomorrow();
-            WeatherData[] DataDayAfterTomorrow = WeatherDataDayAfterTomorrow();
+            WeatherURL weatherUrl = new WeatherURL();
+            string[] weatherUrls = weatherUrl.WeatherUrls;
 
-            int j = 1;//hour
-            Console.WriteLine("Today");
-            foreach (WeatherData day in DataToday)
+            
+            foreach (string url in weatherUrls)
             {
-                Console.WriteLine($"Time {j}");
-                Console.WriteLine($"Температура воздуха: {day.Temperature}");
-                Console.WriteLine($"Давление воздуха:  {day.Pressure}");
-                if (day.WindSpeed_2 != 0)
-                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1} - {day.WindSpeed_2}");
-                else
-                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1}");
-                Console.WriteLine($"Направление ветра:  {day.WindDirection}");
-                Console.WriteLine($"Влажность:  {day.Humidity}");
-                j += 3;
-                Console.WriteLine();
+                WeatherData[] Data = GetWeatherData(url);
+                Console.WriteLine("Day");
+                foreach (WeatherData data in Data)
+                {
+                   // Console.WriteLine($"Time {j}");
+                    Console.WriteLine($"Температура воздуха: {data.Temperature}");
+                    Console.WriteLine($"Давление воздуха:  {data.Pressure}");
+                    if (data.WindSpeed_2 != 0)
+                        Console.WriteLine($"Скорость ветра:  {data.WindSpeed_1} - {data.WindSpeed_2}");
+                    else
+                        Console.WriteLine($"Скорость ветра:  {data.WindSpeed_1}");
+                    Console.WriteLine($"Направление ветра:  {data.WindDirection}");
+                    Console.WriteLine($"Влажность:  {data.Humidity}");
+                    Console.WriteLine();
+                }
             }
-
-            j = 1;
-            Console.WriteLine("Tomorrow");
-            foreach (WeatherData day in DataTomorrow)
-            {
-                Console.WriteLine($"Time {j}");
-                Console.WriteLine($"Температура воздуха: {day.Temperature}");
-                Console.WriteLine($"Давление воздуха:  {day.Pressure}");
-                if (day.WindSpeed_2 != 0)
-                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1} - {day.WindSpeed_2}");
-                else
-                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1}");
-                Console.WriteLine($"Направление ветра:  {day.WindDirection}");
-                Console.WriteLine($"Влажность:  {day.Humidity}");
-                j += 3;
-                Console.WriteLine();
-            }
-
-
-            j = 1;
-            Console.WriteLine("DayAfterTomorrow");
-            foreach (WeatherData day in DataDayAfterTomorrow)
-            {
-                Console.WriteLine($"Time {j}");
-                Console.WriteLine($"Температура воздуха: {day.Temperature}");
-                Console.WriteLine($"Давление воздуха:  {day.Pressure}");
-                if (day.WindSpeed_2 != 0)
-                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1} - {day.WindSpeed_2}");
-                else
-                    Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1}");
-                Console.WriteLine($"Направление ветра:  {day.WindDirection}");
-                Console.WriteLine($"Влажность:  {day.Humidity}");
-                j += 3;
-                Console.WriteLine();
-            }
-        }
+            
     }
 
 }

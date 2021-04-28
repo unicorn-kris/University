@@ -35,8 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.11.32.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.32\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.33.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.33\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -58,11 +58,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DayAfterTomorrow.cs" />
-    <Compile Include="WeatherLinks.cs" />
-    <Compile Include="WeatherNow.cs" />
-    <Compile Include="WeatherToday.cs" />
-    <Compile Include="WeatherTomorrow.cs" />
+    <Compile Include="Weather\Weather10Day.cs" />
+    <Compile Include="Weather\Weather4Day.cs" />
+    <Compile Include="Weather\Weather5Day.cs" />
+    <Compile Include="Weather\Weather6Day.cs" />
+    <Compile Include="Weather\Weather7Day.cs" />
+    <Compile Include="Weather\Weather8Day.cs" />
+    <Compile Include="Weather\Weather9Day.cs" />
+    <Compile Include="Weather\WeatherDataLinks.cs" />
+    <Compile Include="Weather\WeatherDayAfterTomorrow.cs" />
+    <Compile Include="Weather\WeatherLinks.cs" />
+    <Compile Include="Weather\WeatherNow.cs" />
+    <Compile Include="Weather\WeatherToday.cs" />
+    <Compile Include="Weather\WeatherTomorrow.cs" />
+    <Compile Include="Weather\WeatherURL.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

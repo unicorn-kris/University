@@ -8,10 +8,8 @@ using DAO;
 
 namespace BL
 {
-    class Program
+    class Doctor_
     {
-        static void Main(string[] args)
-        {
-        }
+       private List <Doctor> 
     }
 }
