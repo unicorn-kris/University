@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MedCenter;
-using DAO;
 
 namespace BL
 {
-    class Doctor_
+    class Program
     {
-       private List <Doctor> 
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
     }
 }
