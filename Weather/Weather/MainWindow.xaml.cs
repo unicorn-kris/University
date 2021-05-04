@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows;
+using System.Threading;
 
 namespace Weather
 {
@@ -12,15 +13,28 @@ namespace Weather
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
 
             InitializeComponent();
             OutputNow();
-            SaveWeather();
-
-
             // Output_3Days();
+
+            //int delay = 0;
+            //    // устанавливаем метод обратного вызова
+            //    TimerCallback tm = new TimerCallback(SaveWeather);
+            //    // создаем таймер
+            //    Timer timer = new Timer(tm, null, 0, 24*60*60);
+            //if (delay < 30)
+            //{
+            //    ++delay;
+            //    Console.WriteLine(delay);
+            //}
+            //else
+            //    delay = 0;
+            object obj = 12;
+            SaveWeather(obj);
         }
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
@@ -72,7 +86,7 @@ namespace Weather
         //                                               w4day.XPathWindSpeed, null, w4day.XPathWindDirection, w4day.XPathHumidity, null, (int)Param.param3Days);
         //    return Data4Day;
         //}
-        public WeatherData[] GetWeatherData(string url)
+        public  WeatherData[] GetWeatherData(string url)
         {
 
             WeatherLink weather = new WeatherLink();
@@ -129,7 +143,7 @@ namespace Weather
             }
             return result;
         }
-        public WeatherData[] DefineWeather(string url, string xPathTemp_1, string xPathTemp_2, string xPathPressure, string xPathWindSpeed, string xPathWindSpeed_2,
+        public  WeatherData[] DefineWeather(string url, string xPathTemp_1, string xPathTemp_2, string xPathPressure, string xPathWindSpeed, string xPathWindSpeed_2,
                                           string xPathWindDirection, string xPathHumidity, string xPathWater, int Param) //парсер
         {
             WeatherData[] dates = new WeatherData[0];
@@ -408,7 +422,7 @@ namespace Weather
         //        Console.WriteLine();
         //    }
         //}
-        public void SaveWeather()
+        public  void SaveWeather(object obj)
         {
             string pathMain = @"C:/MonitoringWeather";
             if (!Directory.Exists(pathMain))
