@@ -1,6 +1,7 @@
 ﻿namespace Weather
 {
-    class WeatherNow : WeatherLinks
+    class WeatherNow : WeatherDataLinks
+
     {
         private string xPathTemp_2;
         private string xPathWater;

@@ -58,20 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Weather\Weather10Day.cs" />
-    <Compile Include="Weather\Weather4Day.cs" />
-    <Compile Include="Weather\Weather5Day.cs" />
-    <Compile Include="Weather\Weather6Day.cs" />
-    <Compile Include="Weather\Weather7Day.cs" />
-    <Compile Include="Weather\Weather8Day.cs" />
-    <Compile Include="Weather\Weather9Day.cs" />
     <Compile Include="Weather\WeatherDataLinks.cs" />
-    <Compile Include="Weather\WeatherDayAfterTomorrow.cs" />
-    <Compile Include="Weather\WeatherLinks.cs" />
     <Compile Include="Weather\WeatherNow.cs" />
-    <Compile Include="Weather\WeatherToday.cs" />
-    <Compile Include="Weather\WeatherTomorrow.cs" />
-    <Compile Include="Weather\WeatherURL.cs" />
+    <Compile Include="Weather\WeatherLink.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
