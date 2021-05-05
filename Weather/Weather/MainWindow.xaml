@@ -44,7 +44,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Style="{StaticResource MyLabel}" Content="Саратов" HorizontalAlignment="Right"/>
-                    <Label Grid.Column="1" Style="{StaticResource MyLabel}" Content="Дата" HorizontalAlignment="Left"/>
+                    <Label x:Name="Date" Grid.Column="1" Style="{StaticResource MyLabel}" Content="Дата" HorizontalAlignment="Left"/>
 
                 </Grid>
                 <Label Grid.Row="1" x:Name="TempNow" Style="{StaticResource MyLabel}" Content="123" Height="45" FontSize="25"/>

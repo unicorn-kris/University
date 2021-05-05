@@ -3,8 +3,8 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Windows;
 using System.Threading;
+using System.Windows;
 
 namespace Weather
 {
@@ -13,32 +13,19 @@ namespace Weather
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
 
             InitializeComponent();
             OutputNow();
             // Output_3Days();
+            SaveData();
 
-            //int delay = 0;
-            //    // устанавливаем метод обратного вызова
-            //    TimerCallback tm = new TimerCallback(SaveWeather);
-            //    // создаем таймер
-            //    Timer timer = new Timer(tm, null, 0, 24*60*60);
-            //if (delay < 30)
-            //{
-            //    ++delay;
-            //    Console.WriteLine(delay);
-            //}
-            //else
-            //    delay = 0;
-            object obj = 12;
-            SaveWeather(obj);
         }
-        private void Button_Update_Click(object sender, RoutedEventArgs e)
+        private void Button_Update_Click(object sender, EventArgs e)
         {
             OutputNow();
+            //SaveWeather();
             // Output_3Days();
         }
         public enum Param
@@ -86,7 +73,7 @@ namespace Weather
         //                                               w4day.XPathWindSpeed, null, w4day.XPathWindDirection, w4day.XPathHumidity, null, (int)Param.param3Days);
         //    return Data4Day;
         //}
-        public  WeatherData[] GetWeatherData(string url)
+        public WeatherData[] GetWeatherData(string url)
         {
 
             WeatherLink weather = new WeatherLink();
@@ -94,7 +81,6 @@ namespace Weather
                                                        weather.XPathWindSpeed, null, weather.XPathWindDirection, weather.XPathHumidity, null, (int)Param.paramDays);
             return weatherData;
         }
-
         public struct WeatherData //структура - данные о погоде
         {
             public double Temperature;
@@ -113,16 +99,18 @@ namespace Weather
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
-                Exception.Content = "";
+                //Exception.Content = "";
                 Grid1.Visibility = Visibility.Visible;
                 Grid2.Visibility = Visibility.Visible;
             }
             catch
             {
-
-                Exception.Content = "Возникли проблемы с подключением, повторите попытку";
-                Grid1.Visibility = Visibility.Hidden;
-                Grid2.Visibility = Visibility.Hidden;
+                if (Exception.Dispatcher.CheckAccess())
+                {
+                   //Exception.Content = "Возникли проблемы с подключением, повторите попытку";
+                    Grid1.Visibility = Visibility.Hidden;
+                    Grid2.Visibility = Visibility.Hidden;
+                }
                 return null;
             }
 
@@ -143,7 +131,7 @@ namespace Weather
             }
             return result;
         }
-        public  WeatherData[] DefineWeather(string url, string xPathTemp_1, string xPathTemp_2, string xPathPressure, string xPathWindSpeed, string xPathWindSpeed_2,
+        public WeatherData[] DefineWeather(string url, string xPathTemp_1, string xPathTemp_2, string xPathPressure, string xPathWindSpeed, string xPathWindSpeed_2,
                                           string xPathWindDirection, string xPathHumidity, string xPathWater, int Param) //парсер
         {
             WeatherData[] dates = new WeatherData[0];
@@ -161,7 +149,7 @@ namespace Weather
 
             string pageContent = LoadPage(url);
             HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
-            if (pageContent != "" && pageContent!=null)
+            if (pageContent != "" && pageContent != null)
             {
                 document.LoadHtml(pageContent);
                 int k = 0;
@@ -200,7 +188,14 @@ namespace Weather
                         }
                         if (minus >= 0) //если температура меньше нуля
                         {
-                            dates[j].Temperature *= -1;
+                            try
+                            {
+                                dates[j].Temperature *= -1;
+                            }
+                            catch
+                            {
+                                dates[j].Temperature = double.MaxValue;
+                            }
                         }
                     }
                 }
@@ -224,7 +219,14 @@ namespace Weather
                     }
                     for (int j = 0; j < i; ++j)
                     {
-                        dates[j].Pressure = int.Parse(pressure[j]);
+                        try
+                        {
+                            dates[j].Pressure = int.Parse(pressure[j]);
+                        }
+                        catch
+                        {
+                            dates[j].Pressure = int.MaxValue;
+                        }
                     }
                 }
                 else
@@ -265,11 +267,19 @@ namespace Weather
                         }
                         for (int j = 0; j < i; ++j)
                         {
-                            string[] wind = wind2[j].Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                            if (wind[0] != "&mdash;")
-                                dates[j].WindSpeed_2 = int.Parse(wind[0]);
-                            else
-                                dates[j].WindSpeed_2 = 0;
+                            try
+                            {
+                                string[] wind = wind2[j].Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                                if (wind[0] != "&mdash;")
+                                    dates[j].WindSpeed_2 = int.Parse(wind[0]);
+                                else
+                                    dates[j].WindSpeed_2 = 0;
+                            }
+                            catch
+                            {
+                                dates[j].WindSpeed_1 = int.MaxValue;
+                                dates[j].WindSpeed_2 = int.MaxValue;
+                            }
                         }
                     }
                 }
@@ -293,8 +303,15 @@ namespace Weather
                     }
                     for (int j = 0; j < i; ++j)
                     {
-                        string[] directions = WindDirection[j].Split(new char[] { ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                        dates[j].WindDirection = directions[0];
+                        try
+                        {
+                            string[] directions = WindDirection[j].Split(new char[] { ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                            dates[j].WindDirection = directions[0];
+                        }
+                        catch
+                        {
+                            dates[j].WindDirection = "";
+                        }
                     }
                 }
                 else
@@ -316,7 +333,14 @@ namespace Weather
                     }
                     for (int j = 0; j < i; ++j)
                     {
-                        dates[j].Humidity = int.Parse(Humidity[j]);
+                        try
+                        {
+                            dates[j].Humidity = int.Parse(Humidity[j]);
+                        }
+                        catch
+                        {
+                            dates[j].Humidity = int.MaxValue;
+                        }
                     }
                 }
                 else
@@ -343,6 +367,8 @@ namespace Weather
         public void OutputNow() //вывод погоды "Сейчас"
         {
             WeatherData[] DataNow = WeatherDataNow();
+            Date.Content = $"{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Year}";
+
             foreach (WeatherData day in DataNow)
             {
                 if (day.Temperature != double.MaxValue)
@@ -356,7 +382,7 @@ namespace Weather
                     else
                         WindNow.Content = $"Ветер:  {day.WindSpeed_1} м/с ";
                 }
-                if (day.WindDirection != "" && day.WindDirection!=null)
+                if (day.WindDirection != "" && day.WindDirection != null)
                     WindNow.Content += day.WindDirection.ToString();
                 if (day.Humidity != int.MaxValue)
                     HumidityNow.Content = $"Влажность:  {day.Humidity} %";
@@ -422,7 +448,19 @@ namespace Weather
         //        Console.WriteLine();
         //    }
         //}
-        public  void SaveWeather(object obj)
+        public void SaveData()
+        {
+            //System.Timers.Timer Timer = new System.Timers.Timer(10000);
+
+            //Timer.Elapsed += OnTimedEvent;
+            //Timer.AutoReset = true;
+            //Timer.Enabled = true;
+            TimerCallback tm = new TimerCallback(SaveWeather); //объект делегата TimerCallback, который в качестве параметра принимает метод.
+                                                           //Метод обязательно должен принимать объект object, значение которого передается в Timer
+            Timer timer = new Timer(tm, null, 0, 60000); //параметры по порядку: делегат, параметр для передачи в метод Weather, 
+                                                          //кол-во миллисекунд через которое запускается таймер (немедленнно), интервал между вызовами метода
+        }
+        public void SaveWeather(object obj)
         {
             string pathMain = @"C:/MonitoringWeather";
             if (!Directory.Exists(pathMain))
@@ -479,7 +517,7 @@ namespace Weather
                         if (data.WindSpeed_2 != 0)
                             fileWindSpeed.Write($"{data.WindSpeed_1} - {data.WindSpeed_2} ");
                         else
-                            fileWindSpeed.Write($"{data.WindSpeed_1}");
+                            fileWindSpeed.Write($"{data.WindSpeed_1} ");
                     }
 
                     using (StreamWriter fileWindDirection = new StreamWriter("C:/MonitoringWeather/WindDirection.txt", true))
