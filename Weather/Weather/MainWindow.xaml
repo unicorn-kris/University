@@ -7,6 +7,7 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Weather" Height="450" Width="800">
+   
     <Window.Resources>
         <Style x:Key="MyLabel" TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -18,7 +19,15 @@
             <Setter Property="FontSize" Value="18"/>
         </Style>
     </Window.Resources>
-    <Grid>
+    
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Name="Status" />
+            </StatusBarItem>
+        </StatusBar>
+        
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47*"/>
             <ColumnDefinition Width="9*"/>
@@ -72,9 +81,8 @@
 
         </Grid>
         
-        <Label x:Name="Exception" Content="" HorizontalAlignment="Left" Margin="0,0,0,53" VerticalAlignment="Bottom" RenderTransformOrigin="0.816,7.577" Height="27" Grid.ColumnSpan="4" Width="336"/>
-
         <Button Style="{StaticResource MyButton}"  HorizontalAlignment="Right" Content="Обновить" Click="Button_Update_Click" Grid.Column="3" Margin="0,0,0,53"/>
     </Grid>
 
+    </DockPanel>
 </Window>

@@ -97,15 +97,15 @@ namespace Weather
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
-                //Exception.Content = "";
+                Status.Text = "Подключение установлено";
                 Grid1.Visibility = Visibility.Visible;
                 Grid2.Visibility = Visibility.Visible;
             }
             catch
             {
-                if (Exception.Dispatcher.CheckAccess())
+                if (Status.Dispatcher.CheckAccess())
                 {
-                    //Exception.Content = "Возникли проблемы с подключением, повторите попытку";
+                    Status.Text = "Ошибка подключения, повторите попытку";
                     Grid1.Visibility = Visibility.Hidden;
                     Grid2.Visibility = Visibility.Hidden;
                 }
@@ -370,15 +370,15 @@ namespace Weather
             foreach (WeatherData day in DataNow)
             {
                 if (day.Temperature != double.MaxValue)
-                    TempNow.Content = day.Temperature.ToString();
+                    TempNow.Content = $"{day.Temperature}℃";
                 if (day.Pressure != int.MaxValue)
                     PressureNow.Content = $"Давление воздуха:  {day.Pressure} мм рт. ст.";
                 if (day.WindSpeed_1 != int.MaxValue && day.WindSpeed_2 != int.MaxValue)
                 {
                     if (day.WindSpeed_2 != 0)
-                        WindNow.Content = $"Ветер:  {day.WindSpeed_1} м/с - {day.WindSpeed_2} м/с ";
+                        WindNow.Content = $"Ветер:  {day.WindSpeed_1} м/с - {day.WindSpeed_2} м/с, ";
                     else
-                        WindNow.Content = $"Ветер:  {day.WindSpeed_1} м/с ";
+                        WindNow.Content = $"Ветер:  {day.WindSpeed_1} м/с, ";
                 }
                 if (day.WindDirection != "" && day.WindDirection != null)
                     WindNow.Content += day.WindDirection.ToString();
