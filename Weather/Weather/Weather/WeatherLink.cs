@@ -23,7 +23,7 @@ namespace Weather
             xPathPressure = "/html/body/section/div[2]/div/div[1]/div/div[2]/div[12]/div/div[2]/div[2]/div[2]/div/div/div/div/span[1]";
             xPathWindSpeed = "/html/body/section/div[2]/div/div[1]/div/div[2]/div[1]/div[2]/div/div[1]/div/div[5]/div/div/div/span[1]/text()";
             xPathWindDirection = "/html/body/section/div[2]/div/div[1]/div/div[2]/div[7]/div/div[2]/div[2]/div[2]/div/div/div[3]";
-            xPathHumidity = "./html/body/section/div[2]/div/div/div/div[2]/div[12]/div/div[2]/div[2]/div[2]/div/div";
+            xPathHumidity = "./html/body/section/div[2]/div/div/div/div[2]/div[13]/div/div[2]/div[2]/div[2]/div/div";
         }
         public string[] WeatherUrls => _weatherUrls;
         public new string XPathTemp_1 => xPathTemp_1;

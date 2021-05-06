@@ -3,8 +3,8 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Threading;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Weather
 {
@@ -15,7 +15,6 @@ namespace Weather
     {
         public MainWindow()
         {
-
             InitializeComponent();
             OutputNow();
             // Output_3Days();
@@ -25,7 +24,6 @@ namespace Weather
         private void Button_Update_Click(object sender, EventArgs e)
         {
             OutputNow();
-            //SaveWeather();
             // Output_3Days();
         }
         public enum Param
@@ -107,7 +105,7 @@ namespace Weather
             {
                 if (Exception.Dispatcher.CheckAccess())
                 {
-                   //Exception.Content = "Возникли проблемы с подключением, повторите попытку";
+                    //Exception.Content = "Возникли проблемы с подключением, повторите попытку";
                     Grid1.Visibility = Visibility.Hidden;
                     Grid2.Visibility = Visibility.Hidden;
                 }
@@ -450,18 +448,22 @@ namespace Weather
         //}
         public void SaveData()
         {
-            //System.Timers.Timer Timer = new System.Timers.Timer(10000);
-
-            //Timer.Elapsed += OnTimedEvent;
-            //Timer.AutoReset = true;
-            //Timer.Enabled = true;
-            TimerCallback tm = new TimerCallback(SaveWeather); //объект делегата TimerCallback, который в качестве параметра принимает метод.
-                                                           //Метод обязательно должен принимать объект object, значение которого передается в Timer
-            Timer timer = new Timer(tm, null, 0, 60000); //параметры по порядку: делегат, параметр для передачи в метод Weather, 
-                                                          //кол-во миллисекунд через которое запускается таймер (немедленнно), интервал между вызовами метода
+            DispatcherTimer timer = new DispatcherTimer();
+            if (DateTime.Now.Hour == 1)
+                SaveWeather();
+            timer.Interval = TimeSpan.FromHours(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
         }
-        public void SaveWeather(object obj)
+
+        void timer_Tick(object sender, EventArgs e)
         {
+            if (DateTime.Now.Hour == 1)
+                SaveWeather();
+        }
+        public void SaveWeather()
+        {
+
             string pathMain = @"C:/MonitoringWeather";
             if (!Directory.Exists(pathMain))
             {
