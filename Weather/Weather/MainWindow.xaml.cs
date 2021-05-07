@@ -1,10 +1,13 @@
 ﻿using HtmlAgilityPack;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
+using System.Data;
 
 namespace Weather
 {
@@ -15,16 +18,17 @@ namespace Weather
     {
         public MainWindow()
         {
+            this.SizeToContent = SizeToContent.Height;
             InitializeComponent();
             OutputNow();
-            // Output_3Days();
+            Output_3Days();
             SaveData();
 
         }
         private void Button_Update_Click(object sender, EventArgs e)
         {
             OutputNow();
-            // Output_3Days();
+            Output_3Days();
         }
         public enum Param
         {
@@ -98,6 +102,7 @@ namespace Weather
             {
                 response = (HttpWebResponse)request.GetResponse();
                 Status.Text = "Подключение установлено";
+                Grid0.Visibility = Visibility.Visible;
                 Grid1.Visibility = Visibility.Visible;
                 Grid2.Visibility = Visibility.Visible;
             }
@@ -106,6 +111,7 @@ namespace Weather
                 if (Status.Dispatcher.CheckAccess())
                 {
                     Status.Text = "Ошибка подключения, повторите попытку";
+                    Grid0.Visibility = Visibility.Hidden;
                     Grid1.Visibility = Visibility.Hidden;
                     Grid2.Visibility = Visibility.Hidden;
                 }
@@ -388,64 +394,95 @@ namespace Weather
                     WaterNow.Content = $"Температура воды:  {day.Water}";
             }
         }
-        //public void Output_3Days() //вывод погоды "Сегодня, Завтра, Послезавтра"
-        //{
-        //    WeatherData[] DataToday = WeatherDataToday();
-        //    WeatherData[] DataTomorrow = WeatherDataTomorrow();
-        //    WeatherData[] DataDayAfterTomorrow = WeatherDataDayAfterTomorrow();
+        public void Output_3Days() //вывод погоды "Сегодня, Завтра, Послезавтра"
+        {
+            List<string[]> data3Days = new List <string[]>();
 
-        //    int j = 1;//hour
-        //    Console.WriteLine("Today");
-        //    foreach (WeatherData day in DataToday)
-        //    {
-        //        Console.WriteLine($"Time {j}");
-        //        Console.WriteLine($"Температура воздуха: {day.Temperature}");
-        //        Console.WriteLine($"Давление воздуха:  {day.Pressure}");
-        //        if (day.WindSpeed_2 != 0)
-        //            Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1} - {day.WindSpeed_2}");
-        //        else
-        //            Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1}");
-        //        Console.WriteLine($"Направление ветра:  {day.WindDirection}");
-        //        Console.WriteLine($"Влажность:  {day.Humidity}");
-        //        j += 3;
-        //        Console.WriteLine();
-        //    }
+            WeatherLink weather = new WeatherLink();
 
-        //    j = 1;
-        //    Console.WriteLine("Tomorrow");
-        //    foreach (WeatherData day in DataTomorrow)
-        //    {
-        //        Console.WriteLine($"Time {j}");
-        //        Console.WriteLine($"Температура воздуха: {day.Temperature}");
-        //        Console.WriteLine($"Давление воздуха:  {day.Pressure}");
-        //        if (day.WindSpeed_2 != 0)
-        //            Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1} - {day.WindSpeed_2}");
-        //        else
-        //            Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1}");
-        //        Console.WriteLine($"Направление ветра:  {day.WindDirection}");
-        //        Console.WriteLine($"Влажность:  {day.Humidity}");
-        //        j += 3;
-        //        Console.WriteLine();
-        //    }
+            string[] weatherUrls = weather.WeatherUrls;
+
+            DateTime today = DateTime.Now;
+
+            StringBuilder date = new StringBuilder($"{today.Day}.{today.Month}.{today.Year} ");
+            StringBuilder temperature = new StringBuilder("Температура ");
+            StringBuilder pressure = new StringBuilder("Давление ");
+            StringBuilder windSpeed = new StringBuilder("Скорость_ветра ");
+            StringBuilder windDirection = new StringBuilder("Направление_ветра ");
+            StringBuilder humidity = new StringBuilder("Влажность ");
 
 
-        //    j = 1;
-        //    Console.WriteLine("DayAfterTomorrow");
-        //    foreach (WeatherData day in DataDayAfterTomorrow)
-        //    {
-        //        Console.WriteLine($"Time {j}");
-        //        Console.WriteLine($"Температура воздуха: {day.Temperature}");
-        //        Console.WriteLine($"Давление воздуха:  {day.Pressure}");
-        //        if (day.WindSpeed_2 != 0)
-        //            Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1} - {day.WindSpeed_2}");
-        //        else
-        //            Console.WriteLine($"Скорость ветра:  {day.WindSpeed_1}");
-        //        Console.WriteLine($"Направление ветра:  {day.WindDirection}");
-        //        Console.WriteLine($"Влажность:  {day.Humidity}");
-        //        j += 3;
-        //        Console.WriteLine();
-        //    }
-        //}
+            for (int i=0; i<3; ++i)
+            {
+                string url = weatherUrls[i];
+                WeatherData[] Data = GetWeatherData(url);
+
+                int hour = 1;
+                foreach (WeatherData data in Data)
+                {
+                    date.Append($"{hour}.00 ");
+                    temperature.Append($"{data.Temperature} ");
+
+                    pressure.Append($"{data.Pressure} ");
+
+                    if (data.WindSpeed_2 != 0)
+                        windSpeed.Append($"{data.WindSpeed_1}-{data.WindSpeed_2} ");
+                    else
+                        windSpeed.Append($"{data.WindSpeed_1} ");
+
+                    windDirection.Append($"{data.WindDirection} ");
+                    
+                    humidity.Append($"{data.Humidity} ");
+
+                    hour += 3;
+                }
+                if (i != 2)
+                {
+                    today = today.AddDays(1);
+                    date.Append($"{today.Day}.{today.Month}.{today.Year} ");
+                }
+            }
+
+
+            data3Days.Add(date.ToString().Split(new [] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            data3Days.Add(temperature.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            data3Days.Add(pressure.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            data3Days.Add(windSpeed.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            data3Days.Add(windDirection.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            data3Days.Add(humidity.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+
+            var dt = new DataTable();
+
+            int columnCount = data3Days[0].Length;
+            for (int i = 0; i < columnCount; ++i)
+                dt.Columns.Add();
+
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < data3Days.Count; ++i)
+            {
+                if (i > 0)
+                {
+                    for (int j = 0; j < data3Days[i].Length; ++j)
+                    {
+                        if ((j-1) % 8 == 0 && (j-1) != 0)
+
+                            str.Append(" _ ");
+
+                        str.Append($"{data3Days[i][j]} ");
+                    }
+
+                    dt.Rows.Add(str.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+                    str.Clear();
+                }
+                else
+                    dt.Rows.Add(data3Days[i]);
+            }
+
+            dataGrid.DataContext = dt.DefaultView;
+            
+            dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+            
+        }
         public void SaveData()
         {
             DispatcherTimer timer = new DispatcherTimer();

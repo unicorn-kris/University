@@ -3,11 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Weather"
-        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Weather" Height="450" Width="800">
-   
+        Title="Weather" Width="800" >
+
     <Window.Resources>
         <Style x:Key="MyLabel" TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -19,70 +17,64 @@
             <Setter Property="FontSize" Value="18"/>
         </Style>
     </Window.Resources>
-    
-    <DockPanel>
-        <StatusBar DockPanel.Dock="Bottom">
+
+    <DockPanel Margin="0,0,0,1" >
+        <StatusBar DockPanel.Dock="Bottom" Height ="Auto">
             <StatusBarItem>
                 <TextBlock Name="Status" />
             </StatusBarItem>
         </StatusBar>
-        
-        <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="47*"/>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="340*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.ColumnSpan="4" x:Name="Grid1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+        <Grid >
+           
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-                    <Label Grid.Column="0" Style="{StaticResource MyLabel}" Content="Саратов" HorizontalAlignment="Right"/>
-                    <Label x:Name="Date" Grid.Column="1" Style="{StaticResource MyLabel}" Content="Дата" HorizontalAlignment="Left"/>
+            <Grid Grid.Row="0" Grid.ColumnSpan="4" x:Name="Grid0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Style="{StaticResource MyLabel}" Content="Саратов" HorizontalAlignment="Right"/>
+                        <Label x:Name="Date" Grid.Column="1" Style="{StaticResource MyLabel}" Content="Дата" HorizontalAlignment="Left"/>
+
+                    </Grid>
+                    <Label Grid.Row="1" x:Name="TempNow" Style="{StaticResource MyLabel}" Content="123" Height="45" FontSize="25"/>
                 </Grid>
-                <Label Grid.Row="1" x:Name="TempNow" Style="{StaticResource MyLabel}" Content="123" Height="45" FontSize="25"/>
-                <!--<Label Grid.Row="2" x:Name="Precipitation" Style="{StaticResource MyLabel}" Content="Осадки" />-->
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.ColumnSpan="4" x:Name="Grid1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="HumidityNow" Style="{StaticResource MyLabel}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Влажность 12"/>
+                <Label x:Name="PressureNow" Style="{StaticResource MyLabel}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Давление 31"/>
+
+                <Label x:Name="WindNow" Style="{StaticResource MyLabel}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Скорость и направление ветра 31"/>
+                <Label x:Name="WaterNow" Style="{StaticResource MyLabel}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Температура воды 31"/>
+
 
             </Grid>
+
+            <Grid Grid.Row="2" x:Name="Grid2">
+                <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding}" Name="dataGrid" CanUserAddRows =" False" ></DataGrid>
+
+            </Grid>
+
+            <Button Style="{StaticResource MyButton}"  HorizontalAlignment="Right" Content="Обновить" Click="Button_Update_Click" Grid.Column="3" Margin="0,0,0,53"/>
         </Grid>
-
-        <Grid Grid.Row="1" Grid.ColumnSpan="4" x:Name="Grid2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Label x:Name="HumidityNow" Style="{StaticResource MyLabel}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Влажность 12"/>
-            <Label x:Name="PressureNow" Style="{StaticResource MyLabel}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Давление 31"/>
-
-            <Label x:Name="WindNow" Style="{StaticResource MyLabel}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Скорость и направление ветра 31"/>
-            <Label x:Name="WaterNow" Style="{StaticResource MyLabel}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Температура воды 31"/>
-
-
-        </Grid>
-
-        <Grid Grid.Row="2" Grid.ColumnSpan="4">
-            
-
-        </Grid>
-        
-        <Button Style="{StaticResource MyButton}"  HorizontalAlignment="Right" Content="Обновить" Click="Button_Update_Click" Grid.Column="3" Margin="0,0,0,53"/>
-    </Grid>
 
     </DockPanel>
 </Window>
