@@ -7,4 +7,10 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BL.csproj" />
+    <ProjectReference Include="..\BL\BL_Interface.csproj" />
+    <ProjectReference Include="..\MedCenter\MedCenter.csproj" />
+  </ItemGroup>
+
 </Project>

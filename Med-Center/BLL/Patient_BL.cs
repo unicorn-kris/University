@@ -7,7 +7,7 @@ using BL_Interface;
 
 namespace BL
 {
-    class Patient_BL : Patient_BL_Interface
+   public class Patient_BL : Patient_BL_Interface
     {
         private Patient_DAO _patient;
         public void Add(Patient Patient)

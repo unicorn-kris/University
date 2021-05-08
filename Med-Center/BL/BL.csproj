@@ -30,22 +30,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAO\DAO.csproj">
-      <Project>{0b99bc31-6621-44a5-8a82-aa33dc48f804}</Project>
-      <Name>DAO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DAO_Patient_Interface\DAO_Interface.csproj">
-      <Project>{c226f91e-7753-4f14-9d4e-3f7ab9e9b5ad}</Project>
-      <Name>DAO_Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MedCenter\MedCenter.csproj">
-      <Project>{cd4ae3a1-c4d6-4c98-a15b-c751fff2ab20}</Project>
-      <Name>MedCenter</Name>
-    </ProjectReference>
-    <ProjectReference Include="BL_Interface.csproj">
-      <Project>{185c09b8-7683-4fdb-bd37-ae96e2e05861}</Project>
-      <Name>BL_Interface</Name>
-    </ProjectReference>
+    <Compile Remove="Cabinet_BL_Interface.cs" />
+    <Compile Remove="DataAppointment_BL_Interface.cs" />
+    <Compile Remove="Doctor_BL_Interface.cs" />
+    <Compile Remove="Patient_BL_Interface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cabinet_BL.cs" />
@@ -59,5 +47,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAO\DAO.csproj" />
+    <ProjectReference Include="..\DAO_Patient_Interface\DAO_Interface.csproj" />
+    <ProjectReference Include="..\Med-Center\Med-Center.csproj" />
+    <ProjectReference Include="..\MedCenter\MedCenter.csproj" />
+    <ProjectReference Include="BL_Interface.csproj" />
   </ItemGroup>
 </Project>
