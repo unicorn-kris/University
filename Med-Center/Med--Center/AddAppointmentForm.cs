@@ -8,11 +8,16 @@ using System.Windows.Forms;
 
 namespace Med_Center
 {
-    public partial class AddPatient : Form
+    public partial class AddAppointmentForm : Form
     {
-        public AddPatient()
+        public AddAppointmentForm()
         {
             InitializeComponent();
+        }
+
+        private void AddAppointment_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

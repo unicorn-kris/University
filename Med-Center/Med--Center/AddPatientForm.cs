@@ -1,22 +1,14 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Med_Center
 {
-    public partial class AddDoctorForm : Form
+    public partial class AddPatientForm : Form
     {
-        public AddDoctorForm()
+        public AddPatientForm()
         {
             InitializeComponent();
-
-            this.checkedListBox1.Items.AddRange(new object[] { "понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"});
-
-            this.Controls.Add(this.checkedListBox1);
-
-            this.checkedListBox2.Items.AddRange(new object[] {1, 2});
-
-            this.Controls.Add(this.checkedListBox2);
         }
 
         public string Name = "";
@@ -25,18 +17,17 @@ namespace Med_Center
         public string pasport = "";
         public string phoneNumber = "";
         public DateTime birthday = DateTime.Now;
-        public string speciality = "";
-        public int[] workdays = new int[7];
-        public int workhours = 0;
-        private void AddDoctorForm_Load(object sender, EventArgs e)
+        private void AddPatient_Load(object sender, EventArgs e)
         {
         }
+
+       
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             Name = textBox1.Text;
         }
-
+        
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -54,7 +45,7 @@ namespace Med_Center
             textBox2.Clear();
             char number = e.KeyChar;
         }
-        private void textBox2_Click(object sender, EventArgs e)
+        private void textBox2_Click_1(object sender, EventArgs e)
         {
             textBox2.Text = "";
         }
@@ -66,7 +57,7 @@ namespace Med_Center
         {
             char number = e.KeyChar;
         }
-        private void textBox3_Click(object sender, EventArgs e)
+        private void textBox3_Click_1(object sender, EventArgs e)
         {
             textBox3.Text = "";
         }
@@ -94,14 +85,14 @@ namespace Med_Center
                 MessageBox.Show("Некорректные паспортные данные!");
             }
         }
-        private void textBox4_Click(object sender, EventArgs e)
+        private void textBox4_Click_1(object sender, EventArgs e)
         {
             textBox4.Text = "";
         }
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
         }
-        private void textBox5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void textBox5_Validating_1(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (Regex.IsMatch(textBox5.Text, @"\d{11}"))
             {
@@ -114,7 +105,7 @@ namespace Med_Center
         }
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            
             char number = e.KeyChar;
 
             if (!Char.IsDigit(number))
@@ -123,14 +114,14 @@ namespace Med_Center
                 MessageBox.Show("Введите цифры!");
             }
         }
-        private void textBox5_Click(object sender, EventArgs e)
+        private void textBox5_Click_1(object sender, EventArgs e)
         {
             textBox5.Text = "";
         }
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
         }
-        private void textBox6_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void textBox6_Validating_1(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (Regex.IsMatch(textBox6.Text, @"^(?:0[1-9]|[12]\d|3[01])([.])(?:0[1-9]|1[012])\1(?:19|20)\d\d$"))
             {
@@ -149,88 +140,19 @@ namespace Med_Center
             char number = e.KeyChar;
 
         }
-        private void textBox6_Click(object sender, EventArgs e)
+        private void textBox6_Click_1(object sender, EventArgs e)
         {
             textBox6.Text = "";
         }
 
-        private void textBox7_TextChanged(object sender, EventArgs e)
-        {
-            speciality = textBox7.Text;
-        }
-
-        private void textBox7_Click(object sender, EventArgs e)
-        {
-            textBox7.Text = "";
-        }
-
-        private void textBox7_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-        }
-
-       
-
-        private void checkedListBox1_Click(object sender, EventArgs e)
-        {
-
-            // Для каждого элемента из CheckedListBox.
-
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
-            {
-
-                // Отмечен ли элемент?
-
-                if (checkedListBox1.GetItemChecked(i))
-                {
-
-                    // Получение текста элемента и добавление к orderInfo.
-
-                    workdays[i] = 1;
-                }
-                else
-                    workdays[i] = 0;
-            }
-        }
-
-        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Если отмечено больше 2 элементов, то снимаем выделение со всех и отмечаем текущий.
-            if (checkedListBox2.CheckedItems.Count > 1)
-            {
-                for (int i = 0; i < checkedListBox2.Items.Count; i++)
-                    checkedListBox2.SetItemChecked(i, false);
-                checkedListBox2.SetItemChecked(checkedListBox1.SelectedIndex, true);
-            }
-        }
-
-        private void checkedListBox2_Click(object sender, EventArgs e)
-        {
-            // Для каждого элемента из CheckedListBox.
-
-            for (int i = 0; i < 2; i++)
-            {
-
-                // Отмечен ли элемент?
-
-                if (checkedListBox2.GetItemChecked(0))
-                {
-
-                    // Получение текста элемента и добавление к orderInfo.
-
-                    workhours = 1;
-                }
-                else if (checkedListBox2.GetItemChecked(1))
-                    workhours = 2;
-            }
-        }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Name == "" || Surname == "" || pasport == "" || phoneNumber == "" || birthday == DateTime.Now || speciality == "" || workhours == 0
-                || (Name == "Имя" || Surname == "Фамилия" || pasport == "Паспортные данные" || phoneNumber == "Номер телефона" || speciality == "Специальность"))
+            if (Name == "" || Surname == "" || pasport == "" || phoneNumber == "" || birthday == DateTime.Now
+                || (Name == "Имя" || Surname == "Фамилия" || pasport == "Паспортные данные" || phoneNumber == "Номер телефона"))
             {
                 MessageBox.Show("Некорректные данные!");
             }
         }
     }
+
 }

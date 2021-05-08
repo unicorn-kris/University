@@ -1,7 +1,7 @@
 ﻿
 namespace Med_Center
 {
-    partial class AddPatient
+    partial class AddAppointmentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,18 @@ namespace Med_Center
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // AddAppointment
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "AddPatient";
+            this.Name = "AddAppointment";
+            this.Text = "AddAppointment";
+            this.Load += new System.EventHandler(this.AddAppointment_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

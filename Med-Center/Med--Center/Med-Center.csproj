@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAppointment.cs">
+    <Compile Include="AddAppointmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddAppointment.designer.cs">
-      <DependentUpon>AddAppointment.cs</DependentUpon>
+    <Compile Include="AddAppointmentForm.designer.cs">
+      <DependentUpon>AddAppointmentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddCabinet.cs">
+    <Compile Include="AddCabinetForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddCabinet.designer.cs">
-      <DependentUpon>AddCabinet.cs</DependentUpon>
+    <Compile Include="AddCabinetForm.designer.cs">
+      <DependentUpon>AddCabinetForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddDoctorForm.cs">
       <SubType>Form</SubType>
@@ -64,11 +64,11 @@
     <Compile Include="AddDoctorForm.designer.cs">
       <DependentUpon>AddDoctorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddPatient.cs">
+    <Compile Include="AddPatientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPatient.designer.cs">
-      <DependentUpon>AddPatient.cs</DependentUpon>
+    <Compile Include="AddPatientForm.designer.cs">
+      <DependentUpon>AddPatientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -78,17 +78,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddAppointment.resx">
-      <DependentUpon>AddAppointment.cs</DependentUpon>
+    <EmbeddedResource Include="AddAppointmentForm.resx">
+      <DependentUpon>AddAppointmentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddCabinet.resx">
-      <DependentUpon>AddCabinet.cs</DependentUpon>
+    <EmbeddedResource Include="AddCabinetForm.resx">
+      <DependentUpon>AddCabinetForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddDoctorForm.resx">
       <DependentUpon>AddDoctorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddPatient.resx">
-      <DependentUpon>AddPatient.cs</DependentUpon>
+    <EmbeddedResource Include="AddPatientForm.resx">
+      <DependentUpon>AddPatientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -116,10 +116,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BL.csproj">
-      <Project>{e31e0226-6157-4a97-99cb-5b40feeabe62}</Project>
-      <Name>BL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MedCenter\MedCenter.csproj">
       <Project>{cd4ae3a1-c4d6-4c98-a15b-c751fff2ab20}</Project>
       <Name>MedCenter</Name>

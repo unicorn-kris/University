@@ -49,7 +49,7 @@ namespace Med_Center
             this.расп});
             this.Имя.Location = new System.Drawing.Point(0, 0);
             this.Имя.Name = "Имя";
-            this.Имя.Size = new System.Drawing.Size(800, 25);
+            this.Имя.Size = new System.Drawing.Size(686, 25);
             this.Имя.TabIndex = 0;
             this.Имя.Text = "Добавить";
             this.Имя.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Имя_ItemClicked);
@@ -93,18 +93,18 @@ namespace Med_Center
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 75);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 65);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 375);
+            this.dataGridView1.Size = new System.Drawing.Size(686, 325);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(686, 390);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.Имя);
             this.Name = "Form1";
