@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL;
+using System;
 using System.Windows.Forms;
 
 
@@ -28,10 +29,11 @@ namespace Med_Center
         }
         private void doctorButtonsClick(object sender, EventArgs e)
         {
-            //Doctor_BL doctor = new Doctor_BL();
-            // dataGridView1.DataSource = doctor.GetAll();
+            Doctor_BL doctor = new Doctor_BL();
+            dataGridView1.DataSource = doctor.GetAll();
             AddDoctorForm addDoctorForm = new AddDoctorForm();
-            addDoctorForm.Show();
+            addDoctorForm.ShowDialog(this);
+            dataGridView1.DataSource = doctor.GetAll();
         }
         private void patientButtonsClick(object sender, EventArgs e)
         {

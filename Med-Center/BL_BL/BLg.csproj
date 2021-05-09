@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0B99BC31-6621-44A5-8A82-AA33DC48F804}</ProjectGuid>
+    <ProjectGuid>{FDA37EFC-27A0-46FE-884D-6B22CB667B8E}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DAO</RootNamespace>
-    <AssemblyName>DAO</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BL_BL</RootNamespace>
+    <AssemblyName>BL_BL</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,12 +30,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,19 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cabinet_DAO.cs" />
-    <Compile Include="DataAppointment_DAO.cs" />
-    <Compile Include="Doctor_DAO.cs" />
-    <Compile Include="Patient_DAO.cs" />
+    <Compile Include="Cabinet_BL.cs" />
+    <Compile Include="DataAppointment_BL.cs" />
+    <Compile Include="Doctor_BL.cs" />
+    <Compile Include="Patient_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DAO_Patient_Interface\DAO_Interface.csproj">
-      <Project>{c226f91e-7753-4f14-9d4e-3f7ab9e9b5ad}</Project>
-      <Name>DAO_Interface</Name>
+    <ProjectReference Include="..\BL\BL_Interface.csproj">
+      <Project>{185c09b8-7683-4fdb-bd37-ae96e2e05861}</Project>
+      <Name>BL_Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAO\DAO.csproj">
+      <Project>{0b99bc31-6621-44a5-8a82-aa33dc48f804}</Project>
+      <Name>DAO</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedCenter\MedCenter.csproj">
       <Project>{cd4ae3a1-c4d6-4c98-a15b-c751fff2ab20}</Project>

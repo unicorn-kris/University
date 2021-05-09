@@ -11,11 +11,9 @@ namespace MedCenter
         private string _Speciality;
         private int[] _WorkDays;
         private int _WorkHours;
-
-        public Doctor(int id, string name, string surname, string patronymic, string pasport, string phoneNumber,
+        public Doctor( string name, string surname, string patronymic, string pasport, string phoneNumber,
                        DateTime birthday, string speciality, int[] workDays, int workHours)
         {
-            ID = id;
             Name = name;
             SurName = surname;
             Patronymic = patronymic;
@@ -25,6 +23,7 @@ namespace MedCenter
             _Speciality = speciality;
             _WorkDays = workDays;
             _WorkHours = workHours;
+
         }
         public new string GiveTakeName
         {

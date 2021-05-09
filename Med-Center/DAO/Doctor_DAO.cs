@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System;
+using System.Configuration;
 
 namespace DAO
 {
     public class Doctor_DAO : Doctor_DAO_Interface
     {
-        private string _connectionString = "Server=(localdb)\\mssqllocaldb;Database=MedCenter;Trusted_Connection=True";
+        private string _connectionString = ConfigurationManager.ConnectionStrings["MedCenterData"].ConnectionString;
         public void Add(Doctor doctor)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -27,10 +28,10 @@ namespace DAO
                 string workDays = "";
                 foreach (int x in doctor.GiveWorkDays)
                 {
-                    workDays += x;
+                    workDays += x.ToString();
                 }
                 string workHours = "";
-                workHours += doctor.GiveWorkHours;
+                workHours += doctor.GiveWorkHours.ToString();
                 cmd.Parameters.AddWithValue(@"WorkDays", workDays);
                 cmd.Parameters.AddWithValue(@"WorkHours", workHours);
 
@@ -77,7 +78,7 @@ namespace DAO
                     }
                     int workhours = WorkHours[0];
 
-                    doctors.Add(new Doctor(ID, Name, SurName, Patronymic, Pasport, PhoneNumber, Birthday, Speciality,workdays, workhours));
+                    doctors.Add(new Doctor( Name, SurName, Patronymic, Pasport, PhoneNumber, Birthday, Speciality,workdays, workhours));
                 }
 
             }

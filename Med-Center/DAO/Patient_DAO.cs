@@ -2,6 +2,7 @@
 using MedCenter;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -9,7 +10,7 @@ namespace DAO
 {
     public class Patient_DAO : Patient_DAO_Interface
     {
-        private string _connectionString = "Server=(localdb)\\mssqllocaldb;Database=MedCenter;Trusted_Connection=True";
+        private string _connectionString = ConfigurationManager.ConnectionStrings["MedCenterData"].ConnectionString;
         public void Add(Patient patient)
         {
             using (var connection = new SqlConnection(_connectionString))

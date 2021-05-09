@@ -1,6 +1,5 @@
 ﻿using DAO_Interface;
 using MedCenter;
-using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -10,7 +9,7 @@ namespace DAO
 {
     public class Cabinet_DAO : Cabinet_DAO_Interface
     {
-        private string _connectionString = "Server=(localdb)\\mssqllocaldb;Database=MedCenter;Trusted_Connection=True";
+        private string _connectionString = ConfigurationManager.ConnectionStrings["MedCenterData"].ConnectionString;
         public void Add(Cabinet cabinet)
         {
             using (var connection = new SqlConnection(_connectionString))

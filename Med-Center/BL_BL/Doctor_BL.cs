@@ -12,6 +12,11 @@ namespace BL
         private Doctor_DAO _doctor;
         public void Add(Doctor doctor)
         {
+            bool have = false;
+            foreach (Doctor doctors in _doctor.GetAll())
+                if (doctors.GiveTakePasport == doctor.GiveTakePasport)
+                    have = true;
+            if (!have)
             _doctor.Add(doctor);
         }
        public IEnumerable<Doctor> GetAll()

@@ -1,6 +1,7 @@
 ﻿using DAO_Interface;
 using MedCenter;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -8,7 +9,7 @@ namespace DAO
 {
    public class DataAppointment_DAO : DataAppointment_DAO_Interface
     {
-        private string _connectionString = "Server=(localdb)\\mssqllocaldb;Database=MedCenter;Trusted_Connection=True";
+        private string _connectionString = ConfigurationManager.ConnectionStrings["MedCenterData"].ConnectionString;
         public void Add(DataAppointment dataAppointment)
         {
             using (var connection = new SqlConnection(_connectionString))

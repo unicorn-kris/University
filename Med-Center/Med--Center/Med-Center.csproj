@@ -76,6 +76,11 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="MedCenterDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedCenterDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddAppointmentForm.resx">
@@ -102,6 +107,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="MedCenterDataSet.xsc">
+      <DependentUpon>MedCenterDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MedCenterDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MedCenterDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MedCenterDataSet.xss">
+      <DependentUpon>MedCenterDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -116,6 +132,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLLL\BLLL.csproj">
+      <Project>{7cc5ca34-02b6-4ba4-b0e3-41b04257203a}</Project>
+      <Name>BLLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedCenter\MedCenter.csproj">
       <Project>{cd4ae3a1-c4d6-4c98-a15b-c751fff2ab20}</Project>
       <Name>MedCenter</Name>

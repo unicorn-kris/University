@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using BL;
+using MedCenter;
 
 namespace Med_Center
 {
@@ -224,6 +226,7 @@ namespace Med_Center
                     workhours = 2;
             }
         }
+        Doctor_BL doctorBL = new Doctor_BL();
         private void button1_Click(object sender, EventArgs e)
         {
             if (Name == "" || Surname == "" || pasport == "" || phoneNumber == "" || birthday == DateTime.Now || speciality == "" || workhours == 0
@@ -231,6 +234,13 @@ namespace Med_Center
             {
                 MessageBox.Show("Некорректные данные!");
             }
+            else
+            {
+                Doctor doctor = new Doctor(Name, Surname, patronymic, pasport, phoneNumber, birthday, speciality, workdays, workhours);
+                doctorBL.Add(doctor);
+                Close();
+            }
+
         }
     }
 }

@@ -9,7 +9,7 @@ namespace BL
 {
    public class Doctor_BL: Doctor_BL_Interface
     {
-        private Doctor_DAO _doctor;
+        private Doctor_DAO _doctor = new Doctor_DAO();
         public void Add(Doctor doctor)
         {
             bool have = false;

@@ -1,11 +1,13 @@
-﻿using BL_Interface;
-using DAO;
-using MedCenter;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using MedCenter;
+using DAO;
+using BL_Interface;
 
 namespace BL
 {
-    public class DataAppointment_BL: DataAppointment_BL_Interface
+   public class DataAppointment_BL: DataAppointment_BL_Interface
     {
         private DataAppointment_DAO _dataAppointment;
        public void Add(DataAppointment dataAppointment)
