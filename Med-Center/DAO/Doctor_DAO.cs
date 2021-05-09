@@ -18,20 +18,20 @@ namespace DAO
                 var cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "AddDoctor";
-                cmd.Parameters.AddWithValue(@"Name", doctor.GiveTakeName);
-                cmd.Parameters.AddWithValue(@"Surname", doctor.GiveTakeSurName);
-                cmd.Parameters.AddWithValue(@"Patronymic", doctor.GiveTakePatronymic);
-                cmd.Parameters.AddWithValue(@"Pasport", doctor.GiveTakePasport);
-                cmd.Parameters.AddWithValue(@"PhoneNumber", doctor.GiveTakePhoneNumber);
-                cmd.Parameters.AddWithValue(@"Birthday", doctor.GiveTakeBirthday);
-                cmd.Parameters.AddWithValue(@"Speciality", doctor.GiveTakeSpeciality);
+                cmd.Parameters.AddWithValue(@"Name", doctor.Name);
+                cmd.Parameters.AddWithValue(@"Surname", doctor.Surname);
+                cmd.Parameters.AddWithValue(@"Patronymic", doctor.Patronymic);
+                cmd.Parameters.AddWithValue(@"Pasport", doctor.Pasport);
+                cmd.Parameters.AddWithValue(@"PhoneNumber", doctor.PhoneNumber);
+                cmd.Parameters.AddWithValue(@"Birthday", doctor.Birthday);
+                cmd.Parameters.AddWithValue(@"Speciality", doctor.Speciality);
                 string workDays = "";
-                foreach (int x in doctor.GiveWorkDays)
+                foreach (int x in doctor.WorkDays)
                 {
-                    workDays += x.ToString();
+                    workDays += x;
                 }
                 string workHours = "";
-                workHours += doctor.GiveWorkHours.ToString();
+                workHours += doctor.WorkHours;
                 cmd.Parameters.AddWithValue(@"WorkDays", workDays);
                 cmd.Parameters.AddWithValue(@"WorkHours", workHours);
 
@@ -74,11 +74,11 @@ namespace DAO
                     int[] workdays = new int[7];
                     for (int i = 0; i < 7; ++i)
                     {
-                        workdays[i] = WorkDays[i];
+                        workdays[i] = (int)WorkDays[i] - '0';
                     }
-                    int workhours = WorkHours[0];
+                    int workhours = (int)WorkHours[0] - '0';
 
-                    doctors.Add(new Doctor( Name, SurName, Patronymic, Pasport, PhoneNumber, Birthday, Speciality,workdays, workhours));
+                    doctors.Add(new Doctor(ID, Name, SurName, Patronymic, Pasport, PhoneNumber, Birthday, Speciality, workdays, workhours));
                 }
 
             }

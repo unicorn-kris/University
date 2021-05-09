@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using BL;
+using MedCenter;
 
 namespace Med_Center
 {
@@ -66,10 +68,18 @@ namespace Med_Center
                 MessageBox.Show("Некорректный номер кабинета!");
             }
         }
+
+        Cabinet_BL cabinetBL = new Cabinet_BL();
         private void button1_Click(object sender, EventArgs e)
         {
             if (num == -1 || speciality == "")
                 MessageBox.Show("Введите все данные корректно!");
+            else
+            {
+                Cabinet cabinet = new Cabinet(num, speciality);
+                cabinetBL.Add(cabinet);
+                Close();
+            }
         }
     }
 }

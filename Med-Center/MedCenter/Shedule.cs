@@ -63,7 +63,7 @@ namespace MedCenter
         {
             for (int i = 0; i < _appointments.Count; ++i)
             {
-                if (_appointments[i].GiveTakeDoctorID == doctor.GiveTakeID)
+                if (_appointments[i].GiveTakeDoctorID == doctor.ID)
                 {
                     _appointments.RemoveAt(i);
                 }
@@ -74,7 +74,7 @@ namespace MedCenter
         {
             for (int i = 0; i < _appointments.Count; ++i)
             {
-                if (_appointments[i].GiveTakePatientID != 0 && _appointments[i].GiveTakePatientID == patient.GiveTakeID)
+                if (_appointments[i].GiveTakePatientID != 0 && _appointments[i].GiveTakePatientID == patient.ID)
                 {
                     _appointments[i].GiveTakePatientID = 0;
                 }
@@ -93,7 +93,7 @@ namespace MedCenter
         public void AddPatientInAppointment(Patient patient, DataAppointment appointment)
         {
             DataAppointment appointmentNew = appointment;//создана новая запись для будущего добавления
-            appointment.GiveTakePatientID = patient.GiveTakeID;
+            appointment.GiveTakePatientID = patient.ID;
 
             //доктор есть, кабинет есть, время есть, пациента в этой записи нет - добавить пациента и заменить запись
             for (int index = 0; index < _appointments.Count; ++index)

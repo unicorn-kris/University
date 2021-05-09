@@ -14,7 +14,7 @@ namespace BL
         {
             bool have = false;
             foreach (Doctor doctors in _doctor.GetAll())
-                if (doctors.GiveTakePasport == doctor.GiveTakePasport)
+                if (doctors.Pasport == doctor.Pasport)
                     have = true;
             if (!have)
             _doctor.Add(doctor);
@@ -26,6 +26,14 @@ namespace BL
         public void DeleteDoctor(int id)
         {
             _doctor.DeleteDoctor(id);
+        }
+        public IEnumerable<Doctor> GetBySurname(string surname)
+        {
+            List<Doctor> search = new List<Doctor>();
+            foreach (Doctor doctors in _doctor.GetAll())
+                if (doctors.Surname == surname)
+                    search.Add(doctors);
+            return search;
         }
     }
 }

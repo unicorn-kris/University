@@ -17,8 +17,8 @@ namespace DAO
                 var cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "AddCabinet";
-                cmd.Parameters.AddWithValue(@"Name", cabinet.GiveTakeNumber);
-                cmd.Parameters.AddWithValue(@"SecName", cabinet.GiveTakeSpeciality);
+                cmd.Parameters.AddWithValue(@"Number", cabinet.Number);
+                cmd.Parameters.AddWithValue(@"Speciality", cabinet.Speciality);
                 var id = new SqlParameter
                 {
                     DbType = DbType.Int32,
@@ -70,30 +70,30 @@ namespace DAO
 
         }
 
-        public Cabinet GetInfoCabinet(int number)
-        {
-            Cabinet cabinet = new Cabinet();
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var cmd = connection.CreateCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetINFO_Cabinet";
-                cmd.Parameters.AddWithValue(@"Number", number);
-                connection.Open();
+        //public Cabinet GetInfoCabinet(int number)
+        //{
+        //    using (var connection = new SqlConnection(_connectionString))
+        //    {
+        //        Cabinet cabinet = new Cabinet() ;
+        //        var cmd = connection.CreateCommand();
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.CommandText = "GetINFO_Cabinet";
+        //        cmd.Parameters.AddWithValue(@"Number", number);
+        //        connection.Open();
 
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int ID = (int)reader["ID"];
-                    int Number = (int)reader["Number"];
-                    string Speciality = (string)reader["Speciality"];
+        //        var reader = cmd.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            int ID = (int)reader["ID"];
+        //            int Number = (int)reader["Number"];
+        //            string Speciality = (string)reader["Speciality"];
 
-                    cabinet = (new Cabinet(ID, Number, Speciality));
-                }
+        //             cabinet = (new Cabinet(ID, Number, Speciality));
+        //        }
 
-            }
-            return cabinet;
-        }
+        //    }
+        //    return cabinet;
+        //}
         
     }
 }

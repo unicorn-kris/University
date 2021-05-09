@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MedCenter
+﻿namespace MedCenter
 {
     public class Cabinet
     {
@@ -12,11 +6,15 @@ namespace MedCenter
         private int _CabinetID;
         private string _Speciality;
 
+        public Cabinet(int number, string speciality)
+        {
+            _Number = number;
+            _Speciality = speciality;
+        }
         public Cabinet()
         {
             _Number = 0;
             _Speciality = "";
-            _CabinetID = 0;
         }
         public Cabinet(int id, int number, string speciality)
         {
@@ -24,38 +22,20 @@ namespace MedCenter
             _Speciality = speciality;
             _CabinetID = id;
         }
-        public new int GiveTakeNumber
+        public int Number
         {
-            get
-            {
-                return _Number;
-            }
-            set
-            {
-                _Number = value;
-            }
+            get => _Number;
+            set => _Number = value;
         }
-        public new string GiveTakeSpeciality
+        public string Speciality
         {
-            get
-            {
-                return _Speciality;
-            }
-            set
-            {
-                _Speciality = value;
-            }
+            get => _Speciality;
+            set => _Speciality = value;
         }
-        public new int GiveTakeID
+        public int ID
         {
-            get
-            {
-                return _CabinetID;
-            }
-            set
-            {
-                _CabinetID = value;
-            }
+            get => _CabinetID;
+            set => _CabinetID = value;
         }
     }
 }

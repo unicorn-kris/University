@@ -1,27 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using BL_Interface;
-using MedCenter;
+﻿using BL_Interface;
 using DAO;
+using MedCenter;
+using System.Collections.Generic;
 
 namespace BL
 {
     public class Cabinet_BL : Cabinet_BL_Interface
     {
-        private Cabinet_DAO _cabinet;
+        private Cabinet_DAO _cabinet = new Cabinet_DAO();
         public void Add(Cabinet cabinet)
         {
-            _cabinet.Add(cabinet);
+            bool have = false;
+            foreach (Cabinet cabinet1 in _cabinet.GetAll())
+                if (cabinet1.Number == cabinet.Number)
+                    have = true;
+            if (!have)
+                _cabinet.Add(cabinet);
         }
         public IEnumerable<Cabinet> GetAll()
         {
             return _cabinet.GetAll();
         }
-        public Cabinet GetInfoCabinet(int number)
+        public IEnumerable<Cabinet> GetInfoCabinet(int number)
         {
-            return _cabinet.GetInfoCabinet(number);
+            List < Cabinet> search = new List<Cabinet>();
+            foreach (Cabinet cabinet in _cabinet.GetAll())
+                if (cabinet.Number == number)
+                    search.Add(cabinet);
+            return search;
         }
+       
         public void DeleteCabinet(int id)
         {
             _cabinet.DeleteCabinet(id);

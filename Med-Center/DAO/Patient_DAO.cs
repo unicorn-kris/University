@@ -18,12 +18,12 @@ namespace DAO
                 var cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "AddPatient";
-                cmd.Parameters.AddWithValue(@"Name", patient.GiveTakeName);
-                cmd.Parameters.AddWithValue(@"Surname", patient.GiveTakeSurName);
-                cmd.Parameters.AddWithValue(@"Patronymic", patient.GiveTakePatronymic);
-                cmd.Parameters.AddWithValue(@"Pasport", patient.GiveTakePasport);
-                cmd.Parameters.AddWithValue(@"PhoneNumber", patient.GiveTakePhoneNumber);
-                cmd.Parameters.AddWithValue(@"Birthday", patient.GiveTakeBirthday);
+                cmd.Parameters.AddWithValue(@"Name", patient.Name);
+                cmd.Parameters.AddWithValue(@"Surname", patient.Surname);
+                cmd.Parameters.AddWithValue(@"Patronymic", patient.Patronymic);
+                cmd.Parameters.AddWithValue(@"Pasport", patient.Pasport);
+                cmd.Parameters.AddWithValue(@"PhoneNumber", patient.PhoneNumber);
+                cmd.Parameters.AddWithValue(@"Birthday", patient.Birthday);
 
                 var id = new SqlParameter
                 {

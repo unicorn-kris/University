@@ -7,7 +7,7 @@ namespace BL_Interface
     {
         void Add(Cabinet cabinet);
         IEnumerable<Cabinet> GetAll();
-        Cabinet GetInfoCabinet(int number);
+        IEnumerable<Cabinet> GetInfoCabinet(int number);
         void DeleteCabinet(int id);
     }
 }

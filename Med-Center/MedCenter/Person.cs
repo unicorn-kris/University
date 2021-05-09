@@ -8,19 +8,19 @@ namespace MedCenter
 {
     public abstract class Person
     {
-        protected int ID;
-        protected string Name;
-        protected string SurName;
-        protected string Patronymic;
-        protected string Pasport;
-        protected string PhoneNumber;
-        protected DateTime Birthday;
-        public string GiveTakeName { get; set; }
-        public string GiveTakeSurName { get; set; }
-        public string GiveTakePatronymic { get; set; }
-        public string GiveTakePhoneNumber { get; set; }
-        public string GiveTakePasport { get; set; }
-        public DateTime GiveTakeBirthday { get; set; }
-        public int GiveTakeID { get; set; }
+        protected int _ID;
+        protected string _Name;
+        protected string _SurName;
+        protected string _Patronymic;
+        protected string _Pasport;
+        protected string _PhoneNumber;
+        protected DateTime _Birthday;
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Patronymic { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Pasport { get; set; }
+        public DateTime Birthday { get; set; }
+        public int ID { get; set; }
     }
 }

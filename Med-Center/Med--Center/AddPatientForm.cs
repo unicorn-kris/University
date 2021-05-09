@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using MedCenter;
+using BL;
 
 namespace Med_Center
 {
@@ -20,9 +22,6 @@ namespace Med_Center
         private void AddPatient_Load(object sender, EventArgs e)
         {
         }
-
-       
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             Name = textBox1.Text;
@@ -145,12 +144,19 @@ namespace Med_Center
             textBox6.Text = "";
         }
 
+        Patient_BL patientBL = new Patient_BL();
         private void button1_Click(object sender, EventArgs e)
         {
             if (Name == "" || Surname == "" || pasport == "" || phoneNumber == "" || birthday == DateTime.Now
                 || (Name == "Имя" || Surname == "Фамилия" || pasport == "Паспортные данные" || phoneNumber == "Номер телефона"))
             {
                 MessageBox.Show("Некорректные данные!");
+            }
+            else
+            {
+                Patient patient = new Patient(Name, Surname, patronymic, pasport, phoneNumber, birthday);
+                patientBL.Add(patient);
+                Close();
             }
         }
     }

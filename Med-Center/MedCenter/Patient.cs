@@ -12,90 +12,99 @@ namespace MedCenter
         public Patient(int id, string name, string surname, string patronymic, string pasport, string phoneNumber,
                        DateTime birthday)
         {
-            Name = name;
-            SurName = surname;
-            Patronymic = patronymic;
-            Pasport = pasport;
-            PhoneNumber = phoneNumber;
-            Birthday = birthday;
-            ID = id;
+            _Name = name;
+            _SurName = surname;
+            _Patronymic = patronymic;
+            _Pasport = pasport;
+            _PhoneNumber = phoneNumber;
+            _Birthday = birthday;
+            _ID = id;
         }
-        public new string GiveTakeName
+        public Patient( string name, string surname, string patronymic, string pasport, string phoneNumber,
+                       DateTime birthday)
+        {
+            _Name = name;
+            _SurName = surname;
+            _Patronymic = patronymic;
+            _Pasport = pasport;
+            _PhoneNumber = phoneNumber;
+            _Birthday = birthday;
+        }
+        public new string Name
         {
             get
             {
-                return Name;
+                return _Name;
             }
             set
             {
-                Name = value;
+                _Name = value;
             }
         }
-        public new string GiveTakeSurName
+        public new string Surname
         {
             get
             {
-                return SurName;
+                return _SurName;
             }
             set
             {
-                SurName = value;
+                _SurName = value;
             }
         }
-        public new string GiveTakePatronymic
+        public new string Patronymic
         {
             get
             {
-                return Patronymic;
+                return _Patronymic;
             }
             set
             {
-                Patronymic = value;
+                _Patronymic = value;
             }
         }
-        public new string GiveTakePhoneNumber
+        public new string PhoneNumber
         {
             get
             {
-                return PhoneNumber;
+                return _PhoneNumber;
             }
             set
             {
-                PhoneNumber = value;
+                _PhoneNumber = value;
             }
         }
-        public new string GiveTakePasport
+        public new string Pasport
         {
             get
             {
-                return Pasport;
+                return _Pasport;
             }
             set
             {
-                Pasport = value;
+                _Pasport = value;
             }
         }
-        public new DateTime GiveTakeBirthday
+        
+        public new DateTime Birthday
         {
             get
             {
-                return Birthday;
+                return _Birthday;
             }
             set
             {
-                Birthday = value;
+                _Birthday = value;
             }
         }
-        public new int GiveTakeID
+        public int ID
         {
             get
             {
-                return ID;
+                return _ID;
             }
-            set
-            {
-                ID = value;
-            }
+            set => _ID = value;
         }
+        
     }
 }

@@ -8,6 +8,7 @@ namespace BL_Interface
     {
         void Add(Patient patient);
         IEnumerable<Patient> GetAll();
+        IEnumerable<Patient> GetBySurname(string surname);
         void DeletePatient(int id);
 
     }

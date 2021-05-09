@@ -29,6 +29,7 @@ namespace Med_Center
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Имя = new System.Windows.Forms.ToolStrip();
             this.Добавить = new System.Windows.Forms.ToolStripDropDownButton();
@@ -36,8 +37,54 @@ namespace Med_Center
             this.каб = new System.Windows.Forms.ToolStripButton();
             this.расп = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.surNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patronymicDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pasportDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthdayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.specialityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.workDaysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.workHoursDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.doctorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.medCenterDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.medCenterDataSet = new Med__Center.MedCenterDataSet();
+            this.doctorsTableAdapter = new Med__Center.MedCenterDataSetTableAdapters.DoctorsTableAdapter();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.patientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.patientsTableAdapter = new Med__Center.MedCenterDataSetTableAdapters.PatientsTableAdapter();
+            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.surNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patronymicDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pasportDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneNumberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthdayDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.cabinetsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cabinetsTableAdapter = new Med__Center.MedCenterDataSetTableAdapters.CabinetsTableAdapter();
+            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.specialityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.Имя.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.doctorsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medCenterDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medCenterDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cabinetsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Имя
@@ -49,7 +96,7 @@ namespace Med_Center
             this.расп});
             this.Имя.Location = new System.Drawing.Point(0, 0);
             this.Имя.Name = "Имя";
-            this.Имя.Size = new System.Drawing.Size(686, 25);
+            this.Имя.Size = new System.Drawing.Size(746, 25);
             this.Имя.TabIndex = 0;
             this.Имя.Text = "Добавить";
             this.Имя.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Имя_ItemClicked);
@@ -92,19 +139,314 @@ namespace Med_Center
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 65);
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.surNameDataGridViewTextBoxColumn,
+            this.patronymicDataGridViewTextBoxColumn,
+            this.pasportDataGridViewTextBoxColumn,
+            this.phoneNumberDataGridViewTextBoxColumn,
+            this.birthdayDataGridViewTextBoxColumn,
+            this.specialityDataGridViewTextBoxColumn,
+            this.workDaysDataGridViewTextBoxColumn,
+            this.workHoursDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.doctorsBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 63);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(686, 325);
+            this.dataGridView1.Size = new System.Drawing.Size(746, 121);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // surNameDataGridViewTextBoxColumn
+            // 
+            this.surNameDataGridViewTextBoxColumn.DataPropertyName = "SurName";
+            this.surNameDataGridViewTextBoxColumn.HeaderText = "SurName";
+            this.surNameDataGridViewTextBoxColumn.Name = "surNameDataGridViewTextBoxColumn";
+            // 
+            // patronymicDataGridViewTextBoxColumn
+            // 
+            this.patronymicDataGridViewTextBoxColumn.DataPropertyName = "Patronymic";
+            this.patronymicDataGridViewTextBoxColumn.HeaderText = "Patronymic";
+            this.patronymicDataGridViewTextBoxColumn.Name = "patronymicDataGridViewTextBoxColumn";
+            // 
+            // pasportDataGridViewTextBoxColumn
+            // 
+            this.pasportDataGridViewTextBoxColumn.DataPropertyName = "Pasport";
+            this.pasportDataGridViewTextBoxColumn.HeaderText = "Pasport";
+            this.pasportDataGridViewTextBoxColumn.Name = "pasportDataGridViewTextBoxColumn";
+            // 
+            // phoneNumberDataGridViewTextBoxColumn
+            // 
+            this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
+            // 
+            // birthdayDataGridViewTextBoxColumn
+            // 
+            this.birthdayDataGridViewTextBoxColumn.DataPropertyName = "Birthday";
+            this.birthdayDataGridViewTextBoxColumn.HeaderText = "Birthday";
+            this.birthdayDataGridViewTextBoxColumn.Name = "birthdayDataGridViewTextBoxColumn";
+            // 
+            // specialityDataGridViewTextBoxColumn
+            // 
+            this.specialityDataGridViewTextBoxColumn.DataPropertyName = "Speciality";
+            this.specialityDataGridViewTextBoxColumn.HeaderText = "Speciality";
+            this.specialityDataGridViewTextBoxColumn.Name = "specialityDataGridViewTextBoxColumn";
+            // 
+            // workDaysDataGridViewTextBoxColumn
+            // 
+            this.workDaysDataGridViewTextBoxColumn.DataPropertyName = "WorkDays";
+            this.workDaysDataGridViewTextBoxColumn.HeaderText = "WorkDays";
+            this.workDaysDataGridViewTextBoxColumn.Name = "workDaysDataGridViewTextBoxColumn";
+            // 
+            // workHoursDataGridViewTextBoxColumn
+            // 
+            this.workHoursDataGridViewTextBoxColumn.DataPropertyName = "WorkHours";
+            this.workHoursDataGridViewTextBoxColumn.HeaderText = "WorkHours";
+            this.workHoursDataGridViewTextBoxColumn.Name = "workHoursDataGridViewTextBoxColumn";
+            // 
+            // doctorsBindingSource
+            // 
+            this.doctorsBindingSource.DataMember = "Doctors";
+            this.doctorsBindingSource.DataSource = this.medCenterDataSetBindingSource;
+            // 
+            // medCenterDataSetBindingSource
+            // 
+            this.medCenterDataSetBindingSource.DataSource = this.medCenterDataSet;
+            this.medCenterDataSetBindingSource.Position = 0;
+            // 
+            // medCenterDataSet
+            // 
+            this.medCenterDataSet.DataSetName = "MedCenterDataSet";
+            this.medCenterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // doctorsTableAdapter
+            // 
+            this.doctorsTableAdapter.ClearBeforeFill = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(243, 37);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(349, 36);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 20);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Поиск по фамилии";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(243, 211);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 4;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(349, 211);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(120, 19);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Поиск по фамилии";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn1,
+            this.surNameDataGridViewTextBoxColumn1,
+            this.patronymicDataGridViewTextBoxColumn1,
+            this.pasportDataGridViewTextBoxColumn1,
+            this.phoneNumberDataGridViewTextBoxColumn1,
+            this.birthdayDataGridViewTextBoxColumn1});
+            this.dataGridView2.DataSource = this.patientsBindingSource;
+            this.dataGridView2.Location = new System.Drawing.Point(0, 237);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(746, 134);
+            this.dataGridView2.TabIndex = 6;
+            // 
+            // patientsBindingSource
+            // 
+            this.patientsBindingSource.DataMember = "Patients";
+            this.patientsBindingSource.DataSource = this.medCenterDataSetBindingSource;
+            // 
+            // patientsTableAdapter
+            // 
+            this.patientsTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDDataGridViewTextBoxColumn1
+            // 
+            this.iDDataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn1.Name = "iDDataGridViewTextBoxColumn1";
+            this.iDDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            // 
+            // surNameDataGridViewTextBoxColumn1
+            // 
+            this.surNameDataGridViewTextBoxColumn1.DataPropertyName = "SurName";
+            this.surNameDataGridViewTextBoxColumn1.HeaderText = "SurName";
+            this.surNameDataGridViewTextBoxColumn1.Name = "surNameDataGridViewTextBoxColumn1";
+            // 
+            // patronymicDataGridViewTextBoxColumn1
+            // 
+            this.patronymicDataGridViewTextBoxColumn1.DataPropertyName = "Patronymic";
+            this.patronymicDataGridViewTextBoxColumn1.HeaderText = "Patronymic";
+            this.patronymicDataGridViewTextBoxColumn1.Name = "patronymicDataGridViewTextBoxColumn1";
+            // 
+            // pasportDataGridViewTextBoxColumn1
+            // 
+            this.pasportDataGridViewTextBoxColumn1.DataPropertyName = "Pasport";
+            this.pasportDataGridViewTextBoxColumn1.HeaderText = "Pasport";
+            this.pasportDataGridViewTextBoxColumn1.Name = "pasportDataGridViewTextBoxColumn1";
+            // 
+            // phoneNumberDataGridViewTextBoxColumn1
+            // 
+            this.phoneNumberDataGridViewTextBoxColumn1.DataPropertyName = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn1.HeaderText = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn1.Name = "phoneNumberDataGridViewTextBoxColumn1";
+            // 
+            // birthdayDataGridViewTextBoxColumn1
+            // 
+            this.birthdayDataGridViewTextBoxColumn1.DataPropertyName = "Birthday";
+            this.birthdayDataGridViewTextBoxColumn1.HeaderText = "Birthday";
+            this.birthdayDataGridViewTextBoxColumn1.Name = "birthdayDataGridViewTextBoxColumn1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Доктора";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 214);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Пациенты";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 389);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Кабинеты";
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AutoGenerateColumns = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn2,
+            this.numberDataGridViewTextBoxColumn,
+            this.specialityDataGridViewTextBoxColumn1});
+            this.dataGridView3.DataSource = this.cabinetsBindingSource;
+            this.dataGridView3.Location = new System.Drawing.Point(0, 412);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(343, 122);
+            this.dataGridView3.TabIndex = 10;
+            // 
+            // cabinetsBindingSource
+            // 
+            this.cabinetsBindingSource.DataMember = "Cabinets";
+            this.cabinetsBindingSource.DataSource = this.medCenterDataSetBindingSource;
+            // 
+            // cabinetsTableAdapter
+            // 
+            this.cabinetsTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDDataGridViewTextBoxColumn2
+            // 
+            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
+            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // numberDataGridViewTextBoxColumn
+            // 
+            this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
+            this.numberDataGridViewTextBoxColumn.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
+            // 
+            // specialityDataGridViewTextBoxColumn1
+            // 
+            this.specialityDataGridViewTextBoxColumn1.DataPropertyName = "Speciality";
+            this.specialityDataGridViewTextBoxColumn1.HeaderText = "Speciality";
+            this.specialityDataGridViewTextBoxColumn1.Name = "specialityDataGridViewTextBoxColumn1";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(142, 386);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 11;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(248, 381);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(114, 28);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "Поиск по номеру";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 390);
+            this.ClientSize = new System.Drawing.Size(746, 538);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.dataGridView3);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.Имя);
             this.Name = "Form1";
@@ -113,6 +455,13 @@ namespace Med_Center
             this.Имя.ResumeLayout(false);
             this.Имя.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.doctorsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medCenterDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medCenterDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cabinetsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,6 +475,45 @@ namespace Med_Center
         private System.Windows.Forms.ToolStripButton каб;
         private System.Windows.Forms.ToolStripButton расп;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource medCenterDataSetBindingSource;
+        private Med__Center.MedCenterDataSet medCenterDataSet;
+        private System.Windows.Forms.BindingSource doctorsBindingSource;
+        private Med__Center.MedCenterDataSetTableAdapters.DoctorsTableAdapter doctorsTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn surNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patronymicDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pasportDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn birthdayDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn specialityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn workDaysDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn workHoursDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.BindingSource patientsBindingSource;
+        private Med__Center.MedCenterDataSetTableAdapters.PatientsTableAdapter patientsTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn surNameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patronymicDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pasportDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn birthdayDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.BindingSource cabinetsBindingSource;
+        private Med__Center.MedCenterDataSetTableAdapters.CabinetsTableAdapter cabinetsTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn specialityDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button3;
     }
 }
 
