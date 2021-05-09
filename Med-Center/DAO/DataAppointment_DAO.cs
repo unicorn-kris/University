@@ -16,13 +16,13 @@ namespace DAO
             {
                 var cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "AddCabinet";
-                cmd.Parameters.AddWithValue(@"DoctorID", dataAppointment.GiveTakeDoctorID);
-                cmd.Parameters.AddWithValue(@"CabinetNumber", dataAppointment.GiveTakeCabinetNumber);
-                cmd.Parameters.AddWithValue(@"Day", dataAppointment.GiveTakeDay);
-                cmd.Parameters.AddWithValue(@"Hour", dataAppointment.GiveTakeHour);
-                cmd.Parameters.AddWithValue(@"Minute", dataAppointment.GiveTakeMinute);
-                cmd.Parameters.AddWithValue(@"PatientID", dataAppointment.GiveTakePatientID);
+                cmd.CommandText = "AddAppointment";
+                cmd.Parameters.AddWithValue(@"DoctorID", dataAppointment.DoctorID);
+                cmd.Parameters.AddWithValue(@"CabinetNumber", dataAppointment.CabinetNumber);
+                cmd.Parameters.AddWithValue(@"Day", dataAppointment.Day);
+                cmd.Parameters.AddWithValue(@"Hour", dataAppointment.Hour);
+                cmd.Parameters.AddWithValue(@"Minute", dataAppointment.Minute);
+                cmd.Parameters.AddWithValue(@"PatientID", dataAppointment.PatientID);
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -56,33 +56,5 @@ namespace DAO
             return dataAppointments;
         }
 
-
-        public List<DataAppointment> GetInfoAppointment(int doctorID)
-        {
-            List<DataAppointment> dataAppointments = new List<DataAppointment>();
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var cmd = connection.CreateCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetINFO_Appointment";
-                cmd.Parameters.AddWithValue(@"DoctorID", doctorID);
-                connection.Open();
-
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int DoctorID = (int)reader["DoctorID"];
-                    int CabinetNumber = (int)reader["CabinetNumber"];
-                    int Day = (int)reader["Day"];
-                    int Hour = (int)reader["Hour"];
-                    int Minute = (int)reader["Minute"];
-                    int PatientID = (int)reader["PatientID"];
-
-                    dataAppointments.Add(new DataAppointment(DoctorID, CabinetNumber, Day, Hour, Minute, PatientID));
-                }
-
-            }
-            return dataAppointments;
-        }
     }
 }

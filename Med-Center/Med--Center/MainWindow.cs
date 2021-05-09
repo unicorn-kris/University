@@ -113,5 +113,83 @@ namespace Med_Center
                     MessageBox.Show("Введите цифры!");
                 }
             }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (textBox4.Text != "")
+            {
+                int delete = int.Parse(textBox4.Text);
+                doctor.DeleteDoctor(delete);
+                dataGridView1.DataSource = doctor.GetAll();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (textBox5.Text != "")
+            {
+                int delete = int.Parse(textBox5.Text);
+                patient.DeletePatient(delete);
+                dataGridView2.DataSource = patient.GetAll();
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (textBox6.Text != "")
+            {
+                int delete = int.Parse(textBox6.Text);
+                cabinet.DeleteCabinet(delete);
+                dataGridView3.DataSource = cabinet.GetAll();
+            }
+        }
+
+        private void textBox4_Click(object sender, EventArgs e)
+        {
+            textBox4.Text = "";
+        }
+
+        private void textBox5_Click(object sender, EventArgs e)
+        {
+            textBox5.Text = "";
+        }
+
+        private void textBox6_Click(object sender, EventArgs e)
+        {
+            textBox6.Text = "";
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+
+            if (!Char.IsDigit(number))
+            {
+                e.Handled = true;
+                MessageBox.Show("Введите цифры!");
+            }
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+
+            if (!Char.IsDigit(number))
+            {
+                e.Handled = true;
+                MessageBox.Show("Введите цифры!");
+            }
+        }
+
+        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+
+            if (!Char.IsDigit(number))
+            {
+                e.Handled = true;
+                MessageBox.Show("Введите цифры!");
+            }
+        }
     }
 }

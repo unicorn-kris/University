@@ -63,37 +63,12 @@ namespace DAO
                 var cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "DeleteCabinet";
-                cmd.Parameters.AddWithValue(@"ID", number);
+                cmd.Parameters.AddWithValue(@"Number", number);
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
 
         }
-
-        //public Cabinet GetInfoCabinet(int number)
-        //{
-        //    using (var connection = new SqlConnection(_connectionString))
-        //    {
-        //        Cabinet cabinet = new Cabinet() ;
-        //        var cmd = connection.CreateCommand();
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.CommandText = "GetINFO_Cabinet";
-        //        cmd.Parameters.AddWithValue(@"Number", number);
-        //        connection.Open();
-
-        //        var reader = cmd.ExecuteReader();
-        //        while (reader.Read())
-        //        {
-        //            int ID = (int)reader["ID"];
-        //            int Number = (int)reader["Number"];
-        //            string Speciality = (string)reader["Speciality"];
-
-        //             cabinet = (new Cabinet(ID, Number, Speciality));
-        //        }
-
-        //    }
-        //    return cabinet;
-        //}
         
     }
 }

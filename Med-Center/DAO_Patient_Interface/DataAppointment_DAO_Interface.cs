@@ -7,7 +7,7 @@ namespace DAO_Interface
     {
         void Add(DataAppointment dataAppointment);
         IEnumerable<DataAppointment> GetAll();
-        List<DataAppointment> GetInfoAppointment(int Doctorid);
+        //List<DataAppointment> GetInfoAppointment(int Doctorid);
         
     }
 }

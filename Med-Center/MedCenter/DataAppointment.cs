@@ -32,71 +32,36 @@ namespace MedCenter
             _Minute = minute;
             _PatientID = patientID;
         }
-        public int GiveTakeDoctorID
+        public int DoctorID
         {
-            get
-            {
-                return _DoctorID;
-            }
-            set
-            {
-                _DoctorID = value;
-            }
+            get => _DoctorID;
+            set => _DoctorID = value;
         }
-        public int GiveTakeCabinetNumber
+        public int CabinetNumber
         {
-            get
-            {
-                return _CabinetNumber;
-            }
-            set
-            {
-                _CabinetNumber = value;
-            }
+            get => _CabinetNumber;
+            set => _CabinetNumber = value;
         }
-        public int GiveTakeDay
+        public int Day
         {
-            get
-            {
-                return _Day;
-            }
-            set
-            {
-                _Day = value;
-            }
+            get => _Day;
+            set => _Day = value;
         }
-        public int GiveTakeHour
+        public int Hour
         {
-            get
-            {
-                return _Hour;
-            }
-            set
-            {
-                _Hour = value;
-            }
+            get => _Hour;
+            set => _Hour = value;
         }
-        public int GiveTakeMinute
+        public int Minute
         {
-            get
-            {
-                return _Minute;
-            }
-            set
-            {
-                _Minute = value;
-            }
+            get => _Minute;
+            set => _Minute = value;
         }
-        public int GiveTakePatientID
+        public int PatientID
         {
-            get
-            {
-                return _PatientID;
-            }
-            set
-            {
-                _PatientID = value;
-            }
+
+            get => _PatientID;
+            set => _PatientID = value;
         }
     }
 }

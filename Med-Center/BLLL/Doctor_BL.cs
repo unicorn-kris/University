@@ -35,5 +35,13 @@ namespace BL
                     search.Add(doctors);
             return search;
         }
+        public IEnumerable<Doctor> GetByID(int id)
+        {
+            List<Doctor> search = new List<Doctor>();
+            foreach (Doctor doctors in _doctor.GetAll())
+                if (doctors.ID == id)
+                    search.Add(doctors);
+            return search;
+        }
     }
 }

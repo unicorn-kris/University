@@ -37,102 +37,45 @@ namespace MedCenter
         }
         public new string Name
         {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                _Name = value;
-            }
+            get => _Name;
+            set => _Name = value;
         }
         public new string Surname
         {
-            get
-            {
-                return _SurName;
-            }
-            set
-            {
-                _SurName = value;
-            }
+            get => _SurName;
+            set => _SurName = value;
         }
         public new string Patronymic
         {
-            get
-            {
-                return _Patronymic;
-            }
-            set
-            {
-                _Patronymic = value;
-            }
+            get => _Patronymic;
+            set => _Patronymic = value;
         }
         public new string PhoneNumber
         {
-            get
-            {
-                return _PhoneNumber;
-            }
-            set
-            {
-                _PhoneNumber = value;
-            }
+            get => _PhoneNumber;
+            set => _PhoneNumber = value;
         }
         public new string Pasport
         {
-            get
-            {
-                return _Pasport;
-            }
-            set
-            {
-                _Pasport = value;
-            }
+            get => _Pasport;
+            set => _Pasport = value;
         }
         public string Speciality
         {
-            get
-            {
-                return _Speciality;
-            }
-            set
-            {
-                _Speciality = value;
-            }
+            get => _Speciality;
+            set => _Speciality = value;
         }
         public new DateTime Birthday
         {
-            get
-            {
-                return _Birthday;
-            }
-            set
-            {
-                _Birthday = value;
-            }
+            get => _Birthday;
+            set => _Birthday = value;
         }
-        public  int ID
+        public new int ID
         {
-            get
-            {
-                return _ID;
-            }
+            get => _ID;
             set => _ID = value;
         }
-        public int[] WorkDays
-        {
-            get
-            {
-                return _WorkDays;
-            }
-        }
-        public int WorkHours
-        {
-            get
-            {
-                return _WorkHours;
-            }
-        }
+        public int[] WorkDays => _WorkDays;
+        public int WorkHours => _WorkHours;
     }
 }

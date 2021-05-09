@@ -37,10 +37,10 @@ namespace MedCenter
                 foreach (DataAppointment appointmentExist in _appointments)
                 {
                     //доктор есть, кабинет есть, а времени такого нет - добавить запись
-                    if (appointmentExist.GiveTakeDoctorID == appointment.GiveTakeDoctorID
-                        && (appointmentExist.GiveTakeDay != appointment.GiveTakeDay ||
-                         appointmentExist.GiveTakeHour != appointment.GiveTakeHour ||
-                         appointmentExist.GiveTakeMinute != appointment.GiveTakeMinute))
+                    if (appointmentExist.DoctorID == appointment.DoctorID
+                        && (appointmentExist.Day != appointment.Day ||
+                         appointmentExist.Hour != appointment.Hour ||
+                         appointmentExist.Minute != appointment.Minute))
 
                     {
                         save = true;
@@ -51,7 +51,7 @@ namespace MedCenter
 
             foreach (DataAppointment appointmentExist in _appointments)
             {
-                if (appointmentExist.GiveTakeDoctorID != appointment.GiveTakeDoctorID)
+                if (appointmentExist.DoctorID != appointment.DoctorID)
                     save = true;
             }
 
@@ -63,7 +63,7 @@ namespace MedCenter
         {
             for (int i = 0; i < _appointments.Count; ++i)
             {
-                if (_appointments[i].GiveTakeDoctorID == doctor.ID)
+                if (_appointments[i].DoctorID == doctor.ID)
                 {
                     _appointments.RemoveAt(i);
                 }
@@ -74,9 +74,9 @@ namespace MedCenter
         {
             for (int i = 0; i < _appointments.Count; ++i)
             {
-                if (_appointments[i].GiveTakePatientID != 0 && _appointments[i].GiveTakePatientID == patient.ID)
+                if (_appointments[i].PatientID != 0 && _appointments[i].PatientID == patient.ID)
                 {
-                    _appointments[i].GiveTakePatientID = 0;
+                    _appointments[i].PatientID = 0;
                 }
             }
 
@@ -93,17 +93,17 @@ namespace MedCenter
         public void AddPatientInAppointment(Patient patient, DataAppointment appointment)
         {
             DataAppointment appointmentNew = appointment;//создана новая запись для будущего добавления
-            appointment.GiveTakePatientID = patient.ID;
+            appointment.PatientID = patient.ID;
 
             //доктор есть, кабинет есть, время есть, пациента в этой записи нет - добавить пациента и заменить запись
             for (int index = 0; index < _appointments.Count; ++index)
             {
-                if (_appointments[index].GiveTakeDoctorID == appointment.GiveTakeDoctorID &&
-                    _appointments[index].GiveTakeCabinetNumber != 0)
-                    if (_appointments[index].GiveTakeCabinetNumber == appointment.GiveTakeCabinetNumber && _appointments[index].GiveTakePatientID == 0)
-                        if (_appointments[index].GiveTakeDay == appointment.GiveTakeDay)
-                            if (_appointments[index].GiveTakeHour == appointment.GiveTakeHour)
-                                if (_appointments[index].GiveTakeMinute == appointment.GiveTakeMinute)
+                if (_appointments[index].DoctorID == appointment.DoctorID &&
+                    _appointments[index].CabinetNumber != 0)
+                    if (_appointments[index].CabinetNumber == appointment.CabinetNumber && _appointments[index].PatientID == 0)
+                        if (_appointments[index].Day == appointment.Day)
+                            if (_appointments[index].Hour == appointment.Hour)
+                                if (_appointments[index].Minute == appointment.Minute)
                                 {
                                     _appointments[index] = appointmentNew;
                                 }
@@ -116,15 +116,15 @@ namespace MedCenter
             //доктор есть, время и кабинет есть и есть пациент - заменить запись на аналогичную без пациента
             for (int index = 0; index < _appointments.Count; ++index)
             {
-                if (_appointments[index].GiveTakeDoctorID == appointment.GiveTakeDoctorID &&
-                    _appointments[index].GiveTakeCabinetNumber != 0)
-                    if (_appointments[index].GiveTakeCabinetNumber == appointment.GiveTakeCabinetNumber && _appointments[index].GiveTakePatientID != 0)
-                        if (_appointments[index].GiveTakeDay == appointment.GiveTakeDay)
-                            if (_appointments[index].GiveTakeHour == appointment.GiveTakeHour)
-                                if (_appointments[index].GiveTakeMinute == appointment.GiveTakeMinute)
+                if (_appointments[index].DoctorID == appointment.DoctorID &&
+                    _appointments[index].CabinetNumber != 0)
+                    if (_appointments[index].CabinetNumber == appointment.CabinetNumber && _appointments[index].PatientID != 0)
+                        if (_appointments[index].Day == appointment.Day)
+                            if (_appointments[index].Hour == appointment.Hour)
+                                if (_appointments[index].Minute == appointment.Minute)
                                     
                                 {
-                                    appointmentNew.GiveTakePatientID = 0;
+                                    appointmentNew.PatientID = 0;
                                     _appointments[index] = appointmentNew;
                                 }
             }

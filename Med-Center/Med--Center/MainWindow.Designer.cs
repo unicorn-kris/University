@@ -56,8 +56,6 @@ namespace Med_Center
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.patientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.patientsTableAdapter = new Med__Center.MedCenterDataSetTableAdapters.PatientsTableAdapter();
             this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,17 +63,25 @@ namespace Med_Center
             this.pasportDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneNumberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.birthdayDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.patientsTableAdapter = new Med__Center.MedCenterDataSetTableAdapters.PatientsTableAdapter();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.cabinetsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cabinetsTableAdapter = new Med__Center.MedCenterDataSetTableAdapters.CabinetsTableAdapter();
             this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.specialityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cabinetsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cabinetsTableAdapter = new Med__Center.MedCenterDataSetTableAdapters.CabinetsTableAdapter();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.Имя.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doctorsBindingSource)).BeginInit();
@@ -292,15 +298,6 @@ namespace Med_Center
             this.dataGridView2.Size = new System.Drawing.Size(746, 134);
             this.dataGridView2.TabIndex = 6;
             // 
-            // patientsBindingSource
-            // 
-            this.patientsBindingSource.DataMember = "Patients";
-            this.patientsBindingSource.DataSource = this.medCenterDataSetBindingSource;
-            // 
-            // patientsTableAdapter
-            // 
-            this.patientsTableAdapter.ClearBeforeFill = true;
-            // 
             // iDDataGridViewTextBoxColumn1
             // 
             this.iDDataGridViewTextBoxColumn1.DataPropertyName = "ID";
@@ -344,6 +341,15 @@ namespace Med_Center
             this.birthdayDataGridViewTextBoxColumn1.HeaderText = "Birthday";
             this.birthdayDataGridViewTextBoxColumn1.Name = "birthdayDataGridViewTextBoxColumn1";
             // 
+            // patientsBindingSource
+            // 
+            this.patientsBindingSource.DataMember = "Patients";
+            this.patientsBindingSource.DataSource = this.medCenterDataSetBindingSource;
+            // 
+            // patientsTableAdapter
+            // 
+            this.patientsTableAdapter.ClearBeforeFill = true;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -385,15 +391,6 @@ namespace Med_Center
             this.dataGridView3.Size = new System.Drawing.Size(343, 122);
             this.dataGridView3.TabIndex = 10;
             // 
-            // cabinetsBindingSource
-            // 
-            this.cabinetsBindingSource.DataMember = "Cabinets";
-            this.cabinetsBindingSource.DataSource = this.medCenterDataSetBindingSource;
-            // 
-            // cabinetsTableAdapter
-            // 
-            this.cabinetsTableAdapter.ClearBeforeFill = true;
-            // 
             // iDDataGridViewTextBoxColumn2
             // 
             this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
@@ -413,6 +410,15 @@ namespace Med_Center
             this.specialityDataGridViewTextBoxColumn1.HeaderText = "Speciality";
             this.specialityDataGridViewTextBoxColumn1.Name = "specialityDataGridViewTextBoxColumn1";
             // 
+            // cabinetsBindingSource
+            // 
+            this.cabinetsBindingSource.DataMember = "Cabinets";
+            this.cabinetsBindingSource.DataSource = this.medCenterDataSetBindingSource;
+            // 
+            // cabinetsTableAdapter
+            // 
+            this.cabinetsTableAdapter.ClearBeforeFill = true;
+            // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(142, 386);
@@ -431,11 +437,77 @@ namespace Med_Center
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(677, 34);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(57, 23);
+            this.button4.TabIndex = 13;
+            this.button4.Text = "удалить";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(624, 36);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(47, 20);
+            this.textBox4.TabIndex = 14;
+            this.textBox4.Text = "ID";
+            this.textBox4.Click += new System.EventHandler(this.textBox4_Click);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(624, 211);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(47, 20);
+            this.textBox5.TabIndex = 15;
+            this.textBox5.Text = "ID";
+            this.textBox5.Click += new System.EventHandler(this.textBox5_Click);
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(677, 209);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(57, 23);
+            this.button5.TabIndex = 16;
+            this.button5.Text = "удалить";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(677, 385);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(57, 23);
+            this.button6.TabIndex = 17;
+            this.button6.Text = "удалить";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(624, 386);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(47, 20);
+            this.textBox6.TabIndex = 18;
+            this.textBox6.Text = "Number";
+            this.textBox6.Click += new System.EventHandler(this.textBox6_Click);
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 538);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.dataGridView3);
@@ -514,6 +586,12 @@ namespace Med_Center
         private System.Windows.Forms.DataGridViewTextBoxColumn specialityDataGridViewTextBoxColumn1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }
 
