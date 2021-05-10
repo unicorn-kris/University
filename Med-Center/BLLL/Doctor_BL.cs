@@ -43,5 +43,21 @@ namespace BL
                     search.Add(doctors);
             return search;
         }
+        public bool HaveDoctor(int id)
+        {
+            bool search = false;
+            foreach (Doctor doctors in _doctor.GetAll())
+                if (doctors.ID == id)
+                    search = true;
+            return search;
+        }
+        public bool HaveDay(int id, int day)
+        {
+            bool search = false;
+            foreach (Doctor doctors in _doctor.GetAll())
+                if (doctors.ID == id && doctors.WorkDays[day] == 1)
+                    search = true;
+            return search;
+        }
     }
 }

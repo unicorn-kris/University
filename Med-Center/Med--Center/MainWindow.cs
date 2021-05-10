@@ -1,4 +1,5 @@
 ﻿using BL;
+using Med__Center;
 using System;
 using System.Windows.Forms;
 
@@ -31,6 +32,7 @@ namespace Med_Center
         Doctor_BL doctor = new Doctor_BL();
         Patient_BL patient = new Patient_BL();
         Cabinet_BL cabinet = new Cabinet_BL();
+        DataAppointment_BL dataAppointment = new DataAppointment_BL();
         private void Имя_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
         }
@@ -190,6 +192,12 @@ namespace Med_Center
                 e.Handled = true;
                 MessageBox.Show("Введите цифры!");
             }
+        }
+
+        private void каб_Click(object sender, EventArgs e)
+        {
+            CabinetForDoctor addCabinet = new CabinetForDoctor();
+            addCabinet.Show();
         }
     }
 }

@@ -30,9 +30,18 @@ namespace BL
             return search;
         }
        
-        public void DeleteCabinet(int id)
+        public void DeleteCabinet(int number)
         {
-            _cabinet.DeleteCabinet(id);
+            _cabinet.DeleteCabinet(number);
+        }
+
+        public bool HaveCabinet(int number)
+        {
+            bool search = false;
+            foreach (Cabinet cabinet in _cabinet.GetAll())
+                if (cabinet.Number == number)
+                    search = true;
+            return search;
         }
     }
 }

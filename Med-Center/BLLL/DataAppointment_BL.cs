@@ -24,5 +24,24 @@ namespace BL
                     search.Add(data);
             return search;
         }
+
+        public bool FreeCabinet(int number, int day)
+        {
+            bool free = true;
+            foreach (DataAppointment data in _dataAppointment.GetAll())
+                if (data.CabinetNumber == number && data.Day == day)
+                    free = false;
+            return free;
+        }
+        public bool FreeDoctor(int id, int day)
+        {
+            bool free = true;
+            foreach (DataAppointment data in _dataAppointment.GetAll())
+                if (data.DoctorID == id && data.CabinetNumber != 0 && data.Day == day)
+                    free = false;
+
+            return free;
+        }
+
     }
 }
