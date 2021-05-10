@@ -9,5 +9,6 @@ namespace BL_Interface
         IEnumerable<Cabinet> GetAll();
         IEnumerable<Cabinet> GetInfoCabinet(int number);
         void DeleteCabinet(int id);
+        bool HaveCabinet(int number);
     }
 }

@@ -69,11 +69,6 @@ namespace Med_Center
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             string search = textBox1.Text;
@@ -198,6 +193,35 @@ namespace Med_Center
         {
             CabinetForDoctor addCabinet = new CabinetForDoctor();
             addCabinet.Show();
+        }
+
+        private void запись_Click(object sender, EventArgs e)
+        {
+            AddAppointmentForm addAppointment = new AddAppointmentForm();
+            addAppointment.Show();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            ChangeCabinet changeCab = new ChangeCabinet();
+            changeCab.Show();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            DeletePatient deletePatient = new DeletePatient();
+            deletePatient.Show();
+        }
+
+        private void расп_Click(object sender, EventArgs e)
+        {
+            Shedule shedule = new Shedule();
+            shedule.Show();
+        }
+
+        private void textBox3_Click(object sender, EventArgs e)
+        {
+            textBox3.Text = "";
         }
     }
 }

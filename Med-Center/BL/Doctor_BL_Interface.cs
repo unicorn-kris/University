@@ -1,5 +1,4 @@
 ﻿using MedCenter;
-using System;
 using System.Collections.Generic;
 
 namespace BL_Interface
@@ -8,8 +7,11 @@ namespace BL_Interface
     {
         void Add(Doctor doctor);
         IEnumerable<Doctor> GetAll();
-         IEnumerable<Doctor> GetBySurname(string surname);
+        IEnumerable<Doctor> GetBySurname(string surname);
         void DeleteDoctor(int id);
+        bool HaveDoctor(int id);
+        bool HaveDay(int id, int day);
+        bool HaveHour(int id, int hour);
 
     }
 }

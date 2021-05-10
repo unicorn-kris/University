@@ -34,9 +34,10 @@ namespace Med_Center
             this.Имя = new System.Windows.Forms.ToolStrip();
             this.Добавить = new System.Windows.Forms.ToolStripDropDownButton();
             this.каб = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.запись = new System.Windows.Forms.ToolStripButton();
-            this.расп = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.расп = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,9 +100,10 @@ namespace Med_Center
             this.Имя.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Добавить,
             this.каб,
+            this.toolStripButton2,
             this.запись,
-            this.расп,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.расп});
             this.Имя.Location = new System.Drawing.Point(0, 0);
             this.Имя.Name = "Имя";
             this.Имя.Size = new System.Drawing.Size(743, 25);
@@ -124,9 +126,19 @@ namespace Med_Center
             this.каб.Image = ((System.Drawing.Image)(resources.GetObject("каб.Image")));
             this.каб.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.каб.Name = "каб";
-            this.каб.Size = new System.Drawing.Size(163, 22);
-            this.каб.Text = "Добавить кабинеты врачам";
+            this.каб.Size = new System.Drawing.Size(91, 22);
+            this.каб.Text = "Кабинет врачу";
             this.каб.Click += new System.EventHandler(this.каб_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(112, 22);
+            this.toolStripButton2.Text = "Изменить кабинет";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // запись
             // 
@@ -136,6 +148,17 @@ namespace Med_Center
             this.запись.Name = "запись";
             this.запись.Size = new System.Drawing.Size(115, 22);
             this.запись.Text = "Записать пациента";
+            this.запись.Click += new System.EventHandler(this.запись_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(112, 22);
+            this.toolStripButton1.Text = "Удалить пациента ";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // расп
             // 
@@ -145,15 +168,7 @@ namespace Med_Center
             this.расп.Name = "расп";
             this.расп.Size = new System.Drawing.Size(146, 22);
             this.расп.Text = "Посмотреть расписание";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(165, 22);
-            this.toolStripButton1.Text = "Удалить пациента из записи";
+            this.расп.Click += new System.EventHandler(this.расп_Click);
             // 
             // dataGridView1
             // 
@@ -176,7 +191,6 @@ namespace Med_Center
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(743, 121);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -437,6 +451,7 @@ namespace Med_Center
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 11;
+            this.textBox3.Click += new System.EventHandler(this.textBox3_Click);
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // button3
@@ -605,6 +620,7 @@ namespace Med_Center
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }
 

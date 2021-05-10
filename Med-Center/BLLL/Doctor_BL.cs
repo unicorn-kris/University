@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MedCenter;
+﻿using BL_Interface;
 using DAO;
-using BL_Interface;
+using MedCenter;
+using System.Collections.Generic;
 
 namespace BL
 {
-   public class Doctor_BL: Doctor_BL_Interface
+    public class Doctor_BL : Doctor_BL_Interface
     {
         private Doctor_DAO _doctor = new Doctor_DAO();
         public void Add(Doctor doctor)
@@ -17,9 +15,9 @@ namespace BL
                 if (doctors.Pasport == doctor.Pasport)
                     have = true;
             if (!have)
-            _doctor.Add(doctor);
+                _doctor.Add(doctor);
         }
-       public IEnumerable<Doctor> GetAll()
+        public IEnumerable<Doctor> GetAll()
         {
             return _doctor.GetAll();
         }
@@ -55,8 +53,21 @@ namespace BL
         {
             bool search = false;
             foreach (Doctor doctors in _doctor.GetAll())
-                if (doctors.ID == id && doctors.WorkDays[day] == 1)
+                if (doctors.ID == id && doctors.WorkDays[day] == '1')
                     search = true;
+            return search;
+        }
+        public bool HaveHour(int id, int hour)
+        {
+            bool search = false;
+            foreach (Doctor doctors in _doctor.GetAll())
+                if (doctors.ID == id)
+                {
+                    if (doctors.WorkHours == 1 && hour < 13 && hour > 7)
+                        search = true;
+                    else if (doctors.WorkHours == 2 && hour < 19 && hour > 13)
+                        search = true;
+                }
             return search;
         }
     }

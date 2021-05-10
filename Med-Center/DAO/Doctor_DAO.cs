@@ -28,7 +28,7 @@ namespace DAO
                 string workDays = "";
                 foreach (int x in doctor.WorkDays)
                 {
-                    workDays += x;
+                    workDays += x.ToString();
                 }
                 string workHours = "";
                 workHours += doctor.WorkHours;
@@ -71,14 +71,10 @@ namespace DAO
                     string WorkDays = (string)reader["WorkDays"];
                     string WorkHours = (string)reader["WorkHours"];
 
-                    int[] workdays = new int[7];
-                    for (int i = 0; i < 7; ++i)
-                    {
-                        workdays[i] = (int)WorkDays[i] - '0';
-                    }
+                    
                     int workhours = (int)WorkHours[0] - '0';
 
-                    doctors.Add(new Doctor(ID, Name, SurName, Patronymic, Pasport, PhoneNumber, Birthday, Speciality, workdays, workhours));
+                    doctors.Add(new Doctor(ID, Name, SurName, Patronymic, Pasport, PhoneNumber, Birthday, Speciality, WorkDays, workhours));
                 }
 
             }

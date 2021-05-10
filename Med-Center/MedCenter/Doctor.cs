@@ -9,19 +9,24 @@ namespace MedCenter
     public class Doctor : Person
     {
         private string _Speciality;
-        private int[] _WorkDays;
+        private string _WorkDays;
         private int _WorkHours;
         public Doctor( string name, string surname, string patronymic, string pasport, string phoneNumber,
-                       DateTime birthday, string speciality, int[] workDays, int workHours)
+                       DateTime birthday, string speciality, string workDays, int workHours)
         {
-           
+            _Name = name;
+            _SurName = surname;
+            _Patronymic = patronymic;
+            _Pasport = pasport;
+            _PhoneNumber = phoneNumber;
+            _Birthday = birthday;
             _Speciality = speciality;
             _WorkDays = workDays;
             _WorkHours = workHours;
 
         }
         public Doctor(int id, string name, string surname, string patronymic, string pasport, string phoneNumber,
-                      DateTime birthday, string speciality, int[] workDays, int workHours)
+                      DateTime birthday, string speciality, string workDays, int workHours)
         {
             _ID = id;
             _Name = name;
@@ -75,7 +80,7 @@ namespace MedCenter
             get => _ID;
             set => _ID = value;
         }
-        public int[] WorkDays => _WorkDays;
+        public string WorkDays => _WorkDays;
         public int WorkHours => _WorkHours;
     }
 }

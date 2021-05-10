@@ -162,7 +162,6 @@ namespace Med_Center
             this.checkedListBox2.Size = new System.Drawing.Size(120, 49);
             this.checkedListBox2.TabIndex = 11;
             this.checkedListBox2.Click += new System.EventHandler(this.checkedListBox2_Click);
-            this.checkedListBox2.SelectedIndexChanged += new System.EventHandler(this.checkedListBox2_SelectedIndexChanged);
             // 
             // AddDoctorForm
             // 

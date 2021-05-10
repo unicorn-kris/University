@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Text.RegularExpressions;
-using BL;
+﻿using BL;
 using MedCenter;
+using System;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Med_Center
 {
@@ -21,7 +21,7 @@ namespace Med_Center
         public string speciality = "";
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-           bool insert = int.TryParse(textBox1.Text, out num);
+            bool insert = int.TryParse(textBox1.Text, out num);
             if (insert)
                 num = int.Parse(textBox1.Text);
             else
@@ -29,7 +29,7 @@ namespace Med_Center
         }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
- char number = e.KeyChar;
+            char number = e.KeyChar;
 
             if (!Char.IsDigit(number))
             {
@@ -45,7 +45,7 @@ namespace Med_Center
         {
             char number = e.KeyChar;
         }
-        
+
 
         private void textBox1_Click(object sender, EventArgs e)
         {
@@ -61,7 +61,7 @@ namespace Med_Center
         {
             if (Regex.IsMatch(textBox1.Text, @".*\d"))
             {
-                num = int.Parse (textBox1.Text);
+                num = int.Parse(textBox1.Text);
             }
             else
             {

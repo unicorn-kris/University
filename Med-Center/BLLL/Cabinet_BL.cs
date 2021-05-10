@@ -23,13 +23,13 @@ namespace BL
         }
         public IEnumerable<Cabinet> GetInfoCabinet(int number)
         {
-            List < Cabinet> search = new List<Cabinet>();
+            List<Cabinet> search = new List<Cabinet>();
             foreach (Cabinet cabinet in _cabinet.GetAll())
                 if (cabinet.Number == number)
                     search.Add(cabinet);
             return search;
         }
-       
+
         public void DeleteCabinet(int number)
         {
             _cabinet.DeleteCabinet(number);

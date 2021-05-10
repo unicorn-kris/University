@@ -55,6 +55,74 @@ namespace DAO
             }
             return dataAppointments;
         }
+        public void DeleteAppointment(int docID, int day, int hour, int minute)
+        {
 
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var cmd = connection.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "DeleteAppointment";
+                cmd.Parameters.AddWithValue(@"DoctorID", docID);
+                cmd.Parameters.AddWithValue(@"Day", day);
+                cmd.Parameters.AddWithValue(@"Hour", hour);
+                cmd.Parameters.AddWithValue(@"Minute", minute);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void ChangePatientInAppointment(int docID, int day, int hour, int minute, int patID)
+        {
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var cmd = connection.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "ChangePatientInAppointment";
+                cmd.Parameters.AddWithValue(@"PatientID", patID);
+                cmd.Parameters.AddWithValue(@"DoctorID", docID);
+                cmd.Parameters.AddWithValue(@"Day", day);
+                cmd.Parameters.AddWithValue(@"Hour", hour);
+                cmd.Parameters.AddWithValue(@"Minute", minute);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void DeletePatientInAppointment(int docID, int day, int hour, int minute, int patID)
+        {
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var cmd = connection.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "DeletePatientAppointment";
+                cmd.Parameters.AddWithValue(@"PatientID", patID);
+                cmd.Parameters.AddWithValue(@"DoctorID", docID);
+                cmd.Parameters.AddWithValue(@"Day", day);
+                cmd.Parameters.AddWithValue(@"Hour", hour);
+                cmd.Parameters.AddWithValue(@"Minute", minute);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void ChangeCabinetInAppointment(int docID, int day, int cabNUM)
+        {
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var cmd = connection.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "ChangeCabinetInAppointment";
+                cmd.Parameters.AddWithValue(@"CabinetNumber", cabNUM);
+                cmd.Parameters.AddWithValue(@"DoctorID", docID);
+                cmd.Parameters.AddWithValue(@"Day", day);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

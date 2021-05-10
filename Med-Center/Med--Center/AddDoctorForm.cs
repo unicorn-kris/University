@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BL;
+using MedCenter;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using BL;
-using MedCenter;
 
 namespace Med_Center
 {
@@ -12,11 +12,11 @@ namespace Med_Center
         {
             InitializeComponent();
 
-            this.checkedListBox1.Items.AddRange(new object[] { "понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"});
+            this.checkedListBox1.Items.AddRange(new object[] { "понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье" });
 
             this.Controls.Add(this.checkedListBox1);
 
-            this.checkedListBox2.Items.AddRange(new object[] {1, 2});
+            this.checkedListBox2.Items.AddRange(new object[] { 1, 2 });
 
             this.Controls.Add(this.checkedListBox2);
         }
@@ -28,7 +28,7 @@ namespace Med_Center
         public string phoneNumber = "";
         public DateTime birthday = DateTime.Now;
         public string speciality = "";
-        public int[] workdays = new int[7];
+        public string workdays = "";
         public int workhours = 0;
         private void AddDoctorForm_Load(object sender, EventArgs e)
         {
@@ -171,13 +171,13 @@ namespace Med_Center
             char number = e.KeyChar;
         }
 
-       
+
 
         private void checkedListBox1_Click(object sender, EventArgs e)
         {
 
             // Для каждого элемента из CheckedListBox.
-
+            
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
 
@@ -188,42 +188,37 @@ namespace Med_Center
 
                     // Получение текста элемента и добавление к orderInfo.
 
-                    workdays[i] = 1;
+                    workdays+= 1;
                 }
                 else
-                    workdays[i] = 0;
-            }
-        }
-
-        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Если отмечено больше 2 элементов, то снимаем выделение со всех и отмечаем текущий.
-            if (checkedListBox2.CheckedItems.Count > 1)
-            {
-                for (int i = 0; i < checkedListBox2.Items.Count; i++)
-                    checkedListBox2.SetItemChecked(i, false);
-                checkedListBox2.SetItemChecked(checkedListBox1.SelectedIndex, true);
+                    workdays+= 0;
             }
         }
 
         private void checkedListBox2_Click(object sender, EventArgs e)
         {
             // Для каждого элемента из CheckedListBox.
-
-            for (int i = 0; i < 2; i++)
+            if (checkedListBox2.CheckedItems.Count > 1)
             {
-
-                // Отмечен ли элемент?
-
-                if (checkedListBox2.GetItemChecked(0))
+                MessageBox.Show("Выберите одну смену!");
+            }
+            else
+            {
+                for (int i = 0; i < 2; i++)
                 {
 
-                    // Получение текста элемента и добавление к orderInfo.
+                    // Отмечен ли элемент?
 
-                    workhours = 1;
+                    if (checkedListBox2.GetItemChecked(0))
+                    {
+
+                        // Получение текста элемента и добавление к orderInfo.
+
+                        workhours = 1;
+                    }
+                    else if (checkedListBox2.GetItemChecked(1))
+                        workhours = 2;
                 }
-                else if (checkedListBox2.GetItemChecked(1))
-                    workhours = 2;
             }
         }
         Doctor_BL doctorBL = new Doctor_BL();

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MedCenter;
+﻿using BL_Interface;
 using DAO;
-using BL_Interface;
+using MedCenter;
+using System.Collections.Generic;
 
 namespace BL
 {
-   public class Patient_BL : Patient_BL_Interface
+    public class Patient_BL : Patient_BL_Interface
     {
         private Patient_DAO _patient = new Patient_DAO();
         public void Add(Patient Patient)
@@ -44,5 +42,13 @@ namespace BL
                     search.Add(patient);
             return search;
         }
-    } 
+        public bool HavePatient(int id)
+        {
+            bool search = false;
+            foreach (Patient patient in _patient.GetAll())
+                if (patient.ID == id)
+                    search = true;
+            return search;
+        }
+    }
 }

@@ -28,8 +28,8 @@ namespace Med__Center
         int day = -1;
         private void button1_Click(object sender, EventArgs e)
         {
-             id = int.Parse(textBox1.Text);
-             num = int.Parse(textBox2.Text);
+            id = int.Parse(textBox1.Text);
+            num = int.Parse(textBox2.Text);
             //int day = int.Parse(checkedListBox1.GetItemChecked);
 
             if (!doctor.HaveDoctor(id))
@@ -40,7 +40,7 @@ namespace Med__Center
             else
             {
                 int oneday = 0;
-                 day = -1;
+                day = -1;
                 for (int i = 0; i < checkedListBox1.Items.Count; i++)
                 {
                     // Отмечен ли элемент?
@@ -64,34 +64,34 @@ namespace Med__Center
                     if (!doctor.HaveDay(id, day))
                         MessageBox.Show("доктор не работает в этот день!");
                     else if (!dataAppointment.FreeDoctor(id, day))
-                            MessageBox.Show("доктор имеет кабинет в этот день!");
+                        MessageBox.Show("доктор имеет кабинет в этот день!");
                     else
                     {
                         var doctor1 = doctor.GetByID(id);
                         foreach (Doctor newdoc in doctor1)
                         {
                             Doctor doctor2 = newdoc;
-                            foreach (int wday in doctor2.WorkDays)
+                            if ((int)doctor2.WorkDays[day] == '1')
                             {
-                                if (wday == 1)
-                                    if (doctor2.WorkHours == 1)
+                                if (doctor2.WorkHours == 1)
+                                {
+                                    int hour = 8;
+                                    int minute = 0;
+                                    while (hour < 13)
                                     {
-                                        int hour = 8;
-                                        int minute = 0;
-                                        while (hour < 13)
+                                        DataAppointment data = new DataAppointment(id, num, day, hour, minute, 0);
+                                        dataAppointment.Add(data);
+                                        if (minute == 30)
                                         {
-                                                DataAppointment data = new DataAppointment(id, num, day, hour, minute, 0);
-                                            dataAppointment.Add(data);
-                                            if (minute == 0)
-                                                minute = 30;
-                                            if (minute == 30)
-                                            {
-                                                ++hour;
-                                                minute = 0;
-                                            }
+                                            ++hour;
+                                            minute = 0;
                                         }
+                                        else if (minute == 0)
+                                            minute = 30;
+
                                     }
-                               else if (doctor2.WorkHours == 2)
+                                }
+                                else if (doctor2.WorkHours == 2)
                                 {
                                     int hour = 14;
                                     int minute = 0;
@@ -99,15 +99,16 @@ namespace Med__Center
                                     {
                                         DataAppointment data = new DataAppointment(id, num, day, hour, minute, 0);
                                         dataAppointment.Add(data);
-                                        if (minute == 0)
-                                            minute = 30;
                                         if (minute == 30)
                                         {
                                             ++hour;
                                             minute = 0;
                                         }
+                                        else if (minute == 0)
+                                            minute = 30;
                                     }
                                 }
+                            
                             }
                         }
                         Close();
@@ -168,6 +169,16 @@ namespace Med__Center
         private void textBox2_Click(object sender, EventArgs e)
         {
             textBox2.Text = "";
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,19 +1,16 @@
 ﻿using BL;
-using MedCenter;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace Med_Center
+namespace Med__Center
 {
-    public partial class AddAppointmentForm : Form
+    public partial class DeletePatient : Form
     {
-        public AddAppointmentForm()
+        public DeletePatient()
         {
             InitializeComponent();
-            
         }
-
         Doctor_BL doctor = new Doctor_BL();
         Cabinet_BL cabinet = new Cabinet_BL();
         Patient_BL patient = new Patient_BL();
@@ -24,17 +21,11 @@ namespace Med_Center
         int day = -1;
         int hour = 0;
         int minute = -1;
-
-        private void AddAppointment_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox1_Validating(object sender, CancelEventArgs e)
         {
             if (textBox1.Text != "")
             {
-                    bool insert = int.TryParse(textBox1.Text, out docID);
+                bool insert = int.TryParse(textBox1.Text, out docID);
                 if (insert)
                 {
                     if (!doctor.HaveDoctor(docID))
@@ -49,7 +40,6 @@ namespace Med_Center
         {
             textBox1.Text = "";
         }
-
         private void textBox2_Validating(object sender, CancelEventArgs e)
         {
             bool insert = int.TryParse(textBox2.Text, out patID);
@@ -70,18 +60,39 @@ namespace Med_Center
             textBox2.Text = "";
         }
 
-        private void textBox4_Validating(object sender, CancelEventArgs e)
+
+        private void textBox3_Validating(object sender, CancelEventArgs e)
         {
 
-            if (textBox4.Text != "")
+            if (textBox3.Text != "")
             {
-                bool insert = int.TryParse(textBox4.Text, out hour);
+                bool insert = int.TryParse(textBox3.Text, out hour);
                 if (insert)
                 {
-                    hour = int.Parse(textBox4.Text);
+                    hour = int.Parse(textBox3.Text);
 
                     if (!doctor.HaveHour(docID, hour))
                         MessageBox.Show("доктор не работает в это время!");
+                }
+            }
+        }
+
+        private void textBox3_Click(object sender, EventArgs e)
+        {
+            textBox3.Text = "";
+        }
+
+        private void textBox4_Validating(object sender, CancelEventArgs e)
+        {
+            if (textBox4.Text != "")
+            {
+                bool insert = int.TryParse(textBox4.Text, out minute);
+                if (insert)
+                {
+                    minute = int.Parse(textBox4.Text);
+
+                    if (minute != 0 && minute != 30)
+                        MessageBox.Show("запись возможна только на 0 или 30 минут!");
                 }
             }
         }
@@ -91,25 +102,6 @@ namespace Med_Center
             textBox4.Text = "";
         }
 
-        private void textBox5_Validating(object sender, CancelEventArgs e)
-        {
-            if (textBox5.Text != "")
-            {
-                bool insert = int.TryParse(textBox5.Text, out minute);
-                if (insert)
-                {
-                    minute = int.Parse(textBox5.Text);
-
-                    if (minute != 0 && minute != 30)
-                        MessageBox.Show("запись возможна только на 0 или 30 минут!");
-                }
-            }
-        }
-
-        private void textBox5_Click(object sender, EventArgs e)
-        {
-            textBox5.Text = "";
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -145,19 +137,14 @@ namespace Med_Center
                             MessageBox.Show("доктор не работает в это время!");
                         else
                         {
-                            if (!dataAppointment.CanAddPatientInAppointment(docID, patID, day, hour, minute))
-                                 MessageBox.Show("На это время записан другой пациент!");
-                            else {
-                                dataAppointment.ChangePatientInAppointment( docID,  patID,  day,  hour,  minute);
-                                MessageBox.Show("пациент успешно добавлен!");
-                                Close();
-                            }
+                            dataAppointment.DeletePatientInAppointment(docID, patID, day, hour, minute);
+                            MessageBox.Show("пациент успешно удален из записи!");
+                            Close();
                         }
                     }
                 }
             }
         }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -191,7 +178,7 @@ namespace Med_Center
             }
         }
 
-        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
 
@@ -200,6 +187,11 @@ namespace Med_Center
                 e.Handled = true;
                 MessageBox.Show("Введите цифры!");
             }
+        }
+
+        private void DeletePatient_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
