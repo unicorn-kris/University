@@ -115,7 +115,7 @@ namespace DAO
             {
                 var cmd = connection.CreateCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "ChangeCabinetInAppointment";
+                cmd.CommandText = "ChangeCabinetAppointment";
                 cmd.Parameters.AddWithValue(@"CabinetNumber", cabNUM);
                 cmd.Parameters.AddWithValue(@"DoctorID", docID);
                 cmd.Parameters.AddWithValue(@"Day", day);
