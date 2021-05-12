@@ -37,5 +37,9 @@
             get => _CabinetID;
             set => _CabinetID = value;
         }
+        public override string ToString()
+        {
+            return $" Номер: {Number}, {Speciality}";
+        }
     }
 }

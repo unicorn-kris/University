@@ -1,12 +1,6 @@
 ﻿using BL;
+using MedCenter;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Med__Center
@@ -16,6 +10,8 @@ namespace Med__Center
         public ChangeCabinet()
         {
             InitializeComponent();
+            comboBox1.DataSource = doctor.GetAll();
+            comboBox2.DataSource = cabinet.GetAll();
         }
         Doctor_BL doctor = new Doctor_BL();
         Cabinet_BL cabinet = new Cabinet_BL();
@@ -24,65 +20,9 @@ namespace Med__Center
         int id = 0;
         int num = 0;
         int day = -1;
-        private void textBox1_Validating(object sender, CancelEventArgs e)
-        {
-            if (textBox1.Text != "")
-            {
-                int id = int.Parse(textBox1.Text);
-
-                if (!doctor.HaveDoctor(id))
-                    MessageBox.Show("неверный id доктора!");
-            }
-        }
-
-        private void textBox2_Validating(object sender, CancelEventArgs e)
-        {
-            if (textBox2.Text != "")
-            {
-                int num = int.Parse(textBox2.Text);
-
-                if (!cabinet.HaveCabinet(num))
-                    MessageBox.Show("неверный номер кабинета!");
-            }
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-
-            if (!Char.IsDigit(number))
-            {
-                e.Handled = true;
-                MessageBox.Show("Введите цифры!");
-            }
-        }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-
-            if (!Char.IsDigit(number))
-            {
-                e.Handled = true;
-                MessageBox.Show("Введите цифры!");
-            }
-        }
-
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-        }
-
-        private void textBox2_Click(object sender, EventArgs e)
-        {
-            textBox2.Text = "";
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            id = int.Parse(textBox1.Text);
-            num = int.Parse(textBox2.Text);
-            //int day = int.Parse(checkedListBox1.GetItemChecked);
 
             if (!doctor.HaveDoctor(id))
                 MessageBox.Show("неверный id доктора!");
@@ -130,5 +70,62 @@ namespace Med__Center
         {
 
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Doctor doctor1 = (Doctor)comboBox1.SelectedItem;
+            id = doctor1.ID;
+            if (!dataAppointment.HaveDoctorInAppointments(id))
+                MessageBox.Show("невозможно создать запись для данного доктора!");
+            else
+            {
+
+                for (int i = 0; i < 7; ++i)
+                {
+                    if (doctor1.WorkDays[i] == '1')
+                    {
+                        string daySTR = "";
+                        switch (i)
+                        {
+                            case 0:
+                                daySTR = "Пн";
+                                break;
+                            case 1:
+                                daySTR = "Вт";
+                                break;
+                            case 2:
+                                daySTR = "Ср";
+                                break;
+                            case 3:
+                                daySTR = "Чт";
+                                break;
+                            case 4:
+                                daySTR = "Пт";
+                                break;
+                            case 5:
+                                daySTR = "Сб";
+                                break;
+                            case 6:
+                                daySTR = "Вс";
+                                break;
+                        }
+
+                        if (daySTR != "")
+                        {
+                            ListViewItem item = new ListViewItem(daySTR);
+                            listView1.Items.Add(item);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cabinet cabinet1 = (Cabinet)comboBox2.SelectedItem;
+            num = cabinet1.Number;
+
+        }
     }
 }
+

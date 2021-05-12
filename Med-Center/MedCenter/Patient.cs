@@ -66,6 +66,9 @@ namespace MedCenter
             get => _ID;
             set => _ID = value;
         }
-
+        public override string ToString()
+        {
+            return $" {Surname}, {Name}, {Patronymic},  Паспорт: {Pasport}";
+        }
     }
 }

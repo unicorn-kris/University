@@ -1,4 +1,5 @@
 ﻿using BL;
+using MedCenter;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -10,6 +11,8 @@ namespace Med__Center
         public DeletePatient()
         {
             InitializeComponent();
+            comboBox1.DataSource = doctor.GetAll();
+            comboBox2.DataSource = patient.GetAll();
         }
         Doctor_BL doctor = new Doctor_BL();
         Cabinet_BL cabinet = new Cabinet_BL();
@@ -21,45 +24,6 @@ namespace Med__Center
         int day = -1;
         int hour = 0;
         int minute = -1;
-        private void textBox1_Validating(object sender, CancelEventArgs e)
-        {
-            if (textBox1.Text != "")
-            {
-                bool insert = int.TryParse(textBox1.Text, out docID);
-                if (insert)
-                {
-                    if (!doctor.HaveDoctor(docID))
-                        MessageBox.Show("неверный id доктора!");
-                    else if (!dataAppointment.HaveDoctorInAppointments(docID))
-                        MessageBox.Show("невозможно создать запись для данного доктора!");
-                }
-            }
-        }
-
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-        }
-        private void textBox2_Validating(object sender, CancelEventArgs e)
-        {
-            bool insert = int.TryParse(textBox2.Text, out patID);
-            if (insert)
-            {
-                if (textBox2.Text != "")
-                {
-                    patID = int.Parse(textBox2.Text);
-
-                    if (!patient.HavePatient(patID))
-                        MessageBox.Show("неверный id пациента!");
-                }
-            }
-        }
-
-        private void textBox2_Click(object sender, EventArgs e)
-        {
-            textBox2.Text = "";
-        }
-
 
         private void textBox3_Validating(object sender, CancelEventArgs e)
         {
@@ -106,7 +70,7 @@ namespace Med__Center
         private void button1_Click(object sender, EventArgs e)
         {
             if (!dataAppointment.HaveDoctorInAppointments(docID))
-                MessageBox.Show("невозможно создать запись для данного доктора!");
+                MessageBox.Show("невозможно удалить запись у данного доктора!");
             else
             {
                 int oneday = 0;
@@ -137,35 +101,22 @@ namespace Med__Center
                             MessageBox.Show("доктор не работает в это время!");
                         else
                         {
-                            dataAppointment.DeletePatientInAppointment(docID, patID, day, hour, minute);
-                            MessageBox.Show("пациент успешно удален из записи!");
-                            Close();
+                            if (!dataAppointment.HavePatientInAppointments(docID, day, hour, minute, patID))
+                            {
+                                MessageBox.Show("пациент не записан на это время!");
+                            }
+                            else
+                            {
+                                dataAppointment.DeletePatientInAppointment(docID, patID, day, hour, minute);
+                                MessageBox.Show("пациент успешно удален из записи!");
+                                Close();
+                            }
                         }
                     }
                 }
             }
         }
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
 
-            if (!Char.IsDigit(number))
-            {
-                e.Handled = true;
-                MessageBox.Show("Введите цифры!");
-            }
-        }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-
-            if (!Char.IsDigit(number))
-            {
-                e.Handled = true;
-                MessageBox.Show("Введите цифры!");
-            }
-        }
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -191,6 +142,62 @@ namespace Med__Center
 
         private void DeletePatient_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Doctor doctor1 = (Doctor)comboBox1.SelectedItem;
+            docID = doctor1.ID;
+            if (!dataAppointment.HaveDoctorInAppointments(docID))
+                MessageBox.Show("невозможно создать запись для данного доктора!");
+            else
+            {
+                textBox1.Text = $"смена работы врача: {doctor1.WorkHours}";
+                for (int i = 0; i < 7; ++i)
+                {
+                    if (doctor1.WorkDays[i] == '1')
+                    {
+                        string daySTR = "";
+                        switch (i)
+                        {
+                            case 0:
+                                daySTR = "Пн";
+                                break;
+                            case 1:
+                                daySTR = "Вт";
+                                break;
+                            case 2:
+                                daySTR = "Ср";
+                                break;
+                            case 3:
+                                daySTR = "Чт";
+                                break;
+                            case 4:
+                                daySTR = "Пт";
+                                break;
+                            case 5:
+                                daySTR = "Сб";
+                                break;
+                            case 6:
+                                daySTR = "Вс";
+                                break;
+                        }
+
+                        if (daySTR != "")
+                        {
+                            ListViewItem item = new ListViewItem(daySTR);
+                            listView1.Items.Add(item);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Patient patient1 = (Patient)comboBox2.SelectedItem;
+            patID = patient1.ID;
 
         }
     }

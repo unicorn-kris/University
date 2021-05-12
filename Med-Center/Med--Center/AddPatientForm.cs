@@ -13,7 +13,7 @@ namespace Med_Center
             InitializeComponent();
         }
 
-        public string Name = "";
+        public new string Name = "";
         public String Surname = "";
         public string patronymic = "";
         public string pasport = "";

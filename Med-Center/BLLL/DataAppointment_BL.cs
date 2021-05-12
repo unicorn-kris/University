@@ -53,6 +53,15 @@ namespace BL
 
             return have;
         }
+        public bool HavePatientInAppointments(int docID, int day, int hour, int minute, int patID)
+        {
+            bool have = false;
+            foreach (DataAppointment data in _dataAppointment.GetAll())
+                if (data.DoctorID == docID && data.Day == day && data.Hour == hour && data.Minute == minute && data.PatientID == patID)
+                    have = true;
+
+            return have;
+        }
         //нет ли в записи пациента
         public bool CanAddPatientInAppointment(int docID, int patID, int day, int hour, int minute)
         {
@@ -92,7 +101,15 @@ namespace BL
             List<DataAppointment> search = new List<DataAppointment>();
             foreach (DataAppointment appointment in _dataAppointment.GetAll())
                 if (appointment.PatientID == id)
-                    search.Add(appointment);
+                {
+                    bool add = true;
+                    foreach (DataAppointment data in search)
+                        if (data.DoctorID == appointment.DoctorID && data.Day == appointment.Day &&
+                            data.Hour == appointment.Hour && data.Minute == appointment.Minute)
+                            add = false;
+                    if (add)
+                            search.Add(appointment);
+                }
             return search;
         }
     }

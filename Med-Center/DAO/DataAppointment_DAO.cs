@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace DAO
 {
-   public class DataAppointment_DAO : DataAppointment_DAO_Interface
+    public class DataAppointment_DAO : DataAppointment_DAO_Interface
     {
         private string _connectionString = ConfigurationManager.ConnectionStrings["MedCenterData"].ConnectionString;
         public void Add(DataAppointment dataAppointment)
@@ -49,7 +49,21 @@ namespace DAO
                     int Minute = (int)reader["Minute"];
                     int PatientID = (int)reader["PatientID"];
 
-                    dataAppointments.Add(new DataAppointment(DoctorID, CabinetNumber, Day, Hour, Minute, PatientID));
+                    if (dataAppointments.Count != 0)
+                    {
+                        bool add = true;
+                        foreach (DataAppointment data in dataAppointments)
+                            if (data.DoctorID == DoctorID && data.Day == Day && data.Hour == Hour &&
+                                data.Minute == Minute && data.PatientID == PatientID)
+                            {
+                                add = false;
+                            }
+                        if (add)
+
+                            dataAppointments.Add(new DataAppointment(DoctorID, CabinetNumber, Day, Hour, Minute, PatientID));
+                    }
+                    else
+                        dataAppointments.Add(new DataAppointment(DoctorID, CabinetNumber, Day, Hour, Minute, PatientID));
                 }
 
             }

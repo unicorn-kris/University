@@ -82,5 +82,10 @@ namespace MedCenter
         }
         public string WorkDays => _WorkDays;
         public int WorkHours => _WorkHours;
+        public override string ToString()
+        {
+            return $" {Surname}, {Name}, {Patronymic}, {Speciality}, Паспорт: {Pasport}";
+        }
     }
+   
 }

@@ -11,7 +11,8 @@ namespace Med_Center
         public AddAppointmentForm()
         {
             InitializeComponent();
-            
+            comboBox1.DataSource = doctor.GetAll();
+            comboBox2.DataSource = patient.GetAll();
         }
 
         Doctor_BL doctor = new Doctor_BL();
@@ -27,47 +28,8 @@ namespace Med_Center
 
         private void AddAppointment_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void textBox1_Validating(object sender, CancelEventArgs e)
-        {
-            if (textBox1.Text != "")
-            {
-                    bool insert = int.TryParse(textBox1.Text, out docID);
-                if (insert)
-                {
-                    if (!doctor.HaveDoctor(docID))
-                        MessageBox.Show("неверный id доктора!");
-                    else if (!dataAppointment.HaveDoctorInAppointments(docID))
-                        MessageBox.Show("невозможно создать запись для данного доктора!");
-                }
-            }
-        }
-
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-        }
-
-        private void textBox2_Validating(object sender, CancelEventArgs e)
-        {
-            bool insert = int.TryParse(textBox2.Text, out patID);
-            if (insert)
-            {
-                if (textBox2.Text != "")
-                {
-                    patID = int.Parse(textBox2.Text);
-
-                    if (!patient.HavePatient(patID))
-                        MessageBox.Show("неверный id пациента!");
-                }
-            }
-        }
-
-        private void textBox2_Click(object sender, EventArgs e)
-        {
-            textBox2.Text = "";
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "medCenterDataSet.Doctors". При необходимости она может быть перемещена или удалена.
+            this.doctorsTableAdapter.Fill(this.medCenterDataSet.Doctors);
         }
 
         private void textBox4_Validating(object sender, CancelEventArgs e)
@@ -113,6 +75,8 @@ namespace Med_Center
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+           
             if (!dataAppointment.HaveDoctorInAppointments(docID))
                 MessageBox.Show("невозможно создать запись для данного доктора!");
             else
@@ -146,40 +110,20 @@ namespace Med_Center
                         else
                         {
                             if (!dataAppointment.CanAddPatientInAppointment(docID, patID, day, hour, minute))
-                                 MessageBox.Show("На это время записан другой пациент!");
-                            else {
-                                dataAppointment.ChangePatientInAppointment( docID,  patID,  day,  hour,  minute);
-                                MessageBox.Show("пациент успешно добавлен!");
-                                Close();
+                                MessageBox.Show("На это время записан другой пациент!");
+                            else
+                            {
+                                
+                                    dataAppointment.ChangePatientInAppointment(docID, patID, day, hour, minute);
+                                    MessageBox.Show("пациент успешно добавлен!");
+                                    Close();
+                                
                             }
                         }
                     }
                 }
             }
         }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-
-            if (!Char.IsDigit(number))
-            {
-                e.Handled = true;
-                MessageBox.Show("Введите цифры!");
-            }
-        }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-
-            if (!Char.IsDigit(number))
-            {
-                e.Handled = true;
-                MessageBox.Show("Введите цифры!");
-            }
-        }
-
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -200,6 +144,62 @@ namespace Med_Center
                 e.Handled = true;
                 MessageBox.Show("Введите цифры!");
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Doctor doctor1 = (Doctor)comboBox1.SelectedItem;
+            docID = doctor1.ID;
+            if (!dataAppointment.HaveDoctorInAppointments(docID))
+                MessageBox.Show("невозможно создать запись для данного доктора!");
+            else
+            {
+                textBox1.Text = $"смена работы врача: {doctor1.WorkHours}";
+                for (int i = 0; i < 7; ++i)
+                {
+                    if (doctor1.WorkDays[i] == '1')
+                    {
+                        string daySTR = "";
+                        switch (i)
+                        {
+                            case 0:
+                                daySTR = "Пн";
+                                break;
+                            case 1:
+                                daySTR = "Вт";
+                                break;
+                            case 2:
+                                daySTR = "Ср";
+                                break;
+                            case 3:
+                                daySTR = "Чт";
+                                break;
+                            case 4:
+                                daySTR = "Пт";
+                                break;
+                            case 5:
+                                daySTR = "Сб";
+                                break;
+                            case 6:
+                                daySTR = "Вс";
+                                break;
+                        }
+
+                        if (daySTR != "")
+                        {
+                            ListViewItem item = new ListViewItem(daySTR);
+                            listView1.Items.Add(item);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Patient patient1 = (Patient)comboBox2.SelectedItem;
+            patID = patient1.ID;
+
         }
     }
 }

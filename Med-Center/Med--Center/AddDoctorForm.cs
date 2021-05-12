@@ -21,7 +21,7 @@ namespace Med_Center
             this.Controls.Add(this.checkedListBox2);
         }
 
-        public string Name = "";
+        public new string Name = "";
         public String Surname = "";
         public string patronymic = "";
         public string pasport = "";

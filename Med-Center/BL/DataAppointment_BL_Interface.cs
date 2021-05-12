@@ -13,6 +13,8 @@ namespace BL_Interface
         bool FreeDoctor(int id, int day);
         //есть ли доктор в расписании
         bool HaveDoctorInAppointments(int id);
+        bool HavePatientInAppointments(int docID, int day, int hour, int minute, int patID);
+        
         //нет ли в записи пациента
         bool CanAddPatientInAppointment(int docID, int patID, int day, int hour, int minute);
         void ChangePatientInAppointment(int docID, int patID, int day, int hour, int minute);
