@@ -117,36 +117,13 @@ namespace Med_Center
         {
             textBox5.Text = "";
         }
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-        }
-        private void textBox6_Validating_1(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (Regex.IsMatch(textBox6.Text, @"^(?:0[1-9]|[12]\d|3[01])([.])(?:0[1-9]|1[012])\1(?:19|20)\d\d$"))
-            {
-                string date = textBox6.Text;
-                string[] dateCorrect = date.Split('.');
-
-                birthday = new DateTime(int.Parse(dateCorrect[2]), int.Parse(dateCorrect[1]), int.Parse(dateCorrect[0]));
-            }
-            else
-            {
-                MessageBox.Show("Некорректная дата!");
-            }
-        }
-        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-
-        }
-        private void textBox6_Click_1(object sender, EventArgs e)
-        {
-            textBox6.Text = "";
-        }
+        
 
         Patient_BL patientBL = new Patient_BL();
         private void button1_Click(object sender, EventArgs e)
         {
+            birthday = dateTimePicker1.Value;
+
             if (Name == "" || Surname == "" || pasport == "" || phoneNumber == "" || birthday == DateTime.Now
                 || (Name == "Имя" || Surname == "Фамилия" || pasport == "Паспортные данные" || phoneNumber == "Номер телефона"))
             {

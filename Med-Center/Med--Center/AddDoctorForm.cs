@@ -129,32 +129,8 @@ namespace Med_Center
         {
             textBox5.Text = "";
         }
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-        }
-        private void textBox6_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (Regex.IsMatch(textBox6.Text, @"^(?:0[1-9]|[12]\d|3[01])([.])(?:0[1-9]|1[012])\1(?:19|20)\d\d$"))
-            {
-                string date = textBox6.Text;
-                string[] dateCorrect = date.Split('.');
-
-                birthday = new DateTime(int.Parse(dateCorrect[2]), int.Parse(dateCorrect[1]), int.Parse(dateCorrect[0]));
-            }
-            else
-            {
-                MessageBox.Show("Некорректная дата!");
-            }
-        }
-        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-
-        }
-        private void textBox6_Click(object sender, EventArgs e)
-        {
-            textBox6.Text = "";
-        }
+      
+        
 
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
@@ -178,21 +154,7 @@ namespace Med_Center
 
             // Для каждого элемента из CheckedListBox.
             
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
-            {
 
-                // Отмечен ли элемент?
-
-                if (checkedListBox1.GetItemChecked(i))
-                {
-
-                    // Получение текста элемента и добавление к orderInfo.
-
-                    workdays+= 1;
-                }
-                else
-                    workdays+= 0;
-            }
         }
 
         private void checkedListBox2_Click(object sender, EventArgs e)
@@ -216,7 +178,7 @@ namespace Med_Center
 
                         workhours = 1;
                     }
-                    else if (checkedListBox2.GetItemChecked(1))
+                    else
                         workhours = 2;
                 }
             }
@@ -224,6 +186,25 @@ namespace Med_Center
         Doctor_BL doctorBL = new Doctor_BL();
         private void button1_Click(object sender, EventArgs e)
         {
+            birthday = dateTimePicker1.Value;
+            workdays = "";
+            
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+
+                // Отмечен ли элемент?
+
+                if (checkedListBox1.GetItemChecked(i))
+                {
+
+                    // Получение текста элемента и добавление к orderInfo.
+
+                    workdays += 1;
+                }
+                else
+                    workdays += 0;
+            } 
+
             if (Name == "" || Surname == "" || pasport == "" || phoneNumber == "" || birthday == DateTime.Now || speciality == "" || workhours == 0
                 || (Name == "Имя" || Surname == "Фамилия" || pasport == "Паспортные данные" || phoneNumber == "Номер телефона" || speciality == "Специальность"))
             {

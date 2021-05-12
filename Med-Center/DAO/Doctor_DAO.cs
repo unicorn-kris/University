@@ -25,14 +25,10 @@ namespace DAO
                 cmd.Parameters.AddWithValue(@"PhoneNumber", doctor.PhoneNumber);
                 cmd.Parameters.AddWithValue(@"Birthday", doctor.Birthday);
                 cmd.Parameters.AddWithValue(@"Speciality", doctor.Speciality);
-                string workDays = "";
-                foreach (int x in doctor.WorkDays)
-                {
-                    workDays += x.ToString();
-                }
+                
                 string workHours = "";
                 workHours += doctor.WorkHours;
-                cmd.Parameters.AddWithValue(@"WorkDays", workDays);
+                cmd.Parameters.AddWithValue(@"WorkDays", doctor.WorkDays);
                 cmd.Parameters.AddWithValue(@"WorkHours", workHours);
 
                 var id = new SqlParameter
