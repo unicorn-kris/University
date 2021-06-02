@@ -11,6 +11,10 @@ namespace MedCenter
         private string _Speciality;
         private string _WorkDays;
         private int _WorkHours;
+        public Doctor()
+        {
+
+        }
         public Doctor( string name, string surname, string patronymic, string pasport, string phoneNumber,
                        DateTime birthday, string speciality, string workDays, int workHours)
         {

@@ -50,5 +50,13 @@ namespace BL
                     search = true;
             return search;
         }
+        public Patient ByID(int id)
+        {
+           Patient search = new Patient();
+            foreach (Patient patient in _patient.GetAll())
+                if (patient.ID == id)
+                    search = patient;
+            return search;
+        }
     }
 }

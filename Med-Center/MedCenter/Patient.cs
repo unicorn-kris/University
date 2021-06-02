@@ -8,7 +8,10 @@ namespace MedCenter
 {
     public class Patient : Person
     {
+        public Patient()
+        {
 
+        }
         public Patient(int id, string name, string surname, string patronymic, string pasport, string phoneNumber,
                        DateTime birthday)
         {

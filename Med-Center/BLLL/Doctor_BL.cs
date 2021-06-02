@@ -70,5 +70,13 @@ namespace BL
                 }
             return search;
         }
+        public Doctor ByID(int id)
+        {
+            Doctor search = new Doctor();
+            foreach (Doctor doctors in _doctor.GetAll())
+                if (doctors.ID == id)
+                    search = doctors;
+            return search;
+        }
     }
 }
